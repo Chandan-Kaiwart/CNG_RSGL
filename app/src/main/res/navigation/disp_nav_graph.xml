@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/disp_nav_graph"
+    app:startDestination="@id/dispReadFrag">
+
+    <fragment
+        android:id="@+id/dispReadFrag"
+        android:name="com.apc.cng_hpcl.home.newDisp.DispReadFrag"
+        android:label="DispReadFrag" >
+        <action
+            android:id="@+id/action_dispReadFrag_to_dispPhotoFrag"
+            app:destination="@id/dispPhotoFrag" />
+        <argument
+            android:name="station"
+            app:argType="string" />
+        <argument
+            android:name="username"
+            app:argType="string" />
+        <argument
+            android:name="imageUrl"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="def" />
+        <argument
+            android:name="disp"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <argument
+            android:name="bay"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+    <fragment
+        android:id="@+id/dispPhotoFrag"
+        android:name="com.apc.cng_hpcl.home.newDisp.DispPhotoFrag"
+        android:label="DispPhotoFrag" >
+        <argument
+            android:name="station"
+            app:argType="string" />
+        <argument
+            android:name="username"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_dispPhotoFrag_to_dispReadFrag"
+            app:destination="@id/dispReadFrag"
+            app:popUpTo="@id/dispReadFrag"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="disp"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <argument
+            android:name="bay"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+</navigation>

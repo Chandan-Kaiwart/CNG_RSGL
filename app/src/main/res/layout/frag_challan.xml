@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#F8F9FA">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/header_gradient"
+        android:padding="16dp">
+
+<!--        <ImageView-->
+<!--            android:id="@+id/btnBack"-->
+<!--            android:layout_width="24dp"-->
+<!--            android:layout_height="24dp"-->
+<!--            android:src="@android:drawable/ic_media_previous"-->
+<!--            app:tint="#FFFFFF" />-->
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LCV Status and Live Positioning Dashboard"
+                android:textColor="#E0F2F1"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+<!--        <ImageView-->
+<!--            android:id="@+id/btnFilter"-->
+<!--            android:layout_width="24dp"-->
+<!--            android:layout_height="24dp"-->
+<!--            android:src="@android:drawable/ic_menu_sort_by_size"-->
+<!--            android:tint="#FFFFFF" />-->
+    </LinearLayout>
+
+    <!-- Tabs -->
+<!--    <HorizontalScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:scrollbars="none"-->
+<!--        android:background="#FFFFFF"-->
+<!--        android:elevation="2dp">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:padding="8dp">-->
+
+<!--            <Button-->
+<!--                android:id="@+id/btnAll"-->
+<!--                style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
+<!--                android:text="All LCVs"-->
+<!--                android:background="@drawable/tab_selected"-->
+<!--                android:textColor="#FFFFFF"-->
+<!--                android:layout_marginEnd="8dp" />-->
+
+<!--            <Button-->
+<!--                android:id="@+id/btnActive"-->
+<!--                style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
+<!--                android:text="Active"-->
+<!--                android:background="@drawable/tab_unselected"-->
+<!--                android:textColor="#000000"-->
+<!--                android:layout_marginEnd="8dp" />-->
+
+<!--            <Button-->
+<!--                android:id="@+id/btnCompleted"-->
+<!--                style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
+<!--                android:text="Completed"-->
+<!--                android:background="@drawable/tab_unselected"-->
+<!--                android:textColor="#000000"-->
+<!--                android:layout_marginEnd="8dp" />-->
+
+<!--            <Button-->
+<!--                android:id="@+id/btnPending"-->
+<!--                style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
+<!--                android:text="Pending"-->
+<!--                android:background="@drawable/tab_unselected"-->
+<!--                android:textColor="#000000" />-->
+<!--        </LinearLayout>-->
+<!--    </HorizontalScrollView>-->
+
+    <!-- Filter Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp"
+        android:background="#FFFFFF"
+        android:elevation="2dp"
+        android:layout_margin="8dp"
+        android:backgroundTint="@android:color/white"
+        android:clipToPadding="false"
+        android:clipChildren="false"
+        android:layout_gravity="center"
+        app:background="@drawable/card_background">
+
+        <Spinner
+            android:id="@+id/spinnerLcv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:padding="8dp"
+            android:background="@drawable/edittext_bg" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/startDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="From Date"
+                android:drawableStart="@android:drawable/ic_menu_today"
+                android:focusable="false"
+                android:padding="10dp"
+                android:background="@drawable/edittext_bg"
+                android:layout_marginEnd="8dp" />
+
+            <EditText
+                android:id="@+id/endDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="To Date"
+                android:drawableStart="@android:drawable/ic_menu_today"
+                android:focusable="false"
+                android:padding="10dp"
+                android:background="@drawable/edittext_bg" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnGo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📄 VIEW CHALLAN"
+            android:textColor="#FFFFFF"
+            app:backgroundTint="#2962FF"
+            android:layout_marginTop="12dp"
+            android:padding="12dp"
+            android:background="@drawable/round_button_bg" />
+    </LinearLayout>
+
+    <!-- List -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp">
+
+        <LinearLayout
+            android:id="@+id/containerCards"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".home.transaction.subtabs.mgslcv.AfterRefillingFragment">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp">
+
+            <TextView
+                android:id="@+id/lcv_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:text="DBS: Kargil Gas Station  "/>
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_below="@+id/lcv_num"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_centerHorizontal="true"
+                android:scaleType="centerCrop"
+                android:layout_margin="20dp"
+                />
+            <TextView
+                android:id="@+id/title1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageView1"
+                android:textColor="@color/Primary"
+                android:layout_margin="10dp"
+                android:text="Click here to upload dispenser 1 daily sales image"/>
+            <LinearLayout
+                android:id="@+id/linear1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp"
+                android:gravity="center_horizontal"
+                android:layout_below="@id/title1">
+                <Button
+                    android:id="@+id/capture1"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/camera"
+                    android:drawableLeft="@drawable/img_button"
+                    android:layout_marginEnd="30dp"
+                    />
+                <Button
+                    android:id="@+id/save1"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/camera"
+                    android:text="Save"
+                    android:layout_centerHorizontal="true" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/title2"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linear1"
+                android:textColor="@color/Primary"
+                android:text="Click here to upload dispenser 2 daily sales image"/>
+
+            <LinearLayout
+                android:id="@+id/linear2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+                android:layout_margin="10dp"
+                android:layout_below="@id/title2">
+                <Button
+                    android:id="@+id/capture2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/camera"
+                    android:drawableLeft="@drawable/img_button"
+                    android:layout_marginEnd="30dp"
+                    />
+
+                <Button
+                    android:id="@+id/save2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/camera"
+                    android:text="Save"
+                    android:layout_centerHorizontal="true"
+
+
+                    />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/title3"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linear2"
+                android:textColor="@color/Primary"
+                android:text="Click here to upload dispenser 3 daily sales image"/>
+
+            <LinearLayout
+                android:id="@+id/linear3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+                android:layout_margin="10dp"
+                android:layout_below="@id/title3">
+                <Button
+                    android:id="@+id/capture3"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/camera"
+                    android:drawableLeft="@drawable/img_button"
+                    android:layout_marginEnd="30dp"
+                    />
+
+                <Button
+                    android:id="@+id/save3"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/camera"
+                    android:text="Save"
+                    android:layout_centerHorizontal="true"
+
+
+                    />
+            </LinearLayout>
+            <Button
+                android:id="@+id/submit"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linear3"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/Accent"
+                android:text="Submit"/>
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/linear4"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:gravity="center_horizontal"-->
+<!--                android:layout_below="@id/submit">-->
+<!--                <LinearLayout-->
+
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:layout_marginRight="5dp"-->
+<!--                    tools:ignore="UseCompoundDrawables">-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/mfm"-->
+<!--                        android:layout_width="100dp"-->
+<!--                        android:layout_height="100dp"-->
+
+<!--                        android:src="@drawable/mfm"-->
+<!--                        />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="100dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Mass Flow Meter: 34.29 Ltr"-->
+<!--                        android:textColor="@color/Primary"-->
+<!--                        android:textSize="16sp"-->
+
+<!--                        />-->
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:layout_marginRight="5dp"-->
+<!--                    tools:ignore="UseCompoundDrawables">-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/temp_gauge"-->
+<!--                        android:layout_width="100dp"-->
+<!--                        android:layout_height="100dp"-->
+
+<!--                        android:src="@drawable/temp_guage2"-->
+<!--                        />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="100dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Temperature Gauge: 39 &#xb0; C"-->
+<!--                        android:textColor="@color/Primary"-->
+<!--                        android:textSize="16sp"-->
+
+<!--                        />-->
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+
+<!--                    tools:ignore="UseCompoundDrawables">-->
+
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/pressure_gauge"-->
+<!--                        android:layout_width="100dp"-->
+<!--                        android:layout_height="100dp"-->
+
+<!--                        android:src="@drawable/pressure_guage2"-->
+<!--                        />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="100dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Pressure Gauge: 2000 psi"-->
+<!--                        android:textColor="@color/Primary"-->
+
+<!--                        android:textSize="16sp"-->
+
+<!--                        />-->
+<!--                </LinearLayout>-->
+
+
+
+
+
+<!--            </LinearLayout>-->
+
+<!--            <Button-->
+<!--                android:id="@+id/calculate"-->
+<!--                android:layout_margin="10dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--              android:layout_below="@+id/linear4"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:backgroundTint="@color/Accent"-->
+<!--                android:text="Calculate Mass of CNG"/>-->
+
+
+
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/linear6"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal"-->
+
+<!--                android:layout_margin="10dp"-->
+<!--                android:layout_below="@id/calculate">-->
+<!--                <TextView-->
+<!--                    android:id="@+id/mass_cng_title"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="14sp"-->
+<!--                    android:text="Mass of CNG flows: "-->
+<!--                    android:textColor="@color/Primary"-->
+<!--                    />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/mass_sng"-->
+
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="400"-->
+<!--                    android:textColor="@color/black"    />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/unit"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="kg/sccm"-->
+<!--                    android:textColor="@color/black"-->
+
+
+<!--                    />-->
+<!--            </LinearLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/linear7"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal"-->
+
+<!--                android:layout_margin="10dp"-->
+<!--                android:layout_below="@id/linear6">-->
+<!--                <TextView-->
+<!--                    android:id="@+id/mass_cascade_title"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="14sp"-->
+<!--                    android:text="Mass of CNG in cascade: "-->
+<!--                    android:textColor="@color/Primary"-->
+<!--                    />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/mass_cascade"-->
+
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="400"-->
+<!--                    android:textColor="@color/black" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/cascade_unit"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="kg/sccm"-->
+<!--                    android:textColor="@color/black" />-->
+<!--            </LinearLayout>-->
+
+<!--            <Button-->
+<!--                android:id="@+id/notify"-->
+<!--                android:layout_margin="10dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/linear7"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:backgroundTint="@color/Accent"-->
+<!--                android:layout_marginEnd="200dp"-->
+<!--                android:text="Notify the DBS"/>-->
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+</FrameLayout>

@@ -1,0 +1,117 @@
+<resources>
+    <!--    <string name="app_name">LUAG_SGL</string>-->
+    <string name="app_name">CNG SUVIDHA</string>
+    <string-array name="pressure_gauges">
+        <item>General</item>
+        <item>Itech</item>
+        <item>Radix</item>
+        <item>Wika</item>
+        <item>Baumer</item>
+
+
+    </string-array>
+    <string-array name="disps_type">
+        <item>Compaq</item>
+        <item>TGT</item>
+        <item>Parker</item>
+
+    </string-array>
+    <string-array name="shifts">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+
+    </string-array>
+    <string-array name="mgs">
+        <item>cgs_harua</item>
+        <item>upsidc</item>
+        <item>khirkiya_ghat</item>
+
+    </string-array>
+    <string-array name="temperature_gauges">
+        <item>General</item>
+        <item>Radix</item>
+        <item>Wika</item>
+        <item>Baumer</item>
+
+
+    </string-array>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="name_error">Please enter your name</string>
+    <string name="phone_error">Please enter your phone number</string>
+    <string name="email_error">Please enter username</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="password_error">Please enter a password</string>
+    <string name="error_invalid_password">Please enter a minimum password of 6 characters</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_track_lcv">Map</string>
+
+
+    <string name="at_mother_gas_station_before_filling"><u>At Mother Gas Station Before Filling</u></string>
+
+
+    <!--    Transaction Dispenser-->
+    <string name="click_here_to_upload_dispenser_image"><u>Click here to upload Dispenser Image</u></string>
+    <string name="dispenser"><u>Dispenser at DBS</u></string>
+    <string name="stationary_cascade"><u>Stationary Cascade</u></string>
+    <string name="temp_zero_dgree">0 ° C</string>
+    <string name="pressure_zero_bar">0 bar</string>
+    <string name="mass_of_cng_in_stationary_cascade_end_of_the_day">Mass of CNG \n (In Stationary Cascade End \n of the day):</string>
+    <string name="dispneser_title"><u>Stationary Cascade at Daughter Booster Station</u></string>
+    <string name="upload_temp_gauge"><u>Click here to upload Temperature Gauge Image</u></string>
+    <string name="upload_pressure_guage"><u>Click here to upload Pressure Gauge Image</u></string>
+    <!--    Transaction DBS-->
+    <string name="at_daughter_booster_station_before_emptying"><u>At Daughter Booster Station Before Emptying</u></string>
+    <string name="mass_of_cng_in_lcv_reached_at_dbs">Mass of CNG \n(In LCV reached at DBS):</string>
+    <string name="lcv_digit">DL 01 AB 1243</string>
+    <string name="calculate_mass_of_cng">Calculate Mass of CNG</string>
+    <string name="submit">Submit</string>
+    <string name="zero_kg">0 Kg</string>
+    <!--    <string name="density_value">0 Kg/m<sup><small> 3 </small></sup></string>-->
+    <string name="density_value">Mass/Volume</string>
+
+    <string name="upload">Upload</string>
+    <string name="zero">0</string>
+    <string name="kg">Kg</string>
+    <string name="title_temperature_gauge">Temperature Gauge</string>
+    <string name="title_pressure_gauge">Pressure Gauge</string>
+    <string name="at_daughter_booster_station_after_emptying"><u>At Daughter Booster Station After Emptying</u></string>
+    <string name="mass_of_cng_left_in_lcv_after_emptying">Mass of CNG \n (Left in LCV after Emptying):</string>
+    <string name="at_mother_gas_station_after_filling"><u>At Mother Gas Station After Filling</u></string>
+    <string name="data_entry_type">Data Entry Type</string>
+    <string name="temperature_in_c">Please enter value of Temperature in °C</string>
+    <string name="automated">Automated</string>
+    <string name="manual">Manual</string>
+    <string name="pressure_in_bar">Please enter value of Pressure in bar</string>
+    <string name="dispenser_value_in_kg">Dispenser Value in Kg</string>
+    <string name="density_value_in_kg">Enter Mass/Volume (Kg/m<sup><small> 3 </small></sup>) </string>
+    <string name="app_title">CNG Stock Movement and Reconciliation Tracking Application</string>
+    <string name="app_quote">Enhancing your Business value using Decision Science Methodology</string>
+    <string name="assetlogo">assetlogo</string>
+    <string name="logout">Logout</string>
+    <string name="mfm_value_in_kg">0 (Kg/m<sup><small> 3 </small></sup>) </string>
+    <string name="transInfo">Transaction Id Details \n
+        1->LCV @MGS \n
+        2->LCV started filling \n
+        3->LCV completed filling \n
+        4-> LCV @DBS \n
+        5-> LCV started emptying \n
+        6-> LCV got emptied </string>
+    <string name="title_mass_flow_meter">Mass Flow Meter</string>
+    <string name="title_activity_dbs_before_emptying_mfm">DBS_Before_Emptying_MFM</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="density_cal">Density= 0 Kg/m<sup><small> 3 </small></sup></string>
+    <string name="lcv_number">LCV Number</string>
+
+</resources>

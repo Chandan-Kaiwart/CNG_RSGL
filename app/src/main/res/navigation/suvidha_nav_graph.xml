@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/landingPage">
+
+    <fragment
+        android:id="@+id/landingPage"
+        android:name="com.apc.cng_hpcl.home.suvidha.LandingFrag"
+        android:label="Suvidha">
+        <action
+            android:id="@+id/action_landingPage_to_selectorFrag"
+            app:destination="@id/selectorFrag" />
+        <action
+            android:id="@+id/action_landingPage_to_dispCaptureFrag"
+            app:destination="@id/dispCaptureFrag" />
+        <action
+            android:id="@+id/action_landingPage_to_dispenserSale"
+            app:destination="@id/dispenserSale" />
+    </fragment>
+    <fragment
+        android:id="@+id/dispenserSale"
+        android:name="com.apc.cng_hpcl.home.DispenserSaleFragment"
+        android:label="dispenserSale">
+
+    </fragment>
+    <fragment
+        android:id="@+id/dispCaptureFrag"
+        android:name="com.apc.cng_hpcl.home.suvidha.DispCaptureFrag"
+        android:label="Capture Image">
+        <action
+            android:id="@+id/action_dispCaptureFrag_to_dispCapOutputFrag"
+            app:destination="@id/dispCapOutputFrag" />
+        <argument
+            android:name="type"
+            android:defaultValue="-1"
+            app:argType="integer" />
+        <argument
+            android:name="pid"
+            android:defaultValue="emp"
+            app:argType="string"
+            app:nullable="true" />
+        <argument android:name="dispType"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+    <fragment
+        android:id="@+id/dispCapOutputFrag"
+        android:name="com.apc.cng_hpcl.home.suvidha.DispCapOutputFrag"
+        android:label="Output">
+        <argument
+            android:name="ca"
+            app:argType="string" />
+        <argument
+            android:name="url"
+            app:argType="string" />
+        <argument
+            android:name="read"
+            app:argType="string" />
+        <argument
+            android:name="loc"
+            android:defaultValue="loc"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="lat"
+            android:defaultValue="lat"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="longi"
+            android:defaultValue="long"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="address"
+            android:defaultValue="address"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="type"
+            android:defaultValue="-1"
+            app:argType="integer" />
+        <argument
+            android:name="pid"
+            android:defaultValue="emp"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="shift"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_dispCapOutputFrag_to_dispCaptureFrag"
+            app:destination="@id/dispCaptureFrag" />
+        <argument
+            android:name="dispType"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectorFrag"
+        android:name="com.apc.cng_hpcl.home.suvidha.SelectorFrag"
+        android:label="Choose Option">
+        <action
+            android:id="@+id/action_selectorFrag_to_dispCaptureFrag"
+            app:destination="@id/dispCaptureFrag" />
+    </fragment>
+</navigation>

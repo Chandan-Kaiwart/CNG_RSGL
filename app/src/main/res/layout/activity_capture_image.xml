@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".dummy.CaptureImage">
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose File"
+        android:id="@+id/camera_button" />
+
+    <ImageView
+        android:layout_marginTop="70dp"
+        android:layout_width="350dp"
+        android:layout_marginLeft="15dp"
+        android:layout_height="450dp"
+        android:id="@+id/click_image" />
+
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Upload Image"
+        android:id="@+id/buttonUpload" />
+</LinearLayout>

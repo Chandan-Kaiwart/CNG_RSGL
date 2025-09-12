@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".home.transaction.subtabs.mgslcv.MGS_Before_Filling">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/before_refilling"
+            android:layout_margin="20dp"
+
+            >
+            <!--                android:visibility="gone"-->
+            <TextView
+                android:id="@+id/title_fill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/Primary"
+                android:textStyle="bold"
+                android:padding="10dp"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/at_mother_gas_station_before_filling"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title_fill"
+                android:id="@+id/line_LCVtitle"
+                android:divider="?android:dividerHorizontal"
+                android:paddingBottom="10dp"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal">
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="LCV Number: "/>
+                <TextView
+                    android:id="@+id/lcv_num2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="DL 01 AB 1243 "/>
+            </LinearLayout>
+            <!--            <ImageView-->
+            <!--                android:id="@+id/imageView2"-->
+            <!--                android:layout_below="@+id/lcv_num2"-->
+            <!--                android:layout_width="200dp"-->
+            <!--                android:layout_height="200dp"-->
+            <!--                android:layout_centerHorizontal="true"-->
+            <!--                android:scaleType="centerCrop"-->
+            <!--                android:layout_margin="20dp"-->
+            <!--                />-->
+
+            <LinearLayout
+                android:id="@+id/linear12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:divider="?android:dividerHorizontal"
+                android:layout_below="@id/line_LCVtitle">
+
+                <TextView
+                    android:id="@+id/temp_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_temperature_gauge"
+                    android:textColor="@color/Primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_weight="1"
+                    android:gravity="left|center_vertical"
+                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+                <TextView
+                    android:id="@+id/pressure_title"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="left|center_vertical"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_pressure_gauge"
+                    android:textStyle="bold"
+                    android:textColor="@color/Primary"
+                    android:textSize="16sp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:divider="?android:dividerHorizontal"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/linear12">
+
+                <ImageView
+                    android:id="@+id/temp_guage"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/temp"
+                    />
+
+                <ImageView
+                    android:id="@+id/pressure_guage"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/lp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                android:weightSum="2"
+                android:paddingBottom="10dp"
+                android:divider="?android:dividerHorizontal"
+                android:layout_below="@id/linear10">
+
+                <TextView
+                    android:id="@+id/temp_value"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="left|center_vertical"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_height="wrap_content"
+                    android:text="@string/temp_zero_dgree"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_marginRight="15dp"
+                    />
+
+                <TextView
+                    android:id="@+id/pressure_value"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="left|center_vertical"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pressure_zero_bar"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:layout_below="@id/linear11"
+                android:id="@+id/linear_opt_manual_auto">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/data_entry_type"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/Primary"/>
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radiogroup">
+
+                    <RadioButton
+                        android:id="@+id/radio_auto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/automated" />
+
+                    <RadioButton
+                        android:id="@+id/radio_manual"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/manual" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <!--                Manual or Automatic-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/linear14"
+                android:layout_below="@id/linear_opt_manual_auto"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/manual">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:visibility="gone"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:text="Select Temperature Meter Make"
+                        android:textColor="@color/Primary"
+
+                        />
+                    <Spinner
+                        android:id="@+id/spin_temp"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+
+                        android:layout_marginEnd="16dp"
+                        android:spinnerMode="dropdown"/>
+
+                    <TextView
+                        android:id="@+id/title4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/linear11"
+                        android:textColor="@color/Primary"
+                        android:textSize="14sp"
+                        android:visibility="gone"
+                        android:text="@string/upload_temp_gauge"/>
+
+                    <LinearLayout
+                        android:id="@+id/linear8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:divider="?android:dividerHorizontal"
+                        android:gravity="center_horizontal"
+                        android:layout_below="@id/title4">
+
+                        <Button
+                            android:id="@+id/capture4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/camera"
+                            android:text="Click Temperature Gauge"
+                            android:drawableLeft="@drawable/img_button"
+                            android:layout_marginEnd="30dp"
+                            />
+
+                        <Button
+                            android:id="@+id/save4"
+                            android:visibility="gone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/camera"
+                            android:text="@string/upload"
+                            android:layout_centerHorizontal="true"
+                            />
+
+                    </LinearLayout>
+
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        app:boxBackgroundColor="@android:color/transparent"
+                        android:background="@android:color/transparent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/Primary"
+                        >
+
+                        <EditText
+                            android:id="@+id/manual_temp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:inputType="numberDecimal"
+                            android:textSize="16sp"
+                            android:layout_marginEnd="16dp"
+                            android:hint="@string/temperature_in_c"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:textSize="16sp"
+                        android:visibility="gone"
+                        android:textStyle="bold"
+                        android:text="Select Pressure Gauge Meter Make"
+                        android:textColor="@color/Primary"
+
+                        />
+                    <Spinner
+                        android:id="@+id/spin_pressure"
+                        android:layout_marginBottom="16dp"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:spinnerMode="dropdown"/>
+
+                    <TextView
+                        android:id="@+id/title5"
+                        android:layout_margin="10dp"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/linear8"
+                        android:textColor="@color/Primary"
+                        android:textSize="14sp"
+                        android:text="@string/upload_pressure_guage"/>
+
+                    <LinearLayout
+                        android:id="@+id/linear9"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_horizontal"
+                        android:divider="?android:dividerHorizontal"
+                        android:layout_below="@id/title5">
+                        <Button
+                            android:id="@+id/capture5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/camera"
+                            android:text="Click Pressure Gauge"
+
+                            android:drawableLeft="@drawable/img_button"
+                            android:layout_marginEnd="30dp"
+                            />
+
+                        <Button
+                            android:id="@+id/save5"
+                            android:visibility="gone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/camera"
+                            android:text="@string/upload"
+                            android:layout_centerHorizontal="true"
+                            />
+                    </LinearLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        app:boxBackgroundColor="@android:color/transparent"
+                        android:background="@android:color/transparent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/Primary"
+                        android:layout_marginTop="5dp">
+
+                        <EditText
+                            android:id="@+id/manual_pressure"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:textSize="16sp"
+                            android:inputType="numberDecimal"
+                            android:layout_marginEnd="16dp"
+                            android:hint="@string/pressure_in_bar"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:visibility="gone"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mass Flow Meter"
+                            android:textColor="@color/Primary"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            >
+
+                        </TextView>
+                        <ImageView
+                            android:id="@+id/mfm_image"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/mfm1"
+                            />
+
+                        <TextView
+                            android:id="@+id/mfm_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0Kg"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            />
+                        <TextView
+                            android:id="@+id/title6"
+                            android:layout_margin="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/Primary"
+                            android:textSize="14sp"
+                            android:text="@string/upload_pressure_guage"/>
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_horizontal"
+
+                            android:divider="?android:dividerHorizontal"
+                            >
+
+
+                            <Button
+                                android:id="@+id/capture6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/camera"
+                                android:drawableLeft="@drawable/img_button"
+                                android:layout_marginEnd="30dp"
+                                />
+
+                            <Button
+                                android:id="@+id/save6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/camera"
+                                android:text="@string/upload"
+                                android:layout_centerHorizontal="true"
+
+
+                                />
+                        </LinearLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            app:boxBackgroundColor="@android:color/transparent"
+                            android:background="@android:color/transparent"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColorHint="@color/Primary"
+                            android:layout_marginTop="5dp">
+
+                            <EditText
+                                android:id="@+id/manual_mfm"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="16dp"
+                                android:textSize="16sp"
+                                android:layout_marginEnd="16dp"
+                                android:inputType="numberDecimal"
+                                android:hint="Please enter Mass Flow Rate in Kg"
+                                />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <Button
+                        android:layout_gravity="center_horizontal"
+                        android:id="@+id/manual_submit"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/submit"/>
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+            <!--                End Manual or Automated-->
+
+
+            <Button
+                android:id="@+id/calculate2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linear14"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/Primary"
+                android:text="@string/calculate_mass_of_cng" />
+
+            <LinearLayout
+                android:id="@+id/linear5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp"
+                android:divider="?android:dividerHorizontal"
+                android:layout_below="@id/calculate2">
+                <TextView
+                    android:id="@+id/mass_cng_title1"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+
+                    android:text="Mass of CNG(Left in the LCV): "
+
+                    />
+
+                <TextView
+                    android:id="@+id/mass_sng1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/zero"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/unit1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/kg"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/linear15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:layout_margin="10dp"
+                android:layout_below="@id/linear5">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:text="Reading Captured at:"/>
+
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:text="time"/>
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/notify1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linear15"
+                android:layout_centerHorizontal="true"
+
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/Primary"
+                android:paddingBottom="20dp"
+                android:text="Proceed" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

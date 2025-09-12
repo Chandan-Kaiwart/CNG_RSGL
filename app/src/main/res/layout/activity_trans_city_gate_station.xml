@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    tools:context=".home.transaction.subtabs.TransCityGateStation">
+
+
+    <LinearLayout
+        android:id="@+id/linear0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        android:layout_margin="5dp"
+        android:layout_below="@id/submit">
+        <TextView
+            android:id="@+id/pre_meter_title"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="TrunkLine Meter: "
+            android:textColor="@color/Primary"
+            />
+
+        <TextView
+            android:id="@+id/pre_value_trunk"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="400"
+            android:textColor="@color/black"
+
+
+            />
+
+        <TextView
+            android:id="@+id/pre_unit_trunk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="kg/sccm"
+            android:textColor="@color/black"
+
+
+            />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_below="@+id/linear0"
+        android:id="@+id/imageView1"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+       android:layout_centerHorizontal="true"
+        android:scaleType="centerCrop"
+        android:layout_margin="20dp"
+        />
+    <TextView
+        android:id="@+id/title1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView1"
+        android:textColor="@color/Primary"
+        android:layout_margin="5dp"
+        android:text="Click here to upload main Trunkline meter"/>
+
+    <LinearLayout
+        android:id="@+id/linear1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+android:orientation="horizontal"
+        android:layout_margin="5dp"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/title1">
+        <Button
+            android:id="@+id/capture1"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/camera"
+            android:drawableLeft="@drawable/img_button"
+            android:layout_marginEnd="30dp"
+            />
+        <Button
+            android:id="@+id/save1"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/camera"
+            android:text="Save"
+            android:layout_centerHorizontal="true"
+
+
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/title2"
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear1"
+        android:textColor="@color/Primary"
+        android:text="Click here to upload HPCL City gate meter"/>
+
+    <LinearLayout
+        android:id="@+id/linear2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_margin="5dp"
+        android:layout_below="@id/title2">
+    <Button
+        android:id="@+id/capture2"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/camera"
+        android:drawableLeft="@drawable/img_button"
+android:layout_marginEnd="30dp"
+        />
+
+    <Button
+        android:id="@+id/save2"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/camera"
+        android:text="Save"
+        android:layout_centerHorizontal="true"
+
+
+        />
+    </LinearLayout>
+
+
+
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linear2"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/Accent"
+        android:text="Submit"/>
+
+    <LinearLayout
+        android:id="@+id/linear3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        android:layout_margin="5dp"
+        android:layout_below="@id/submit">
+        <TextView
+            android:id="@+id/meter_title"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="TrunkLine Meter: "
+            android:textColor="@color/Primary"
+            />
+
+        <TextView
+            android:id="@+id/value_trunk"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="400"
+            android:textColor="@color/black"
+
+
+            />
+
+        <TextView
+            android:id="@+id/unit_trunk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="kg/sccm"
+            android:textColor="@color/black"
+
+
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        android:layout_margin="5dp"
+        android:layout_below="@id/linear3">
+        <TextView
+            android:id="@+id/hpcl_title"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="Mass of CNG flows: "
+            android:textColor="@color/Primary"
+            />
+
+        <TextView
+            android:id="@+id/value_hpcl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="400"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:id="@+id/unit_hpcl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="kg/sccm"
+            android:textColor="@color/black"
+
+
+            />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/gail_nav_graph"
+    app:startDestination="@id/newDashFrag">
+
+    <fragment
+        android:id="@+id/challanFragment"
+        android:name="com.apc.cng_hpcl.home.ChallanFragment"
+        android:label="ChallanFragment">
+
+        <action
+            android:id="@+id/action_challanFragment_to_challanDetailFragment"
+            app:destination="@id/challanDetailFragment" />
+        <action
+            android:id="@+id/action_challanFragment_to_createChallan"
+            app:destination="@id/createChallan" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/dispenserSaleFragment"
+        android:name="com.apc.cng_hpcl.home.DispenserSaleFragment"
+        android:label="DispenserSaleFragment">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/gasReconciliation"
+        android:name="com.apc.cng_hpcl.home.GasReconciliation"
+        android:label="GasReconciliation">
+    </fragment>
+
+    <fragment
+        android:id="@+id/createChallan"
+        android:name="com.apc.cng_hpcl.home.CreateChallanFragment"
+        android:label="Create Challan"
+        ></fragment>
+
+    <fragment
+        android:id="@+id/challanDetailFragment"
+        android:name="com.apc.cng_hpcl.home.transaction.ChallanDetailFragment"
+        android:label="ChallanDetailFragment"
+        >
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/newDashFrag"
+        android:name="com.apc.cng_hpcl.ui.NewDashFrag"
+        android:label="CNG SUVIDHA">
+<!--        <action-->
+<!--            android:id="@+id/action_newDashFrag_to_cascadeFrag"-->
+<!--            app:destination="@id/cascadeFrag" />-->
+        <action
+            android:id="@+id/action_newDashFrag_to_suvidhaActivity"
+            app:destination="@id/suvidhaActivity" />
+        <action
+            android:id="@+id/action_newDashFrag_to_driverFragment"
+            app:destination="@id/driverFragment" />
+        <action
+            android:id="@+id/action_newDashFrag_to_newTransActivity"
+            app:destination="@id/newTransActivity" />
+        <action
+            android:id="@+id/action_newDashFrag_to_controlRoomActivity"
+            app:destination="@id/controlRoomActivity" />
+        <action
+            android:id="@+id/action_newDashFrag_to_mainMenuFrag"
+            app:destination="@id/mainMenuFrag" />
+        <action
+            android:id="@+id/action_newDashFrag_to_lcvTracking"
+            app:destination="@id/lcvTracking" />
+        <action
+            android:id="@+id/action_newDashFrag_to_challanFragment"
+            app:destination="@id/challanFragment" />
+        <action
+            android:id="@+id/action_newDashFrag_to_dispenserSaleFragment"
+            app:destination="@id/dispenserSaleFragment" />
+        <action
+            android:id="@+id/action_newDashFrag_to_gasReconciliation"
+            app:destination="@id/gasReconciliation" />
+    </fragment>
+    <fragment
+        android:id="@+id/lcvTracking"
+        android:name="com.apc.cng_hpcl.home.tracking.MapsFragment"
+        android:label="LcvTracking">
+
+    </fragment>
+    <fragment
+        android:id="@+id/cascadeFrag"
+        android:name="com.apc.cng_hpcl.ui.CascadeFrag"
+        android:label="Enter Station">
+        <action
+            android:id="@+id/action_cascadeFrag_to_newTransActivity"
+            app:destination="@id/newTransActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/newTransActivity"
+        android:name="com.apc.cng_hpcl.home.newTrans.NewTransActivity"
+        android:label="CNG SUVIDHA" />
+    <activity
+        android:id="@+id/suvidhaActivity"
+        android:name="com.apc.cng_hpcl.home.suvidha.MainActivity"
+        android:label=" Dispenser Suvidha" />
+    <fragment
+        android:id="@+id/driverFragment"
+        android:name="com.apc.cng_hpcl.ui.driver.DriverFragment"
+        android:label="Check LCV Status" />
+    <activity
+        android:id="@+id/controlRoomActivity"
+        android:name="com.apc.cng_hpcl.home.controlRoom.ControlRoomActivity"
+        android:label="ControlRoomActivity" >
+        <argument
+            android:name="lcv"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="station"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="latlng"
+            app:argType="string"
+            app:nullable="true" />
+    </activity>
+    <fragment
+        android:id="@+id/mainMenuFrag"
+        android:name="com.apc.cng_hpcl.ui.MainMenuFrag"
+        android:label="MainMenuFrag" >
+        <action
+            android:id="@+id/action_mainMenuFrag_to_controlRoomActivity"
+            app:destination="@id/controlRoomActivity" />
+        <action
+            android:id="@+id/action_mainMenuFrag_to_newTransActivity"
+            app:destination="@id/newTransActivity" />
+        <action
+            android:id="@+id/action_mainMenuFrag_to_cascadeFrag"
+            app:destination="@id/cascadeFrag" />
+        <action
+            android:id="@+id/action_mainMenuFrag_to_driverFragment"
+            app:destination="@id/driverFragment" />
+        <action
+            android:id="@+id/action_mainMenuFrag_to_suvidhaActivity"
+            app:destination="@id/suvidhaActivity" />
+        <action
+            android:id="@+id/action_mainMenuFrag_to_vehicleChecklistFrag"
+            app:destination="@id/vehicleChecklistFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/vehicleChecklistFrag"
+        android:name="com.apc.cng_hpcl.home.controlRoom.VehicleChecklistFrag"
+        android:label="VehicleChecklistFrag" />
+</navigation>

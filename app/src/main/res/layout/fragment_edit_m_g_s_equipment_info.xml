@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".home.master.subtabs.mothergasstation.MGSEquipmentInfoFragment">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        tools:ignore="UselessParent">
+
+         <LinearLayout
+            android:id="@+id/linear_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:ignore="HardcodedText">
+
+             <TextView
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:layout_marginStart="16dp"
+                 android:layout_marginTop="16dp"
+                 android:layout_marginEnd="16dp"
+                 android:text="Select Station Type"
+                 android:textSize="16sp"
+                 android:textStyle="bold"
+                 android:textColor="@color/Primary"
+
+                 />
+             <Spinner
+                 android:id="@+id/station_type"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginStart="16dp"
+                 android:layout_marginTop="16dp"
+                 android:layout_marginEnd="16dp"
+
+
+                 android:spinnerMode="dropdown"/>
+
+             <TextView
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:layout_marginStart="16dp"
+                 android:layout_marginTop="16dp"
+                 android:layout_marginEnd="16dp"
+                 android:text="Select Station Id"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                 android:textColor="@color/Primary"
+
+                 />
+             <Spinner
+                 android:id="@+id/station_id"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginStart="16dp"
+                 android:layout_marginTop="16dp"
+                 android:layout_marginEnd="16dp"
+
+                 android:autofillHints="Organization Name"
+                 android:spinnerMode="dropdown"/>
+
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/mgs_for_dbs"
+                 android:visibility="gone"
+                 android:orientation="vertical"
+                 >
+                 <com.google.android.material.textfield.TextInputLayout
+                     app:boxBackgroundColor="@android:color/transparent"
+                     android:background="@android:color/transparent"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:textColorHint="@color/Primary"
+                     android:layout_marginTop="5dp">
+                     <EditText
+                         android:id="@+id/mgs_id"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_marginStart="16dp"
+                         android:layout_marginTop="16dp"
+                         android:textSize="16sp"
+                         android:layout_marginEnd="16dp"
+                         android:hint="Mother Gas Station ID"
+                         android:inputType="text" />
+                 </com.google.android.material.textfield.TextInputLayout>
+                 <!--                            <Spinner-->
+                 <!--                                android:id="@+id/mgs_id"-->
+                 <!--                                android:layout_width="match_parent"-->
+                 <!--                                android:layout_height="wrap_content"-->
+                 <!--                                android:layout_marginStart="16dp"-->
+                 <!--                                android:layout_marginTop="16dp"-->
+                 <!--                                android:layout_marginEnd="16dp"-->
+                 <!--            -->
+                 <!--                                android:autofillHints="Organization Name"-->
+                 <!--                                android:spinnerMode="dropdown"/>-->
+             </LinearLayout>
+
+
+
+
+
+             <TextView
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:gravity="center"
+                 android:text="Stationary Cascade"
+                android:textColor="@color/black"
+                 android:textSize="16sp"
+                 android:textStyle="bold" />
+
+             <com.google.android.material.textfield.TextInputLayout
+                 app:boxBackgroundColor="@android:color/transparent"
+                 android:background="@android:color/transparent"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:textColorHint="@color/Primary"
+                 android:layout_marginTop="5dp">
+
+                 <EditText
+                     android:id="@+id/cascade_id"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginStart="16dp"
+                     android:layout_marginTop="16dp"
+                     android:layout_marginEnd="16dp"
+                     android:hint="ID"
+                     android:textSize="16sp" />
+             </com.google.android.material.textfield.TextInputLayout>
+
+             <com.google.android.material.textfield.TextInputLayout
+                 app:boxBackgroundColor="@android:color/transparent"
+                 android:background="@android:color/transparent"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:textColorHint="@color/Primary"
+                 android:layout_marginTop="5dp">
+
+                 <EditText
+                     android:id="@+id/cascade_make"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginStart="16dp"
+                     android:layout_marginTop="16dp"
+                     android:layout_marginEnd="16dp"
+                     android:hint="Make"
+                     android:textSize="16sp" />
+             </com.google.android.material.textfield.TextInputLayout>
+
+             <com.google.android.material.textfield.TextInputLayout
+                 app:boxBackgroundColor="@android:color/transparent"
+                 android:background="@android:color/transparent"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:textColorHint="@color/Primary"
+                 android:layout_marginTop="5dp">
+                 <EditText
+                     android:id="@+id/cascade_model"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginStart="16dp"
+                     android:layout_marginTop="16dp"
+                     android:layout_marginEnd="16dp"
+                     android:hint="Model"
+                     android:textSize="16sp" />
+             </com.google.android.material.textfield.TextInputLayout>
+             <com.google.android.material.textfield.TextInputLayout
+                 app:boxBackgroundColor="@android:color/transparent"
+                 android:background="@android:color/transparent"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:textColorHint="@color/Primary"
+                 android:layout_marginTop="5dp">
+                 <EditText
+                     android:id="@+id/cascade_serial"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginStart="16dp"
+                     android:layout_marginTop="16dp"
+                     android:layout_marginEnd="16dp"
+                     android:hint="Serial Number"
+                     android:textSize="16sp" />
+             </com.google.android.material.textfield.TextInputLayout>
+
+
+             <com.google.android.material.textfield.TextInputLayout
+                 app:boxBackgroundColor="@android:color/transparent"
+                 android:background="@android:color/transparent"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:textColorHint="@color/Primary"
+                 android:layout_marginTop="5dp">
+
+                 <EditText
+                     android:id="@+id/date_install"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginStart="16dp"
+                     android:layout_marginTop="16dp"
+                     android:layout_marginEnd="16dp"
+                     android:textSize="16sp"
+                     android:hint="Date of Installation"
+
+
+                     />
+             </com.google.android.material.textfield.TextInputLayout>
+             <com.google.android.material.textfield.TextInputLayout
+                 app:boxBackgroundColor="@android:color/transparent"
+                 android:background="@android:color/transparent"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:textColorHint="@color/Primary"
+                 android:layout_marginTop="5dp">
+                 <EditText
+                     android:id="@+id/date_status"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginStart="16dp"
+                     android:layout_marginTop="16dp"
+                     android:layout_marginEnd="16dp"
+                     android:textSize="16sp"
+                     android:hint="Status Date"
+
+
+                     />
+             </com.google.android.material.textfield.TextInputLayout>
+
+             <com.google.android.material.textfield.TextInputLayout
+                 app:boxBackgroundColor="@android:color/transparent"
+                 android:background="@android:color/transparent"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:textColorHint="@color/Primary"
+                 android:layout_marginTop="5dp">
+                 <EditText
+                     android:id="@+id/cascade_status"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginStart="16dp"
+                     android:layout_marginTop="16dp"
+                     android:layout_marginEnd="16dp"
+                     android:textSize="16sp"
+                     android:hint="Hydrotest Status"
+
+                     />  </com.google.android.material.textfield.TextInputLayout>
+             <com.google.android.material.textfield.TextInputLayout
+                 app:boxBackgroundColor="@android:color/transparent"
+                 android:background="@android:color/transparent"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:textColorHint="@color/Primary"
+                 android:layout_marginTop="5dp">
+
+                 <EditText
+                     android:id="@+id/cascade_capacity"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginStart="16dp"
+                     android:layout_marginTop="16dp"
+                     android:layout_marginEnd="16dp"
+                     android:hint="Capacity of Stationary Cascade(Kg) "
+
+                     android:textSize="16sp" />
+             </com.google.android.material.textfield.TextInputLayout>
+
+             <com.google.android.material.textfield.TextInputLayout
+                 app:boxBackgroundColor="@android:color/transparent"
+                 android:background="@android:color/transparent"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:textColorHint="@color/Primary"
+                 android:layout_marginTop="5dp">
+
+                 <EditText
+                     android:id="@+id/cascade_reorder_point"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginStart="16dp"
+                     android:layout_marginTop="16dp"
+                     android:layout_marginEnd="16dp"
+                     android:hint="Reorder Point(Kg) "
+
+                     android:textSize="16sp" />
+             </com.google.android.material.textfield.TextInputLayout>
+
+
+             <TextView
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:gravity="center"
+                 android:text="Compressor"
+                android:textColor="@color/black"
+                 android:paddingTop="10dp"
+                 android:textSize="16sp"
+                 android:textStyle="bold" />
+             <com.google.android.material.textfield.TextInputLayout
+                 app:boxBackgroundColor="@android:color/transparent"
+                 android:background="@android:color/transparent"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:textColorHint="@color/Primary"
+                 android:layout_marginTop="5dp">
+                 <EditText
+                     android:id="@+id/comp_id"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginStart="16dp"
+                     android:layout_marginTop="16dp"
+                     android:layout_marginEnd="16dp"
+                     android:hint="ID"
+
+                     android:textSize="16sp" />
+             </com.google.android.material.textfield.TextInputLayout>
+             <com.google.android.material.textfield.TextInputLayout
+                 app:boxBackgroundColor="@android:color/transparent"
+                 android:background="@android:color/transparent"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:textColorHint="@color/Primary"
+                 android:layout_marginTop="5dp">
+                 <EditText
+                     android:id="@+id/comp_make"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginStart="16dp"
+                     android:layout_marginTop="16dp"
+                     android:layout_marginEnd="16dp"
+                     android:hint="Make"
+
+                     android:textSize="16sp" />
+             </com.google.android.material.textfield.TextInputLayout>
+             <com.google.android.material.textfield.TextInputLayout
+                 app:boxBackgroundColor="@android:color/transparent"
+                 android:background="@android:color/transparent"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:textColorHint="@color/Primary"
+                 android:layout_marginTop="5dp">
+                 <EditText
+                     android:id="@+id/comp_model"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginStart="16dp"
+                     android:layout_marginTop="16dp"
+                     android:layout_marginEnd="16dp"
+                     android:hint="Model"
+
+                     android:textSize="16sp" />
+             </com.google.android.material.textfield.TextInputLayout>
+             <com.google.android.material.textfield.TextInputLayout
+                 app:boxBackgroundColor="@android:color/transparent"
+                 android:background="@android:color/transparent"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:textColorHint="@color/Primary"
+                 android:layout_marginTop="5dp">
+                 <EditText
+                     android:id="@+id/comp_serial"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginStart="16dp"
+                     android:layout_marginTop="16dp"
+                     android:layout_marginEnd="16dp"
+                     android:hint="Serial Number "
+
+                     android:textSize="16sp" />
+             </com.google.android.material.textfield.TextInputLayout>
+             <com.google.android.material.textfield.TextInputLayout
+                 app:boxBackgroundColor="@android:color/transparent"
+                 android:background="@android:color/transparent"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:textColorHint="@color/Primary"
+                 android:layout_marginTop="5dp">
+                 <EditText
+                     android:id="@+id/comp_type"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginStart="16dp"
+                     android:layout_marginTop="16dp"
+                     android:layout_marginEnd="16dp"
+                     android:hint="Type"
+
+                     android:textSize="16sp" />
+             </com.google.android.material.textfield.TextInputLayout>
+
+             <TextView
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:gravity="center"
+                 android:text="Dispenser"
+                android:textColor="@color/black"
+                 android:paddingTop="10dp"
+                 android:textSize="16sp"
+                 android:textStyle="bold" />
+
+
+             <com.google.android.material.textfield.TextInputLayout
+                 app:boxBackgroundColor="@android:color/transparent"
+                 android:background="@android:color/transparent"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:textColorHint="@color/Primary"
+                 android:layout_marginTop="5dp">
+
+                 <EditText
+                     android:id="@+id/disp_id"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginStart="16dp"
+                     android:layout_marginTop="16dp"
+                     android:layout_marginEnd="16dp"
+                     android:hint="ID"
+
+                     android:textSize="16sp" />
+             </com.google.android.material.textfield.TextInputLayout>
+             <com.google.android.material.textfield.TextInputLayout
+                 app:boxBackgroundColor="@android:color/transparent"
+                 android:background="@android:color/transparent"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:textColorHint="@color/Primary"
+                 android:layout_marginTop="5dp">
+
+                 <EditText
+                     android:id="@+id/disp_make"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginStart="16dp"
+                     android:layout_marginTop="16dp"
+                     android:layout_marginEnd="16dp"
+                     android:hint="Make"
+
+                     android:textSize="16sp" />
+             </com.google.android.material.textfield.TextInputLayout>
+             <com.google.android.material.textfield.TextInputLayout
+                 app:boxBackgroundColor="@android:color/transparent"
+                 android:background="@android:color/transparent"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:textColorHint="@color/Primary"
+                 android:layout_marginTop="5dp">
+
+                 <EditText
+                     android:id="@+id/disp_model"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginStart="16dp"
+                     android:layout_marginTop="16dp"
+                     android:layout_marginEnd="16dp"
+                     android:hint="Model Number"
+
+                     android:textSize="16sp" />
+
+             </com.google.android.material.textfield.TextInputLayout>
+             <com.google.android.material.textfield.TextInputLayout
+                 app:boxBackgroundColor="@android:color/transparent"
+                 android:background="@android:color/transparent"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:textColorHint="@color/Primary"
+                 android:layout_marginTop="5dp">
+                 <EditText
+                     android:id="@+id/disp_type"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginStart="16dp"
+                     android:layout_marginTop="16dp"
+                     android:layout_marginEnd="16dp"
+                     android:hint="Type"
+
+                     android:textSize="16sp" />
+             </com.google.android.material.textfield.TextInputLayout>
+
+
+
+             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+<!--                <Button-->
+<!--                    android:id="@+id/proceedEdit"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginEnd="16dp"-->
+<!--                    android:backgroundTint="@color/Primary"-->
+<!--                    android:text="EDIT"-->
+<!--                    android:textColor="@android:color/white"-->
+<!--                    tools:ignore="ButtonStyle" />-->
+
+
+
+                <Button
+                    android:id="@+id/cancelButton"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:text="CANCEL"
+                    android:textColor="@color/Primary" />
+
+                <Button
+                    android:id="@+id/proceedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:backgroundTint="@color/Primary"
+                    android:text="Update"
+                    android:textColor="@android:color/white"
+                    tools:ignore="ButtonStyle" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</FrameLayout>

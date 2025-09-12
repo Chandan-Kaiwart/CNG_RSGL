@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/trans_nav_graph"
+    app:startDestination="@id/transListFrag">
+
+    <fragment
+        android:id="@+id/transListFrag"
+        android:name="com.apc.cng_hpcl.home.newTrans.TransListFrag"
+        android:label="Select LCV :">
+        <action
+            android:id="@+id/action_transListFrag_to_readingFrag"
+            app:destination="@id/readingFrag" />
+        <argument
+            android:name="op_id"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/readingFrag"
+        android:name="com.apc.cng_hpcl.home.newTrans.ReadingFrag"
+        android:label="Take Readings">
+        <action
+            android:id="@+id/action_readingFrag_to_photoFrag"
+            app:destination="@id/photoFrag" />
+        <argument
+            android:name="op_id"
+            app:argType="string" />
+        <argument
+            android:name="type"
+            android:defaultValue="-1"
+            app:argType="integer" />
+        <argument
+            android:name="stage"
+            android:defaultValue="-1"
+            app:argType="integer" />
+        <argument
+            android:name="lcv"
+            app:argType="string" />
+        <argument
+            android:name="transId"
+            app:argType="string" />
+        <argument
+            android:name="mgs_id"
+            app:argType="string" />
+        <argument
+            android:name="dbs_id"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/photoFrag"
+        android:name="com.apc.cng_hpcl.home.newTrans.PhotoFrag"
+        android:label="Capture Gauge">
+
+        <action
+            android:id="@+id/action_photoFrag_to_readingFrag"
+            app:destination="@id/readingFrag"
+            app:popUpTo="@id/readingFrag"
+            app:popUpToInclusive="false" />
+        <argument
+            android:name="type"
+            android:defaultValue="-1"
+            app:argType="integer" />
+        <argument
+            android:name="op_id"
+            app:argType="string" />
+        <argument
+            android:name="lcv"
+            app:argType="string" />
+        <argument
+            android:name="stage"
+            android:defaultValue="-1"
+            app:argType="integer" />
+        <argument
+            android:name="transId"
+            app:argType="string" />
+        <argument
+            android:name="mgs_id"
+            app:argType="string" />
+        <argument
+            android:name="dbs_id"
+            app:argType="string" />
+        <argument
+            android:name="gaugeType"
+            android:defaultValue="-1"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="gauge_make"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+</navigation>

@@ -1,0 +1,1079 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".home.transaction.subtabs.lcvdbs.TransDaughterBoosterStation">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="20dp">
+
+            <LinearLayout
+                android:id="@+id/linear_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                tools:ignore="HardcodedText">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:visibility="gone"
+                    android:layout_marginEnd="16dp"
+                    android:text="Select Mother Gas Station"
+                    android:textColor="@color/Primary"
+
+                    />
+                <Spinner
+                    android:id="@+id/select_mgs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:visibility="gone"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:spinnerMode="dropdown"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:text="Select LCV"
+                    android:textColor="@color/Primary"
+
+                    />
+                <Spinner
+                    android:id="@+id/select_lcv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:popupBackground="@android:drawable/dialog_holo_light_frame"
+
+                    android:spinnerMode="dropdown"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:text="Select DBS"
+                    android:textColor="@color/Primary"
+
+                    />
+                <Spinner
+                    android:id="@+id/select_dbs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:popupBackground="@android:drawable/dialog_holo_light_frame"
+
+                    android:spinnerMode="dropdown"/>
+
+                <Button
+                    android:id="@+id/notify_mgs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:backgroundTint="@color/Primary"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Notify the DBS"
+                    android:textColor="@android:color/white"
+                    tools:ignore="ButtonStyle" />
+
+            </LinearLayout>
+
+
+<!--            <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:id="@+id/before_refilling"-->
+<!--                android:visibility="gone"-->
+
+<!--                >-->
+<!--&lt;!&ndash;          android:visibility="gone"     &ndash;&gt;-->
+<!--                <TextView-->
+<!--                    android:id="@+id/title_fill"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/Primary"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:paddingTop="10dp"-->
+<!--                    android:paddingBottom="10dp"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textAppearance="?android:attr/textAppearanceMedium"-->
+<!--                    android:text="@string/at_daughter_booster_station_before_emptying"/>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_below="@+id/title_fill"-->
+<!--                    android:id="@+id/line_LCVtitle"-->
+<!--                    android:divider="?android:dividerHorizontal"-->
+<!--                    android:paddingBottom="10dp"-->
+<!--                    android:layout_centerHorizontal="true"-->
+<!--                    android:orientation="horizontal">-->
+<!--                    <TextView-->
+
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textAlignment="center"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:textAppearance="?android:attr/textAppearanceMedium"-->
+<!--                        android:text="@string/lcv_number"/>-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/lcv_num2"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:textAlignment="center"-->
+<!--                        android:textAppearance="?android:attr/textAppearanceMedium"-->
+<!--                        android:text="@string/lcv_digit"/>-->
+<!--                </LinearLayout>-->
+
+<!--                &lt;!&ndash;            <ImageView&ndash;&gt;-->
+<!--                &lt;!&ndash;                android:id="@+id/imageView2"&ndash;&gt;-->
+<!--                &lt;!&ndash;                android:layout_below="@+id/lcv_num2"&ndash;&gt;-->
+<!--                &lt;!&ndash;                android:layout_width="200dp"&ndash;&gt;-->
+<!--                &lt;!&ndash;                android:layout_height="200dp"&ndash;&gt;-->
+<!--                &lt;!&ndash;                android:layout_centerHorizontal="true"&ndash;&gt;-->
+<!--                &lt;!&ndash;                android:scaleType="centerCrop"&ndash;&gt;-->
+<!--                &lt;!&ndash;                android:layout_margin="20dp"&ndash;&gt;-->
+<!--                &lt;!&ndash;                />&ndash;&gt;-->
+
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/linear12"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:weightSum="2"-->
+<!--                    android:layout_below="@id/line_LCVtitle">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/temp_title"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/title_temperature_gauge"-->
+<!--                        android:textColor="@color/Primary"-->
+<!--                        android:textSize="16sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="left|center_vertical"-->
+<!--                        android:textAppearance="?android:attr/textAppearanceMedium"/>-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/pressure_title"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="left|center_vertical"-->
+<!--                        android:textAppearance="?android:attr/textAppearanceMedium"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/title_pressure_gauge"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:textColor="@color/Primary"-->
+<!--                        android:textSize="16sp"-->
+<!--                        />-->
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/linear10"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:gravity="center_horizontal"-->
+<!--                    android:layout_below="@id/linear12">-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/temp_guage"-->
+<!--                        android:layout_width="150dp"-->
+<!--                        android:layout_height="150dp"-->
+<!--                        android:layout_margin="10dp"-->
+<!--                        android:src="@drawable/temp_guage"-->
+<!--                        />-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/pressure_guage"-->
+<!--                        android:layout_width="150dp"-->
+<!--                        android:layout_height="150dp"-->
+<!--                        android:layout_margin="10dp"-->
+<!--                        android:src="@drawable/pressure_guage"-->
+<!--                        />-->
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/linear11"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:layout_centerHorizontal="true"-->
+<!--                    android:weightSum="2"-->
+<!--                    android:layout_below="@id/linear10">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/temp_value"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="left|center_vertical"-->
+<!--                        android:textAppearance="?android:attr/textAppearanceMedium"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/temp_zero_dgree"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:textSize="16sp"-->
+<!--                        android:layout_marginRight="15dp"-->
+<!--                        />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/pressure_value"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="left|center_vertical"-->
+<!--                        android:textAppearance="?android:attr/textAppearanceMedium"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/pressure_zero_bar"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:textSize="16sp"-->
+
+<!--                        />-->
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:layout_below="@id/linear11"-->
+<!--                    android:visibility="gone"-->
+<!--                    android:id="@+id/linear_opt_manual_auto">-->
+
+
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/data_entry_type"-->
+<!--                        android:textSize="16sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:textColor="@color/Primary"/>-->
+
+<!--                    <RadioGroup-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:id="@+id/radiogroup">-->
+
+<!--                        <RadioButton-->
+<!--                            android:id="@+id/radio_auto"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="@string/automated" />-->
+
+<!--                        <RadioButton-->
+<!--                            android:id="@+id/radio_manual"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="@string/manual" />-->
+<!--                    </RadioGroup>-->
+<!--                </LinearLayout>-->
+
+<!--                &lt;!&ndash;                Manual or Automatic&ndash;&gt;-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:id="@+id/linear14"-->
+<!--                    android:layout_below="@id/linear_opt_manual_auto"-->
+<!--                    >-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:id="@+id/manual">-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/title4"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:textColor="@color/Primary"-->
+<!--                        android:text="@string/upload_temp_gauge"/>-->
+
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/linear8"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="horizontal"-->
+
+<!--                        android:gravity="center_horizontal"-->
+<!--                        >-->
+
+<!--                        <Button-->
+
+<!--                            android:id="@+id/capture4"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:src="@drawable/camera"-->
+<!--                            android:drawableLeft="@drawable/img_button"-->
+<!--                            android:layout_marginEnd="30dp"-->
+<!--                            />-->
+
+<!--                        <Button-->
+<!--                            android:id="@+id/save4"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:src="@drawable/camera"-->
+<!--                            android:text="@string/upload"-->
+<!--                            />-->
+
+<!--                    </LinearLayout>-->
+
+<!--                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                        app:boxBackgroundColor="@android:color/transparent"-->
+<!--                        android:background="@android:color/transparent"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:textColorHint="@color/Primary"-->
+<!--                        >-->
+
+<!--                        <EditText-->
+<!--                            android:id="@+id/manual_temp"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginStart="16dp"-->
+<!--                            android:textSize="16sp"-->
+<!--                            android:inputType="numberDecimal"-->
+<!--                            android:layout_marginEnd="16dp"-->
+<!--                            android:hint="@string/temperature_in_c"-->
+<!--                            />-->
+
+<!--                    </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--                     <LinearLayout-->
+<!--                    android:id="@+id/automated"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:paddingBottom="10dp"-->
+<!--                    android:divider="?android:dividerHorizontal"-->
+<!--                    >-->
+
+
+
+<!--                <TextView-->
+<!--                    android:id="@+id/title5"-->
+<!--                    android:layout_margin="10dp"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/Primary"-->
+<!--                    android:text="@string/upload_pressure_guage"/>-->
+
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/linear9"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:gravity="center_horizontal"-->
+
+<!--                    >-->
+<!--                    <Button-->
+<!--                        android:id="@+id/capture5"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:src="@drawable/camera"-->
+<!--                        android:drawableLeft="@drawable/img_button"-->
+<!--                        android:layout_marginEnd="30dp"-->
+<!--                        />-->
+
+<!--                    <Button-->
+<!--                        android:id="@+id/save5"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:src="@drawable/camera"-->
+<!--                        android:text="@string/upload"-->
+<!--                        />-->
+<!--                </LinearLayout>-->
+
+
+<!--                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                        app:boxBackgroundColor="@android:color/transparent"-->
+<!--                        android:background="@android:color/transparent"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:textColorHint="@color/Primary"-->
+<!--                        >-->
+
+<!--                        <EditText-->
+<!--                            android:id="@+id/manual_pressure"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginStart="16dp"-->
+<!--                            android:textSize="16sp"-->
+<!--                            android:inputType="numberDecimal"-->
+<!--                            android:layout_marginEnd="16dp"-->
+<!--                            android:hint="@string/pressure_in_bar"-->
+<!--                            />-->
+
+<!--                    </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--                    <Button-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:id="@+id/manual_submit"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/submit"/>-->
+<!--                </LinearLayout>-->
+<!--                </LinearLayout>-->
+<!--                </LinearLayout>-->
+
+
+<!--                &lt;!&ndash;            <Button&ndash;&gt;-->
+<!--                &lt;!&ndash;                android:id="@+id/submit1"&ndash;&gt;-->
+<!--                &lt;!&ndash;                android:layout_margin="10dp"&ndash;&gt;-->
+<!--                &lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
+<!--                &lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--                &lt;!&ndash;                android:layout_below="@id/linear9"&ndash;&gt;-->
+<!--                &lt;!&ndash;                android:layout_centerHorizontal="true"&ndash;&gt;-->
+<!--                &lt;!&ndash;                android:textColor="@color/black"&ndash;&gt;-->
+<!--                &lt;!&ndash;                android:backgroundTint="@color/Accent"&ndash;&gt;-->
+<!--                &lt;!&ndash;                android:text="Submit"/>&ndash;&gt;-->
+
+
+
+
+
+<!--                <Button-->
+<!--                    android:id="@+id/calculate2"-->
+<!--                    android:layout_margin="10dp"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_below="@id/linear14"-->
+<!--                    android:layout_centerHorizontal="true"-->
+
+<!--                    android:backgroundTint="@color/Primary"-->
+<!--                    android:text="@string/calculate_mass_of_cng"/>-->
+
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/linear5"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:layout_margin="10dp"-->
+<!--                    android:layout_below="@id/calculate2">-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/mass_cng_title1"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:textSize="16sp"-->
+<!--                        android:text="@string/mass_of_cng_in_lcv_reached_at_dbs"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/mass_sng1"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/zero"-->
+<!--                        android:textSize="16sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/unit1"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/kg"-->
+<!--                        android:textSize="16sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        />-->
+<!--                </LinearLayout>-->
+
+<!--                <Button-->
+<!--                    android:id="@+id/notify1"-->
+<!--                    android:layout_margin="10dp"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_below="@id/linear5"-->
+<!--                    android:layout_centerHorizontal="true"-->
+
+<!--                    android:backgroundTint="@color/Primary"-->
+<!--                    android:layout_marginBottom="20dp"-->
+<!--                    android:paddingBottom="20dp"-->
+<!--                    android:text="Notify the DBS"/>-->
+
+<!--            </RelativeLayout>-->
+
+            <RelativeLayout
+                android:id="@+id/after_refilling"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                >
+<!--                android:visibility="gone"-->
+
+                <TextView
+                    android:id="@+id/title_afterfill"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/Primary"
+                    android:textStyle="bold"
+                    android:padding="10dp"
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/at_daughter_booster_station_after_emptying"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/title_afterfill"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/lcv_title"
+                    android:orientation="horizontal">
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lcv_number"
+                        android:textAlignment="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/black"
+                        android:visibility="gone" />
+                    <TextView
+                        android:id="@+id/lcv_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lcv_digit"
+                        android:textAlignment="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/black"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/mass_flow"
+                    android:layout_below="@+id/lcv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"
+                    android:visibility="gone"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:padding="5dp"
+                    android:text="Mass Flow Rate:250 Kg/hr"/>
+
+                <LinearLayout
+                    android:id="@+id/linear4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:weightSum="2"
+                    android:layout_below="@id/mass_flow">
+                    <!--                    <LinearLayout-->
+
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:orientation="vertical"-->
+                    <!--                        android:layout_marginRight="5dp"-->
+                    <!--                        tools:ignore="UseCompoundDrawables">-->
+
+                    <!--                        <ImageView-->
+                    <!--                            android:id="@+id/mfm"-->
+                    <!--                            android:layout_width="100dp"-->
+                    <!--                            android:layout_height="100dp"-->
+
+                    <!--                            android:src="@drawable/mfm"-->
+                    <!--                            />-->
+
+                    <!--                        <TextView-->
+                    <!--                            android:layout_width="100dp"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:text="Mass Flow Meter: 34.29 Ltr"-->
+                    <!--                            android:textColor="@color/Primary"-->
+                    <!--                            android:textSize="16sp"-->
+
+                    <!--                            />-->
+                    <!--                    </LinearLayout>-->
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="2"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/title_temperature_gauge"
+                            android:textColor="@color/Primary"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            />
+
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="@string/title_pressure_gauge"
+                            android:textStyle="bold"
+                            android:textColor="@color/Primary"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textSize="16sp"
+
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="2"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <ImageView
+                            android:id="@+id/temp_gauge"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/temp_guage2"
+                            />
+
+                        <ImageView
+                            android:id="@+id/pressure_gauge"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/pressure_guage2"
+                            />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="2"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <TextView
+                            android:id="@+id/temp2_value"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/temp_zero_dgree"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            />
+
+
+                        <TextView
+                            android:id="@+id/pressure2_value"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pressure_zero_bar"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textSize="16sp"
+
+                            />
+                    </LinearLayout>
+
+
+
+
+
+                </LinearLayout>
+
+
+                <!--                <TextView-->
+                <!--                    android:layout_below="@+id/linear4"-->
+                <!--                    android:id="@+id/title1"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:textColor="@color/Primary"-->
+                <!--                    android:layout_margin="10dp"-->
+                <!--                    android:text="Click here to upload MFM Image"/>-->
+
+                <!--                <LinearLayout-->
+                <!--                    android:id="@+id/linear1"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:orientation="horizontal"-->
+                <!--                    android:layout_margin="10dp"-->
+                <!--                    android:gravity="center_horizontal"-->
+                <!--                    android:layout_below="@id/title1">-->
+                <!--                    <Button-->
+                <!--                        android:id="@+id/capture1"-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:src="@drawable/camera"-->
+                <!--                        android:drawableLeft="@drawable/img_button"-->
+                <!--                        android:layout_marginEnd="30dp"-->
+                <!--                        />-->
+                <!--                    <Button-->
+                <!--                        android:id="@+id/save1"-->
+
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:src="@drawable/camera"-->
+                <!--                        android:text="Upload"-->
+                <!--                        android:layout_centerHorizontal="true" />-->
+                <!--                </LinearLayout>-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    android:layout_below="@id/linear4"
+                    android:id="@+id/linear_opt_manual_auto2">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/data_entry_type"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/Primary"/>
+
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/radiogroup2">
+
+                        <RadioButton
+                            android:id="@+id/radio_auto2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/automated" />
+
+                        <RadioButton
+                            android:id="@+id/radio_manual2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/manual" />
+                    </RadioGroup>
+                </LinearLayout>
+
+                <!--                Manual or Automatic-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/linear15"
+                    android:layout_below="@id/linear_opt_manual_auto2"
+                    >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/manual2">
+
+                    <TextView
+                        android:id="@+id/title2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Primary"
+                        android:text="@string/upload_temp_gauge"/>
+
+                    <LinearLayout
+                        android:id="@+id/linear2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center_horizontal"
+                        >
+                        <Button
+                            android:id="@+id/capture2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/camera"
+                            android:drawableLeft="@drawable/img_button"
+                            android:layout_marginEnd="30dp"
+                            />
+
+                        <Button
+                            android:id="@+id/save2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/camera"
+                            android:text="@string/upload"
+
+
+                            />
+                    </LinearLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        app:boxBackgroundColor="@android:color/transparent"
+                        android:background="@android:color/transparent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/Primary"
+                        >
+
+                        <EditText
+                            android:id="@+id/manual_temp2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:textSize="16sp"
+                            android:inputType="numberDecimal"
+                            android:layout_marginEnd="16dp"
+                            android:hint="@string/temperature_in_c"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                    <TextView
+                        android:id="@+id/title3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/linear2"
+                        android:textColor="@color/Primary"
+                        android:text="@string/upload_pressure_guage"/>
+
+                    <LinearLayout
+                        android:id="@+id/linear3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_horizontal"
+                        android:layout_margin="10dp"
+                        android:layout_below="@id/title3">
+                        <Button
+                            android:id="@+id/capture3"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/camera"
+                            android:drawableLeft="@drawable/img_button"
+                            android:layout_marginEnd="30dp"
+                            />
+
+                        <Button
+                            android:id="@+id/save3"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/camera"
+                            android:text="@string/upload"
+                            android:layout_centerHorizontal="true"
+
+
+                            />
+                    </LinearLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        app:boxBackgroundColor="@android:color/transparent"
+                        android:background="@android:color/transparent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/Primary"
+                        >
+
+                        <EditText
+                            android:id="@+id/manual_pressure2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:textSize="16sp"
+                            android:inputType="numberDecimal"
+                            android:layout_marginEnd="16dp"
+                            android:hint="@string/pressure_in_bar"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Button
+                        android:layout_gravity="center_horizontal"
+                        android:id="@+id/manual_submit2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/submit"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/linear_automated2"
+                    >
+
+
+
+
+                </LinearLayout>
+                </LinearLayout>
+
+                <!--                <Button-->
+                <!--                    android:id="@+id/submit"-->
+                <!--                    android:layout_margin="10dp"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_below="@id/linear3"-->
+                <!--                    android:layout_centerHorizontal="true"-->
+                <!--                    android:textColor="@color/black"-->
+                <!--                    android:backgroundTint="@color/Accent"-->
+                <!--                    android:text="Submit"/>-->
+                <TextView
+                    android:id="@+id/time_fill_lcv"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:layout_below="@id/linear15"
+                    android:text="Time taken to fill gas to LCV : 1:30 hr "
+                    android:textColor="@color/Primary"
+                    />
+
+
+                <Button
+                    android:id="@+id/calculate"
+                    android:layout_margin="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/time_fill_lcv"
+                    android:layout_centerHorizontal="true"
+                    android:backgroundTint="@color/Primary"
+                    android:text="@string/calculate_mass_of_cng"/>
+
+
+
+
+                <LinearLayout
+                    android:id="@+id/linear6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="horizontal"
+                    android:layout_margin="10dp"
+                    android:layout_below="@id/calculate">
+                    <TextView
+                        android:id="@+id/mass_cng_title"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:text="@string/mass_of_cng_left_in_lcv_after_emptying"
+                        android:textColor="@color/black"
+                        />
+
+                    <TextView
+                        android:id="@+id/mass_sng"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/zero"
+                        android:textColor="@color/black"    />
+
+                    <TextView
+                        android:id="@+id/unit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/kg"
+                        android:textColor="@color/black"
+
+
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linear7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+
+
+                    android:layout_below="@id/linear6">
+                    <TextView
+                        android:id="@+id/mass_cascade_title"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:text="@string/mass_of_cng_left_in_lcv_after_emptying"
+                        android:textColor="@color/black"
+                        />
+                    <TextView
+                        android:id="@+id/mass_cascade"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/zero"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        />
+
+                    <TextView
+                        android:id="@+id/cascade_unit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/kg"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        />
+
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/notify"
+                    android:layout_margin="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/linear7"
+                    android:layout_centerHorizontal="true"
+                    android:backgroundTint="@color/Primary"
+                    android:layout_marginEnd="200dp"
+                    android:text="Notify the DBS"/>
+
+
+            </RelativeLayout>
+
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="20dp"
+    tools:context=".home.transaction.subtabs.mgslcv.BeforeRefillingFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
+
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp">
+
+    <TextView
+        android:id="@+id/lcv_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+       android:textAlignment="center"
+        android:text="DBS: Kargil Gas Station"/>
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_below="@+id/lcv_num"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:scaleType="centerCrop"
+        android:layout_margin="20dp"
+        />
+    <TextView
+        android:id="@+id/title1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView1"
+        android:textColor="@color/Primary"
+        android:layout_margin="10dp"
+        android:text="Click here to upload Pressure Gauge Image"/>
+
+        <LinearLayout
+        android:id="@+id/linear1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/title1">
+
+            <Button
+            android:id="@+id/capture1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/camera"
+            android:drawableLeft="@drawable/img_button"
+            android:layout_marginEnd="30dp"
+            />
+
+            <Button
+            android:id="@+id/save1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/camera"
+            android:text="Save"
+            android:layout_centerHorizontal="true"
+            />
+
+         </LinearLayout>
+
+
+         <TextView
+        android:id="@+id/title2"
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear1"
+        android:textColor="@color/Primary"
+        android:text="Click here to upload Temperature Gauge Image"/>
+
+    <LinearLayout
+        android:id="@+id/linear2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:layout_below="@id/title2">
+        <Button
+            android:id="@+id/capture2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/camera"
+            android:drawableLeft="@drawable/img_button"
+            android:layout_marginEnd="30dp"
+            />
+
+        <Button
+            android:id="@+id/save2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/camera"
+            android:text="Save"
+            android:layout_centerHorizontal="true"
+            />
+    </LinearLayout>
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linear2"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/Accent"
+            android:text="Submit"/>
+        <LinearLayout
+            android:id="@+id/linear3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp"
+            android:gravity="center_horizontal"
+            android:layout_below="@id/submit">
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/temp_guage"
+                />
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/pressure_guage1"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linear4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+            android:layout_below="@id/linear3">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Temperature Gauge: 0 &#xb0;C"
+                android:textColor="@color/Primary"
+                android:textSize="16sp"
+                android:layout_marginRight="15dp"
+            />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pressure Gauge: 0 kPa"
+                android:textColor="@color/Primary"
+                android:textSize="16sp"
+
+                />
+        </LinearLayout>
+
+<!--    <Button-->
+<!--        android:id="@+id/calculate"-->
+<!--        android:layout_margin="10dp"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/linear4"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:backgroundTint="@color/Accent"-->
+<!--        android:text="Calculate Mass of CNG"/>-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/linear5"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_margin="10dp"-->
+<!--        android:layout_below="@id/calculate">-->
+<!--        <TextView-->
+<!--            android:id="@+id/mass_cng_title"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="14sp"-->
+<!--            android:text="Mass of CNG: "-->
+<!--            android:textColor="@color/Primary"-->
+<!--            />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/mass_sng"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="20sp"-->
+<!--            android:textColor="@color/black"-->
+<!--         />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/unit"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="kg/sccm"-->
+<!--            android:textColor="@color/black"-->
+<!--            />-->
+<!--    </LinearLayout>-->
+
+    <Button
+        android:id="@+id/notify"
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linear4"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/Accent"
+        android:layout_marginBottom="20dp"
+        android:paddingBottom="20dp"
+        android:text="Proceed"/>
+
+
+</RelativeLayout>
+
+    </ScrollView>
+
+</FrameLayout>

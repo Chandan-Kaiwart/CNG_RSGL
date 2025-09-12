@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".home.registration.subtabs.EmployeeRegFragment">
+
+ <ScrollView
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     tools:ignore="UselessParent">
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="vertical"
+         tools:ignore="HardcodedText">
+
+         <CheckBox
+             android:id="@+id/checkbox_emp_reg"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="16dp"
+             android:layout_marginTop="16dp"
+             android:layout_marginEnd="16dp"
+             android:text="Register as partner employee "/>
+
+         <TextView
+             android:id="@+id/title"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:text="Register as Employee"
+             android:textColor="@color/black"
+             android:textStyle="bold"
+             android:textAlignment="center"
+             android:textSize="18sp"
+             />
+
+         <TextView
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:layout_marginStart="16dp"
+             android:layout_marginTop="16dp"
+             android:layout_marginEnd="16dp"
+
+             android:text="Select the Organization"
+             android:textColor="@color/Primary"
+             android:textSize="14sp"
+             />
+         <Spinner
+             android:id="@+id/organization"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="16dp"
+             android:layout_marginTop="16dp"
+             android:layout_marginEnd="16dp"
+             android:autofillHints="Organization Name"
+             android:spinnerMode="dropdown"/>
+
+
+
+
+          <com.google.android.material.textfield.TextInputLayout
+                app:boxBackgroundColor="@android:color/transparent"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/Primary"
+                android:layout_marginTop="5dp">
+
+            <EditText
+             android:id="@+id/emp_id"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="16dp"
+             android:layout_marginTop="16dp"
+             android:layout_marginEnd="16dp"
+             android:textSize="16sp"
+             android:hint="Employee/User ID"
+             />   </com.google.android.material.textfield.TextInputLayout>
+
+          <com.google.android.material.textfield.TextInputLayout
+                app:boxBackgroundColor="@android:color/transparent"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/Primary"
+                android:layout_marginTop="5dp">
+
+            <EditText
+             android:id="@+id/firstName"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="16dp"
+             android:layout_marginTop="16dp"
+             android:layout_marginEnd="16dp"
+             android:hint="First Name"
+             android:textSize="16sp"
+             android:inputType="textPersonName"
+             />   </com.google.android.material.textfield.TextInputLayout>
+
+          <com.google.android.material.textfield.TextInputLayout
+                app:boxBackgroundColor="@android:color/transparent"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/Primary"
+                android:layout_marginTop="5dp">
+
+            <EditText
+             android:id="@+id/middleName"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="16dp"
+             android:layout_marginTop="16dp"
+             android:layout_marginEnd="16dp"
+             android:hint="Middle Name"
+             android:textSize="16sp"
+             android:inputType="textPersonName" />
+          </com.google.android.material.textfield.TextInputLayout>
+          <com.google.android.material.textfield.TextInputLayout
+                app:boxBackgroundColor="@android:color/transparent"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/Primary"
+                android:layout_marginTop="5dp">
+
+            <EditText
+             android:id="@+id/lastName"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="16dp"
+             android:layout_marginTop="16dp"
+             android:layout_marginEnd="16dp"
+             android:hint="Last Name"
+             android:textSize="16sp"
+             android:inputType="textPersonName" />   </com.google.android.material.textfield.TextInputLayout>
+
+          <com.google.android.material.textfield.TextInputLayout
+                app:boxBackgroundColor="@android:color/transparent"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/Primary"
+                android:layout_marginTop="5dp">
+
+            <EditText
+             android:id="@+id/age"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="16dp"
+             android:layout_marginTop="16dp"
+             android:layout_marginEnd="16dp"
+             android:hint="Age"
+             android:textSize="16sp"
+             android:inputType="number"
+             />   </com.google.android.material.textfield.TextInputLayout>
+
+          <com.google.android.material.textfield.TextInputLayout
+                app:boxBackgroundColor="@android:color/transparent"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/Primary"
+                android:layout_marginTop="5dp">
+
+            <EditText
+             android:id="@+id/phone"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="16dp"
+             android:layout_marginTop="16dp"
+             android:layout_marginEnd="16dp"
+             android:textSize="16sp"
+             android:hint="Contact Number"
+             android:inputType="phone" />   </com.google.android.material.textfield.TextInputLayout>
+
+          <com.google.android.material.textfield.TextInputLayout
+                app:boxBackgroundColor="@android:color/transparent"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/Primary"
+                android:layout_marginTop="5dp">
+
+            <EditText
+             android:id="@+id/email"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="16dp"
+             android:layout_marginTop="16dp"
+             android:layout_marginEnd="16dp"
+             android:hint="Email"
+             android:textSize="16sp"
+             android:inputType="textEmailAddress" />   </com.google.android.material.textfield.TextInputLayout>
+
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="8dp"
+             android:gravity="end"
+             android:orientation="horizontal">
+
+             <Button
+                 android:id="@+id/cancelButton"
+                 style="@style/Widget.AppCompat.Button.Borderless"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginEnd="4dp"
+                 android:text="CANCEL"
+                 android:textColor="@color/Primary" />
+
+             <Button
+                 android:id="@+id/proceedButton"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginEnd="16dp"
+                 android:backgroundTint="@color/Primary"
+                 android:text="PROCEED"
+                 android:textColor="@android:color/white"
+                 tools:ignore="ButtonStyle" />
+
+         </LinearLayout>
+     </LinearLayout>
+
+ </ScrollView>
+
+</FrameLayout>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    tools:context=".home.registration.subtabs.Admin">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select Organization"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:paddingStart="5dp"
+                android:padding="10dp"
+                android:textStyle="bold"/>
+            <Spinner
+                android:id="@+id/organization"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:paddingStart="5dp"
+                android:padding="5dp"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select User/Employee Id"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:paddingStart="5dp"
+                android:padding="10dp"
+                android:textStyle="bold"/>
+
+
+
+            <Spinner
+                android:id="@+id/emp_id"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:paddingStart="5dp"
+                android:padding="5dp"
+                />
+
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="User Role Authorization"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:paddingStart="5dp"
+            android:padding="10dp"
+            android:textStyle="bold"/>
+
+        <Spinner
+            android:id="@+id/user_role"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingStart="5dp"
+            android:padding="5dp"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mgs_note_layout"
+        android:layout_marginTop="5dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Notification Approver MGS"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:paddingStart="5dp"
+            android:padding="10dp"
+            android:textStyle="bold"/>
+        <Spinner
+            android:id="@+id/note_approver_mgs"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingStart="5dp"
+            android:padding="5dp"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dbs_note_layout"
+        android:layout_marginTop="1dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Notification Approver DBS"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:paddingStart="5dp"
+            android:padding="10dp"
+            android:textStyle="bold"/>
+        <Spinner
+            android:id="@+id/note_approver_dbs"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingStart="5dp"
+            android:padding="5dp"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/button_gradient"
+        android:text="Submit"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"/>
+    </LinearLayout>
+
+</ScrollView>

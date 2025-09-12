@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/sch_report_nav_graph"
+    app:startDestination="@id/schedulingReportFrag">
+
+    <fragment
+        android:id="@+id/schedulingReportFrag"
+        android:name="com.apc.cng_hpcl.home.scheduling.SchedulingReportFrag"
+        android:label="SchedulingReportFrag" />
+</navigation>

@@ -1,0 +1,510 @@
+package com.apc.cng_hpcl.home.master.subtabs.mothergasstation;
+
+import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
+
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
+
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.apc.cng_hpcl.R;
+import com.apc.cng_hpcl.home.reconciliation.subtabs.MgsLevel;
+import com.apc.cng_hpcl.home.transaction.MgsDbsModel;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import static android.R.layout.simple_spinner_item;
+import static android.content.ContentValues.TAG;
+import static com.apc.cng_hpcl.util.Constant.BASE_URL;
+
+
+public class MGSEquipmentInfoFragment extends Fragment {
+//        private static final String BASE_URL_URL = BASE_URL+"msg_dbs_transaction.php?apicall=";
+    private static final String BASE_URL_URL = BASE_URL+"master_reg_edit.php?apicall=";
+    public static final String URL_EQUIP_INFO = BASE_URL_URL + "insertEquipInfo";
+    private static final String BASE_URL_URL2 = BASE_URL + "msg_dbs_transaction.php?apicall=";
+    public static final String URL_MgsDbs = BASE_URL_URL2 + "readMgsDbs";
+    EditText cascade_id, cascade_make, cascade_model, cascade_serial, cascade_status, cascade_capacity,
+            comp_id, comp_make, comp_model, comp_serial, comp_type, disp_id,
+            disp_make, disp_model, disp_type,mgs_id,cascade_reorder_point;
+    String stationId;
+    TextView date_status, date_install;
+    Button cancelButton, proceedButton;
+    Spinner station_type, station_id;
+    String dateStatus;
+    LinearLayout mgs_for_dbs;
+    private int year, month, day;
+//    String[] stationType = {"City Gas Station", "Mother Gas Station", "Daughter Booster Station"};
+////    String mgsId="0",stationId,station_Type;
+//    String[] stationIdCGS = {"CGS001", "CGS002", "CGS003"};
+//    String[] stationIdMGS = {"MGS001", "MGS002", "MGS003"};
+//    String[] stationIdDBS = {"DBS001", "DBS002", "DBS003"};
+private ArrayList<MgsDbsModel> mgsdbsModelArrayList;
+    ArrayList<String> stationIdCGS = new ArrayList<>();
+    ArrayList<String> stationIdMGS = new ArrayList<>();
+    ArrayList<String> stationIdDBS = new ArrayList<>();
+    ArrayList<String> stationType = new ArrayList<>();
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        View root = inflater.inflate(R.layout.fragment_m_g_s_equipment_info, container, false);
+        date_status = root.findViewById(R.id.date_status);
+        station_type = root.findViewById(R.id.station_type);
+        station_id = root.findViewById(R.id.station_id);
+        date_install = root.findViewById(R.id.date_install);
+        cascade_id = root.findViewById(R.id.cascade_id);
+        cascade_make = root.findViewById(R.id.cascade_make);
+        cascade_model = root.findViewById(R.id.cascade_model);
+        cascade_serial = root.findViewById(R.id.cascade_serial);
+        cascade_status = root.findViewById(R.id.cascade_status);
+        cascade_capacity = root.findViewById(R.id.cascade_capacity);
+        cascade_reorder_point=root.findViewById(R.id.cascade_reorder_point);
+        comp_id = root.findViewById(R.id.comp_id);
+        comp_make = root.findViewById(R.id.comp_make);
+        comp_model = root.findViewById(R.id.comp_model);
+        comp_serial = root.findViewById(R.id.comp_serial);
+        comp_type = root.findViewById(R.id.comp_type);
+        disp_id = root.findViewById(R.id.disp_id);
+        disp_make = root.findViewById(R.id.disp_make);
+        disp_model = root.findViewById(R.id.disp_model);
+        disp_type = root.findViewById(R.id.disp_type);
+        proceedButton=root.findViewById(R.id.proceedButton);
+        mgs_for_dbs=root.findViewById(R.id.mgs_for_dbs);
+        mgs_id=root.findViewById(R.id.mgs_id);
+        readMgsDbs();
+//        ArrayAdapter<String> sationTypeAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, stationType);
+//        station_type.setAdapter(sationTypeAdapter);
+//
+//        station_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                if (station_type.getSelectedItem()
+//                        .toString()
+//                        .equals("City Gas Station")) {
+//                    ArrayAdapter<String> sationIdAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, stationIdCGS);
+////                    station_id.setAdapter(sationIdAdapter);
+//                    mgs_for_dbs.setVisibility(View.GONE);
+//                } else if (station_type.getSelectedItem()
+//                        .toString()
+//                        .equals("Mother Gas Station")) {
+//                    ArrayAdapter<String> sationIdAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, stationIdMGS);
+////                    station_id.setAdapter(sationIdAdapter);
+//                    mgs_for_dbs.setVisibility(View.GONE);
+//                } else {
+//                    ArrayAdapter<String> sationIdAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, stationIdDBS);
+////                    station_id.setAdapter(sationIdAdapter);
+//                    mgs_for_dbs.setVisibility(View.GONE);
+////                    ArrayAdapter<String> MGS_DBSIdAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, stationIdMGS);
+////                    mgs_id.setAdapter(MGS_DBSIdAdapter);
+////                    mgsId = mgs_id.getText().toString();
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
+//        ArrayAdapter<String> MGS_DBSIdAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, stationIdMGS);
+//        mgs_id.setAdapter(MGS_DBSIdAdapter);
+//        mgs_id.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                mgsId = mgs_id.getSelectedItem().toString();
+//            }
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//                mgsId="0";
+//            }
+//        });
+
+
+        date_status.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                final Calendar c = Calendar.getInstance();
+                year = c.get(Calendar.YEAR);
+                month = c.get(Calendar.MONTH);
+                day = c.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog picker = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
+
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                        dateStatus=day + "/" + (month + 1) + "/" + year;
+                        date_status.setText(day + "/" + (month + 1) + "/" + year);
+                        Log.d(TAG, "onDateSet: Date_Install="+dateStatus);
+                    }
+                }, year, month, day);
+                picker.show();
+            }
+        });
+
+
+        date_install.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                final Calendar c = Calendar.getInstance();
+                year = c.get(Calendar.YEAR);
+                month = c.get(Calendar.MONTH);
+                day = c.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog picker = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
+
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                        date_install.setText(day + "/" + (month + 1) + "/" + year);
+                    }
+                }, year, month, day);
+                picker.show();
+            }
+        });
+
+        proceedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                insertData();
+//                Intent intent = new Intent(getActivity(), MotherGasStation.class);
+//                startActivity(intent);
+//                finish();
+
+            }
+        });
+
+
+        return root;
+    }
+    private void readMgsDbs() {
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_MgsDbs,
+                new Response.Listener<String>() {
+                    @RequiresApi(api = Build.VERSION_CODES.N)
+                    @Override
+                    public void onResponse(String response) {
+
+
+                        Log.e("strrrrr", ">>" + response);
+
+                        try {
+
+
+                            JSONObject obj = new JSONObject(response);
+                            if (obj.optString("status").equals("true")) {
+
+                                mgsdbsModelArrayList = new ArrayList<>();
+                                JSONArray dataArray = obj.getJSONArray("data");
+
+                                for (int i = 0; i < dataArray.length(); i++) {
+
+                                    MgsDbsModel mgsDbsModel = new MgsDbsModel();
+                                    JSONObject dataobj = dataArray.getJSONObject(i);
+
+                                    mgsDbsModel.setStation_Id(dataobj.getString("Station_Id"));
+                                    mgsDbsModel.setStation_type(dataobj.getString("Station_type"));
+
+
+                                    mgsdbsModelArrayList.add(mgsDbsModel);
+
+                                }
+
+                                for (int i = 0; i < mgsdbsModelArrayList.size(); i++) {
+                                    String station_Type = mgsdbsModelArrayList.get(i).getStation_type();
+                                    String station_id = mgsdbsModelArrayList.get(i).getStation_Id().toLowerCase().substring(0, 3);
+
+                                    stationType.add(mgsdbsModelArrayList.get(i).getStation_type());
+
+
+                                    if (station_id.equals("cgs")) {
+                                        stationIdCGS.add(mgsdbsModelArrayList.get(i).getStation_Id());
+
+                                    } else if (station_id.equals("mgs")) {
+                                        stationIdMGS.add(mgsdbsModelArrayList.get(i).getStation_Id());
+
+                                    } else if (station_id.equals("dbs")) {
+                                        stationIdDBS.add(mgsdbsModelArrayList.get(i).getStation_Id());
+                                    }
+
+
+//                                    String station_Id = mgsdbsModelArrayList.get(i).getMgsId().toLowerCase().substring(0, 3);
+
+                                }
+                            }
+                            ArrayList uniqueStationType = (ArrayList) stationType.stream().distinct().collect(Collectors.toList());
+//                            List<String> uniqueStationType = stationType.stream().distinct().collect(Collectors.toList());;
+                            ArrayAdapter<String> spinnerArrayAdapterMgs = new ArrayAdapter<String>(getContext(), simple_spinner_item, uniqueStationType);
+                            spinnerArrayAdapterMgs.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
+                            station_type.setAdapter(spinnerArrayAdapterMgs);
+
+
+                            station_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                @Override
+                                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                    if (station_type.getSelectedItem()
+                                            .toString()
+                                            .equals("City Gas Station")) {
+                                        ArrayAdapter<String> sationIdAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, stationIdCGS);
+                                        station_id.setAdapter(sationIdAdapter);
+//                                        edit_mgsId.setVisibility(View.GONE);
+
+                                    } else if (station_type.getSelectedItem()
+                                            .toString()
+                                            .equals("Mother Gas Station")) {
+                                        ArrayAdapter<String> sationIdAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, stationIdMGS);
+                                        station_id.setAdapter(sationIdAdapter);
+//                                        edit_mgsId.setVisibility(View.GONE);
+
+                                    } else {
+                                        ArrayAdapter<String> sationIdAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, stationIdDBS);
+                                        station_id.setAdapter(sationIdAdapter);
+
+                                    }
+                                }
+
+                                @Override
+                                public void onNothingSelected(AdapterView<?> parent) {
+
+                                }
+                            });
+
+
+//                            ArrayAdapter<String> spinnerArrayAdapterDbs = new ArrayAdapter<String>(getContext(), simple_spinner_item, stationId);
+//                            spinnerArrayAdapterDbs.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
+//                            station_id.setAdapter(spinnerArrayAdapterDbs);
+//                                removeSimpleProgressDialog();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+        requestQueue.add(stringRequest);
+    }
+
+    private void insertData() {
+
+        final String stationType = station_type.getSelectedItem().toString();
+        switch (stationType) {
+            case "City Gas Station":
+                stationId = "CGS" + station_id.getSelectedItem().toString();
+                break;
+            case "Mother Gas Station":
+                stationId = "MGS" + station_id.getSelectedItem().toString();
+                break;
+            case "Daughter Booster Station":
+                stationId = "DBS" + station_id.getSelectedItem().toString();
+                break;
+        }
+//        final String stationId = station_id.getText().toString();
+//        final String mgsId = mgs_id.getText().toString().trim();
+        final String mgsId ="0";
+
+        Log.e(TAG,"MGS_Id="+mgsId);
+        final String cascadeReorderPoint=cascade_reorder_point.getText().toString().trim();
+        final String cascadeId = cascade_id.getText().toString().trim();
+        final String cascadeMake = cascade_make.getText().toString();
+        final String cascadeModel = cascade_model.getText().toString();
+        final String cascadeSerial = cascade_serial.getText().toString();
+        final String cascadeStatus = cascade_status.getText().toString();
+        final String cascadeCapacity = cascade_capacity.getText().toString();
+        final String compId = comp_id.getText().toString();
+        final String compMake = comp_make.getText().toString().trim();
+        final String compModel = comp_model.getText().toString().trim();
+        final String compSerial = comp_serial.getText().toString().trim();
+        final String compType = comp_type.getText().toString().trim();
+        final String dispId = disp_id.getText().toString().trim();
+        final String dispMake = disp_make.getText().toString().trim();
+        final String dispModel = disp_model.getText().toString().trim();
+        final String dispType = disp_type.getText().toString().trim();
+//        final String dateStatus = date_status.getText().toString();
+        final String dateInstall = date_install.getText().toString();
+
+       if (TextUtils.isEmpty(cascade_id.getText())) {
+            Toast.makeText(getContext(), "Enter Cascade Id", Toast.LENGTH_SHORT).show();
+            return;
+        } else  if (TextUtils.isEmpty(cascade_make.getText())) {
+            Toast.makeText(getContext(), "Enter Cascade Make", Toast.LENGTH_SHORT).show();
+            return;
+        } else if (TextUtils.isEmpty(cascade_model.getText())) {
+            Toast.makeText(getContext(), "Enter Cascade Model", Toast.LENGTH_SHORT).show();
+            return;
+        } else if (TextUtils.isEmpty(cascade_serial.getText())) {
+            Toast.makeText(getContext(), "Enter Cascade Serial", Toast.LENGTH_SHORT).show();
+            return;
+        } else
+        if (TextUtils.isEmpty(cascade_status.getText())) {
+            Toast.makeText(getContext(), "Enter Cascade Status", Toast.LENGTH_SHORT).show();
+            return;
+        } else if (TextUtils.isEmpty(cascade_reorder_point.getText())) {
+            Toast.makeText(getContext(), "Enter Cascade Reorder Point", Toast.LENGTH_SHORT).show();
+            return;
+        }else if (TextUtils.isEmpty(cascade_capacity.getText())) {
+            Toast.makeText(getContext(), "Enter Cascade Capacity", Toast.LENGTH_SHORT).show();
+            return;
+        } else if (TextUtils.isEmpty(comp_id.getText())) {
+            Toast.makeText(getContext(), "Enter Compressor Id", Toast.LENGTH_SHORT).show();
+            return;
+        } else if (TextUtils.isEmpty(comp_make.getText())) {
+            Toast.makeText(getContext(), "Enter Compressor Make", Toast.LENGTH_SHORT).show();
+            return;
+        } else if (TextUtils.isEmpty(comp_model.getText())) {
+            Toast.makeText(getContext(), "Enter Compressor Model", Toast.LENGTH_SHORT).show();
+            return;
+        } else if (TextUtils.isEmpty(comp_serial.getText())) {
+            Toast.makeText(getContext(), "Enter Compressor Serial", Toast.LENGTH_SHORT).show();
+            return;
+        } else if (TextUtils.isEmpty(comp_type.getText())) {
+            Toast.makeText(getContext(), "Enter Compressor Type", Toast.LENGTH_SHORT).show();
+            return;
+        }else if (TextUtils.isEmpty(disp_id.getText())) {
+            Toast.makeText(getContext(), "Enter Dispenser Id", Toast.LENGTH_SHORT).show();
+            return;
+        } else if (TextUtils.isEmpty(disp_make.getText())) {
+            Toast.makeText(getContext(), "Enter Dispenser Make", Toast.LENGTH_SHORT).show();
+            return;
+        } else if (TextUtils.isEmpty(disp_model.getText())) {
+            Toast.makeText(getContext(), "Enter Dispenser Model", Toast.LENGTH_SHORT).show();
+            return;
+        }else if (TextUtils.isEmpty(disp_type.getText())) {
+            Toast.makeText(getContext(), "Enter Dispenser Type", Toast.LENGTH_SHORT).show();
+            return;
+        } else if (TextUtils.isEmpty(date_install.getText())) {
+            Toast.makeText(getContext(), "Select Date of Installation", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+
+        StringRequest request = new StringRequest(Request.Method.POST, URL_EQUIP_INFO,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            if (jsonObject.getString("message") == null) {
+                                Toast.makeText(getContext(), "Invalid Operation", Toast.LENGTH_SHORT).show();
+                            } else {
+                                String message=jsonObject.getString("message");
+                                Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+//                        if (response.equalsIgnoreCase("Data Inserted")) {
+//                            Toast.makeText(getContext(), "Data Insertion Sucessfull", Toast.LENGTH_SHORT).show();
+////                            progressDialog.dismiss();
+//                        } else  if (response.equalsIgnoreCase("Station Id already exists")){
+//                            Toast.makeText(getContext(), "Station Id already exists", Toast.LENGTH_SHORT).show();
+//                            Log.e(TAG,"Error="+response);
+////                            progressDialog.dismiss();
+//
+//                        }else  if (response.equalsIgnoreCase("Insertion Failed")){
+//                            Toast.makeText(getContext(), "Insertion Failed", Toast.LENGTH_SHORT).show();
+//                            Log.e(TAG,"Error="+response);
+////                            progressDialog.dismiss();
+//
+//                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(), "Insertion failed please try again", Toast.LENGTH_SHORT).show();
+//                progressDialog.dismiss();
+            }
+        }
+
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String, String> params = new HashMap<String, String>();
+
+
+                params.put("Station_id", stationId);
+                params.put("Station_type", stationType);
+                params.put("mgsId",mgsId);
+                params.put("stationary_cascade_reorder_point",cascadeReorderPoint);
+                params.put("stationary_cascade_id", cascadeId);
+                params.put("stationary_cascade_make", cascadeMake);
+                params.put("stationary_cascade_model", cascadeModel);
+                params.put("stationary_cascade_serial_number", cascadeSerial);
+                params.put("stationary_hydrotest_status", cascadeStatus);
+                params.put("stationary_cascade_capacity", cascadeCapacity);
+                params.put("compressor_id", compId);
+                params.put("compressor_make", compMake);
+                params.put("compressor_model", compModel);
+                params.put("compressor_serial_number", compSerial);
+                params.put("compressor_type", compType);
+                params.put("dispenser_id", dispId);
+                params.put("dispenser_make", dispMake);
+                params.put("dispenser_model", dispModel);
+                params.put("dispenser_type", dispType);
+                params.put("stationary_cascade_hydrotest_status_date", dateStatus);
+                params.put("stationary_cascade_installation_date", dateInstall);
+
+
+
+
+                return params;
+            }
+        };
+
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        requestQueue.add(request);
+
+
+    }
+
+
+}

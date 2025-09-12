@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+  <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
+
+      <LinearLayout
+          android:id="@+id/linear_edit"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          tools:ignore="HardcodedText">
+
+          <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:gravity="center"
+              android:text="Stationary Cascade"
+              android:textColor="@color/Primary"
+              android:textSize="16sp"
+              android:textStyle="bold" />
+
+          <EditText
+              android:id="@+id/mgs_make"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="16dp"
+              android:layout_marginTop="16dp"
+              android:layout_marginEnd="16dp"
+              android:hint="Make"
+              android:textSize="16sp" />
+
+          <EditText
+              android:id="@+id/mgs_model"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="16dp"
+              android:layout_marginTop="16dp"
+              android:layout_marginEnd="16dp"
+              android:hint="Model"
+              android:textSize="16sp" />
+
+          <EditText
+              android:id="@+id/mgs_serial"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="16dp"
+              android:layout_marginTop="16dp"
+              android:layout_marginEnd="16dp"
+              android:hint="Serial Number"
+              android:textSize="16sp" />
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:layout_marginTop="16dp"
+
+              android:gravity="center_horizontal">
+              <TextView
+
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginStart="16dp"
+                  android:textColor="@color/Primary"
+                  android:layout_marginEnd="20dp"
+                  android:text="Date of Installation"
+                  android:textStyle="bold"
+                  android:textSize="16sp" />
+
+              <TextView
+
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginStart="16dp"
+                  android:layout_marginEnd="20dp"
+                  android:text="Status Date"
+                  android:textSize="16sp"
+                  android:textStyle="bold"
+                  android:textColor="@color/Primary"/>
+
+
+          </LinearLayout>
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:layout_marginTop="10dp"
+              android:gravity="center">
+
+
+
+
+              <Button
+                  android:id="@+id/date_install"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginStart="10dp"
+                  android:textSize="14sp"
+                  android:textStyle="bold"
+                  android:text="Installation Date"
+
+                  />
+
+              <Button
+                  android:id="@+id/date_status"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginStart="10dp"
+                  android:textSize="14sp"
+                  android:textStyle="bold"
+                  android:text="Status Date"
+
+                  />
+
+          </LinearLayout>
+
+          <EditText
+              android:id="@+id/status"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="16dp"
+              android:layout_marginTop="16dp"
+              android:layout_marginEnd="16dp"
+              android:hint="Hydrotest Status"
+
+              android:textSize="16sp"
+              />
+
+
+          <EditText
+              android:id="@+id/cascade_capacity"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="16dp"
+              android:layout_marginTop="16dp"
+              android:layout_marginEnd="16dp"
+              android:hint="Capacity of Stationary Cascade "
+
+              android:textSize="16sp" />
+
+          <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:gravity="center"
+              android:text="Compressor"
+              android:textColor="@color/Primary"
+              android:paddingTop="10dp"
+              android:textSize="16sp"
+              android:textStyle="bold" />
+
+          <EditText
+              android:id="@+id/comp_make"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="16dp"
+              android:layout_marginTop="16dp"
+              android:layout_marginEnd="16dp"
+              android:hint="Make"
+
+              android:textSize="16sp" />
+          <EditText
+              android:id="@+id/comp_model"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="16dp"
+              android:layout_marginTop="16dp"
+              android:layout_marginEnd="16dp"
+              android:hint="Model"
+
+              android:textSize="16sp" />
+          <EditText
+              android:id="@+id/comp_serial"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="16dp"
+              android:layout_marginTop="16dp"
+              android:layout_marginEnd="16dp"
+              android:hint="Serial Number "
+
+              android:textSize="16sp" />
+
+          <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:gravity="center"
+              android:text="Dispenser"
+              android:textColor="@color/Primary"
+              android:paddingTop="10dp"
+              android:textSize="16sp"
+              android:textStyle="bold" />
+
+          <EditText
+              android:id="@+id/disp_num"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="16dp"
+              android:layout_marginTop="16dp"
+              android:layout_marginEnd="16dp"
+              android:hint="Number of Dispenser"
+
+              android:textSize="16sp" />
+
+          <EditText
+              android:id="@+id/disp_make"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="16dp"
+              android:layout_marginTop="16dp"
+              android:layout_marginEnd="16dp"
+              android:hint="Make"
+
+              android:textSize="16sp" />
+
+          <EditText
+              android:id="@+id/disp_model"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="16dp"
+              android:layout_marginTop="16dp"
+              android:layout_marginEnd="16dp"
+              android:hint="Model Number"
+
+              android:textSize="16sp" />
+
+
+
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="8dp"
+              android:gravity="end"
+              android:orientation="horizontal">
+
+<!--              <Button-->
+<!--                  android:id="@+id/proceedEdit"-->
+<!--                  android:layout_width="wrap_content"-->
+<!--                  android:layout_height="wrap_content"-->
+<!--                  android:layout_marginEnd="16dp"-->
+<!--                  android:backgroundTint="@color/Primary"-->
+<!--                  android:text="EDIT"-->
+<!--                  android:textColor="@android:color/white"-->
+<!--                  tools:ignore="ButtonStyle" />-->
+
+
+
+              <Button
+                  android:id="@+id/cancelButton"
+                  style="@style/Widget.AppCompat.Button.Borderless"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginEnd="4dp"
+                  android:text="CANCEL"
+                  android:textColor="@color/Primary" />
+
+              <Button
+                  android:id="@+id/proceedButton"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginEnd="16dp"
+                  android:backgroundTint="@color/Primary"
+                  android:text="PROCEED"
+                  android:textColor="@android:color/white"
+                  tools:ignore="ButtonStyle" />
+
+          </LinearLayout>
+      </LinearLayout>
+
+  </ScrollView>
+
+</FrameLayout>

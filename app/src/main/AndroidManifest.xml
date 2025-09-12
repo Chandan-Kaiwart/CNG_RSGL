@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.apc.cng_hpcl">
+
+    <queries>
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+    </queries>
+
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-feature android:name="android.hardware.camera.any" />
+
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:alwaysRetainTaskState="true"
+        android:excludeFromRecents="true"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_logo"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/ic_logo_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.CNG_HPCL"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="n">
+        <activity
+            android:name=".home.newDisp.NewDispActivity"
+            android:exported="false">
+
+        </activity>
+        <activity
+            android:name=".home.newTrans.NewTransActivity"
+            android:exported="false">
+
+        </activity>
+        <activity
+            android:name=".ui.GailActivity"
+            android:exported="false">
+
+        </activity>
+        <activity
+            android:name=".home.newNotif.NewNotiActivity"
+            android:exported="false">
+
+        </activity>
+        <activity
+            android:name=".home.suvidha.MainActivity"
+            android:exported="false">
+
+        </activity>
+        <activity
+            android:name=".home.transaction.DriverActivity"
+            android:exported="false">
+
+        </activity>
+        <activity
+            android:name=".home.controlRoom.ControlRoomActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".home.scheduling.SchedularStationaryCascadeInfo"
+            android:exported="true"
+            android:label="DBS Stationary Cascade Info"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".home.scheduling.SchedularStationaryCascade"
+            android:exported="true"
+            android:label="Read Stationary Cascade"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.molarMassDensity.MolarDensity"
+            android:exported="true"
+            android:label="Molar Mass/Density"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.transaction.subtabs.lcvdbs.DBS_Before_Emptying_MFM"
+            android:exported="true" />
+        <activity
+            android:name=".home.transaction.subtabs.mgslcv.MGS_After_Filling_MFM"
+            android:exported="true"
+            android:label="MGS After Filling"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.tracking.TrackableVehiclesList"
+            android:exported="true"
+            android:label="LCV List"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.analytics.Analytics_report"
+            android:exported="true"
+            android:label="Analytics Report"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".home.analytics.TurnAround"
+            android:exported="true"
+            android:label="Vehicle Turnaround Time"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".home.analytics.NoteLag"
+            android:exported="true"
+            android:label="Notification Approval Lag Report"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".home.transaction.subtabs.dbsdispenser.StationaryCascade"
+            android:exported="true"
+            android:label="Stationary Cascade"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name=".home.transaction.subtabs.dbsdispenser.DispenserHome"
+            android:exported="true" />
+        <activity
+            android:name=".home.transaction.subtabs.lcvdbs.DBS_After_Emptying"
+            android:exported="true"
+            android:label="DBS After Emptying"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.transaction.subtabs.lcvdbs.DBS_Before_Emptying"
+            android:exported="true"
+            android:label="DBS Before Emptying"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.transaction.subtabs.mgslcv.MGS_After_Filling"
+            android:exported="true"
+            android:label="MGS After Filling"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.transaction.subtabs.mgslcv.MGS_Before_Filling"
+            android:exported="true"
+            android:label="MGS Before Filling" />
+        <activity android:name=".dummy.VolleyDb" />
+        <activity android:name=".dummy.CaptureImage" />
+        <activity android:name=".dummy.ImageCaptureUpload" />
+        <activity android:name=".dummy.ImageUpload" />
+        <activity android:name=".dummy.MysqlDb" />
+        <activity android:name=".camera.CameraActivity" /> <!-- <activity android:name=".camera.CameraActivity"></activity> -->
+        <activity
+            android:name=".home.notification.Notification"
+            android:label="Notification"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.reconciliation.subtabs.OrganizationSummaryTable"
+            android:label="Summary of Total Gas in Kgs"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".home.reconciliation.subtabs.DbsSummaryTable"
+            android:label="Summary of Total Gas in Kgs"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".home.reconciliation.subtabs.MgsSummaryTable"
+            android:label="Summary of Total Gas in Kgs"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".home.reconciliation.subtabs.TransportationSummaryTable"
+            android:label="Summary of Total Gas in Kgs"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".home.reconciliation.subtabs.TransportationLevel"
+            android:label="Transportation Level"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".home.reconciliation.subtabs.DbsLevel"
+            android:label="Daughter Booster Station Level"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".home.reconciliation.subtabs.MgsLevel"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".home.reconciliation.subtabs.OrganizationalLevel"
+            android:label="Organizational Level"
+            android:screenOrientation="landscape" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <activity
+            android:name=".home.tracking.TrackLcv"
+            android:label="@string/title_activity_track_lcv" />
+        <activity
+            android:name=".home.transaction.subtabs.dbsdispenser.TransDispenser"
+            android:label="Dispenser at DBS"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.transaction.subtabs.lcvdbs.TransDaughterBoosterStation"
+            android:label="DBS and LCV"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.transaction.subtabs.mgslcv.TransMotherGasStation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.transaction.subtabs.TransCityGateStation"
+            android:label="City Gate Station"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.master.subtabs.lcv.LCV"
+            android:label="LCV"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.master.subtabs.lcv.RegLcv"
+            android:label="Register LCV"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.master.subtabs.lcv.EditLcv"
+            android:label="Edit/View LCV"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.master.subtabs.daughterboosterstation.DaughterBoosterStation"
+            android:label="Daughter Booster Station"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.master.subtabs.daughterboosterstation.EditDaughterBoosterStation"
+            android:label="Edit/View Daughter Booster Station"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.master.subtabs.daughterboosterstation.RegDaughterBoosterStation"
+            android:label="Register Daughter Booster Station"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.master.subtabs.mothergasstation.MotherGasStation"
+            android:label="CGS/MGS/DBS"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.master.subtabs.mothergasstation.EditMotherGasStation"
+            android:label="View/Edit CGS/MGS/DBS"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.master.subtabs.mothergasstation.RegMotherGasStation"
+            android:label="Register CGS/MGS/DBS"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.master.subtabs.CityGateStation"
+            android:label="City Gate Station"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.HomeManager"
+            android:label="Home"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.HomeOperator"
+            android:label="Home"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.registration.subtabs.Admin"
+            android:label="Admin Tab"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.registration.subtabs.ViewEditReg"
+            android:label="View/Edit Registration"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.registration.subtabs.UserRegistration"
+            android:label="Registration"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.transaction.Transaction"
+            android:label="Gas Transaction"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.tracking.Tracking"
+            android:label="Tracking of LCV"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.scheduling.Scheduling"
+            android:label="Scheduling"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.reconciliation.Reconciliation"
+            android:label="Gas Reconciliation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.master.Master"
+            android:label="Master Tab"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.analytics.Analytics"
+            android:label="Analytical Reports"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.registration.Registration"
+            android:label="Registration and Admin"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.HomeAdmin"
+            android:label="Home"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".splashscreen.SplashScreen"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".splashscreen.LandingPage"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+    </application>
+
+</manifest>

@@ -1,0 +1,83 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="300dp"
+    android:height="150dp"
+    android:viewportWidth="300"
+    android:viewportHeight="150">
+
+    <!-- Car body -->
+    <path
+        android:fillColor="#3498db"
+        android:strokeColor="#2c3e50"
+        android:strokeWidth="2"
+        android:pathData="M55,70 L245,70 Q250,70 250,75 L250,105 Q250,110 245,110 L55,110 Q50,110 50,105 L50,75 Q50,70 55,70 Z" />
+
+    <!-- Car roof -->
+    <path
+        android:fillColor="#2980b9"
+        android:strokeColor="#2c3e50"
+        android:strokeWidth="2"
+        android:pathData="M80,70 L100,40 L200,40 L220,70 Z" />
+
+    <!-- Windows -->
+    <path
+        android:fillColor="#85c1e9"
+        android:strokeColor="#2c3e50"
+        android:strokeWidth="1"
+        android:pathData="M85,65 L105,45 L195,45 L215,65 Z" />
+
+    <!-- Windshield separator -->
+    <path
+        android:strokeColor="#2c3e50"
+        android:strokeWidth="1"
+        android:pathData="M150,45 L150,65" />
+
+    <!-- Left wheel -->
+    <path
+        android:fillColor="#34495e"
+        android:strokeColor="#2c3e50"
+        android:strokeWidth="2"
+        android:pathData="M90,100 A20,20 0 1,1 90,140 A20,20 0 1,1 90,100" />
+
+    <!-- Right wheel -->
+    <path
+        android:fillColor="#34495e"
+        android:strokeColor="#2c3e50"
+        android:strokeWidth="2"
+        android:pathData="M210,100 A20,20 0 1,1 210,140 A20,20 0 1,1 210,100" />
+
+    <!-- Left wheel center -->
+    <path
+        android:fillColor="#95a5a6"
+        android:pathData="M90,112 A8,8 0 1,1 90,128 A8,8 0 1,1 90,112" />
+
+    <!-- Right wheel center -->
+    <path
+        android:fillColor="#95a5a6"
+        android:pathData="M210,112 A8,8 0 1,1 210,128 A8,8 0 1,1 210,112" />
+
+    <!-- Headlight -->
+    <path
+        android:fillColor="#f1c40f"
+        android:strokeColor="#f39c12"
+        android:strokeWidth="1"
+        android:pathData="M45,73 A8,12 0 1,1 45,97 A8,12 0 1,1 45,73" />
+
+    <!-- Tail light -->
+    <path
+        android:fillColor="#e74c3c"
+        android:strokeColor="#c0392b"
+        android:strokeWidth="1"
+        android:pathData="M255,75 A6,10 0 1,1 255,95 A6,10 0 1,1 255,75" />
+
+    <!-- Door handle -->
+    <path
+        android:fillColor="#2c3e50"
+        android:pathData="M160,82 L168,82 Q169,82 169,83 L169,84 Q169,85 168,85 L160,85 Q159,85 159,84 L159,83 Q159,82 160,82 Z" />
+
+    <!-- Bumper -->
+    <path
+        android:fillColor="#7f8c8d"
+        android:strokeColor="#2c3e50"
+        android:strokeWidth="1"
+        android:pathData="M39,105 L261,105 Q265,105 265,109 L265,109 Q265,113 261,113 L39,113 Q35,113 35,109 L35,109 Q35,105 39,105 Z" />
+</vector>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_login">
+
+    <fragment
+        android:id="@+id/navigation_login"
+        android:name="com.apc.cng_hpcl.ui.login.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login" />
+
+    <fragment
+        android:id="@+id/navigation_video"
+        android:name="com.apc.cng_hpcl.ui.video.VideoFragment"
+        android:label="Video"
+        tools:layout="@layout/fragment_video" />
+
+    <fragment
+        android:id="@+id/navigation_support"
+        android:name="com.apc.cng_hpcl.ui.support.SupportFragment"
+        android:label="Support"
+        tools:layout="@layout/fragment_support" />
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.apc.cng_hpcl.ui.notifications.NotificationsFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/navigation_driver"
+        android:name="com.apc.cng_hpcl.ui.driver.DriverFragment"
+        android:label="DriverFragment"
+        tools:layout="@layout/fragment_driver"/>
+    <fragment
+        android:id="@+id/speech_frag"
+        android:name="com.apc.cng_hpcl.home.SpeechFrag"
+        android:label="SpeechFrag" />
+</navigation>

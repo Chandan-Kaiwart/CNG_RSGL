@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="@drawable/header_gradient"
+            android:gravity="center">
+
+            <TextView
+                android:text="Delivery Challan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:gravity="center" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_gravity="center" />
+
+
+            <TextView
+                android:id="@+id/txtChallanNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <!-- Basic Information -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/section_card_bg"
+            android:padding="16dp"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📋 Basic Information"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#2E7D32"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LCV Number"
+                android:textSize="13sp"
+                android:textColor="#666"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtLcvNumber"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/txtDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date and Time"
+                android:textSize="13sp"
+                android:textColor="#666"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtDateTime"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <!-- Shipping Location -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/section_card_bg"
+            android:padding="16dp"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📍 Shipping Location"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#2E7D32"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtMgsName"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtMgsAddress"
+                android:textSize="13sp"
+                android:textColor="#444"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtMgsId"
+                android:textSize="12sp"
+                android:textColor="#888"/>
+        </LinearLayout>
+
+        <!-- Primary DBS -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/section_card_bg"
+            android:padding="16dp"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🚚 Delivery Location"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#2E7D32"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtDbsName"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtDbsAddress"
+                android:textSize="13sp"
+                android:textColor="#444"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtDbsId"
+                android:textSize="12sp"
+                android:textColor="#888"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtDbsType"
+                android:textSize="12sp"
+                android:textColor="#888"/>
+        </LinearLayout>
+
+        <!-- Secondary DBS (hidden if not needed) -->
+        <LinearLayout
+            android:id="@+id/cardSecondaryDbs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/section_card_bg"
+            android:padding="16dp"
+            android:layout_marginTop="12dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🏭 Delivery Location (To Secondary DBS)"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#2E7D32"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtSecondaryDbsName"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtSecondaryDbsAddress"
+                android:textSize="13sp"
+                android:textColor="#444"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtSecondaryDbsId"
+                android:textSize="12sp"
+                android:textColor="#888"/>
+        </LinearLayout>
+
+        <!-- LCV Details Table -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/section_card_bg"
+            android:padding="16dp"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📊 LCV Details"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#2E7D32"
+                android:layout_marginBottom="8dp"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
+                <TableLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="*">
+
+                    <!-- Header Row -->
+                    <TableRow android:background="#E8F5E9">
+                        <TextView android:text="LCV Number" style="@style/TableHeader"/>
+                        <TextView android:text="Capacity" style="@style/TableHeader"/>
+                        <TextView android:text="Date" style="@style/TableHeader"/>
+                        <TextView android:text="Time" style="@style/TableHeader"/>
+                        <TextView android:text="MEM Before" style="@style/TableHeader"/>
+                        <TextView android:text="MEM After" style="@style/TableHeader"/>
+                        <TextView android:text="Filled Gas" style="@style/TableHeader"/>
+                        <TextView android:text="Primary DBS Gas" style="@style/TableHeader"/>
+                        <TextView android:text="Secondary DBS Gas" style="@style/TableHeader"/>
+                        <TextView android:text="Rate" style="@style/TableHeader"/>
+                        <TextView android:text="Amount" style="@style/TableHeader"/>
+                        <TextView android:text="Tax" style="@style/TableHeader"/>
+                        <TextView android:text="Total" style="@style/TableHeader"/>
+                    </TableRow>
+
+                    <!-- Data Row -->
+                    <TableRow android:background="@android:color/white">
+                        <TextView android:id="@+id/dataLcvNumber" style="@style/TableData"/>
+                        <TextView android:id="@+id/dataLcvCapacity" style="@style/TableData"/>
+                        <TextView android:id="@+id/dataDate" style="@style/TableData"/>
+                        <TextView android:id="@+id/dataTime" style="@style/TableData"/>
+                        <TextView android:id="@+id/dataMEMBefore" style="@style/TableData"/>
+                        <TextView android:id="@+id/dataMEMAfter" style="@style/TableData"/>
+                        <TextView android:id="@+id/dataFilledGas" style="@style/TableData"/>
+                        <TextView android:id="@+id/dataGasPrimary" style="@style/TableData"/>
+                        <TextView android:id="@+id/dataGasSecondary" style="@style/TableData"/>
+                        <TextView android:id="@+id/dataRate" style="@style/TableData"/>
+                        <TextView android:id="@+id/dataAmount" style="@style/TableData"/>
+                        <TextView android:id="@+id/dataTax" style="@style/TableData"/>
+                        <TextView android:id="@+id/dataTotalAmount" style="@style/TableData"/>
+                    </TableRow>
+                </TableLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
