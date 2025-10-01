@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <variable
-            name="vm"
-            type="com.apc.cng_hpcl.home.newTrans.TransViewModel"/>
+<!--        <variable-->
+<!--            name="vm"-->
+<!--            type="com.apc.cng_hpcl.home.newTrans.TransViewModel"/>-->
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -269,7 +269,6 @@
                                 android:maxLength="2"
                                 android:hint="तापमान लिखें (°C)"
                                 android:inputType="numberDecimal"
-                                android:text="@={vm.tempValue}"
                                 android:textSize="16sp" />
 
                         </com.google.android.material.textfield.TextInputLayout>
@@ -334,7 +333,7 @@
                                 android:gravity="center"
                                 android:maxLength="3"                                android:hint="Pressure लिखें (Bar)"
                                 android:inputType="numberDecimal"
-                                android:text="@={vm.presValue}"
+
                                 android:textSize="16sp" />
 
                         </com.google.android.material.textfield.TextInputLayout>
@@ -399,7 +398,7 @@
                                 android:gravity="center"
                                 android:hint="L . P . लिखें (Bar)"
                                 android:inputType="numberDecimal"
-                                android:text="@={vm.lpValue}"
+
                                 android:textSize="16sp" />
 
                         </com.google.android.material.textfield.TextInputLayout>
@@ -427,7 +426,6 @@
                                 android:layout_height="wrap_content"
                                 android:layout_margin="2dp"
                                 android:padding="2dp"
-                                android:text="@={vm.lmValue}"
                                 android:textColor="@color/black"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
@@ -496,7 +494,6 @@
                                 android:gravity="center"
                                 android:hint="M . P . लिखें (Bar)"
                                 android:inputType="numberDecimal"
-                                android:text="@={vm.mpValue}"
                                 android:textSize="16sp" />
 
                         </com.google.android.material.textfield.TextInputLayout>
@@ -524,7 +521,6 @@
                                 android:layout_height="wrap_content"
                                 android:layout_margin="2dp"
                                 android:padding="2dp"
-                                android:text="@={vm.mmValue}"
                                 android:textColor="@color/black"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
@@ -590,7 +586,6 @@
                                 android:gravity="center"
                                 android:hint="H . P . लिखें (Bar)"
                                 android:inputType="numberDecimal"
-                                android:text="@={vm.hpValue}"
                                 android:textSize="16sp" />
 
                         </com.google.android.material.textfield.TextInputLayout>
@@ -618,7 +613,6 @@
                                 android:layout_height="wrap_content"
                                 android:layout_margin="2dp"
                                 android:padding="2dp"
-                                android:text="@={vm.hmValue}"
                                 android:textColor="@color/black"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
@@ -686,7 +680,6 @@
                                 android:hint="CNG द्रव्यमान / Total Mass (Kg): "
 
                                 android:inputType="numberDecimal"
-                                android:text="@={vm.mfmValue}"
                                 android:textSize="16sp" />
 
                         </com.google.android.material.textfield.TextInputLayout>
@@ -792,7 +785,6 @@
                                 android:layout_height="wrap_content"
                                 android:layout_margin="2dp"
                                 android:padding="2dp"
-                                android:text="@={vm.massValue}"
                                 android:textColor="@color/black"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />

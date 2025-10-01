@@ -1,12 +1,14 @@
 package com.apc.cng_hpcl.home
 
 import android.app.DatePickerDialog
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
@@ -21,10 +23,11 @@ import java.text.SimpleDateFormat
 import java.util.*
 import com.apc.cng_hpcl.R
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import com.apc.cng_hpcl.home.transaction.ChallanDetailFragment
-import org.json.JSONArray
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class ChallanFragment : Fragment() {
 
@@ -39,15 +42,30 @@ class ChallanFragment : Fragment() {
     private lateinit var containerCards: LinearLayout
     private lateinit var progressBar: ProgressBar
     private lateinit var btnCreate: Button
+    private lateinit var apiService: ApiService
 
     private val dateFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
     private val apiDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
     private val calendar = Calendar.getInstance()
 
-    // LCV options
-    private val lcvOptions = mutableListOf("All LCVs", "CGS Haraua", "UPSIDC Karkhiyaon")
+    // ✅ Updated LCV data from API
+    private val lcvItems = mutableListOf<SpinnerItem>()
+    private var allLcvData = listOf<LcvData>()
+    private var selectedLcvId: String? = null
+
     private var allChallanData = mutableListOf<ChallanData>()
     private var filteredData = mutableListOf<ChallanData>()
+
+    // Data class for Challan
+    data class ChallanData(
+        val sNo: String,
+        val date: String,
+        val time: String,
+        val lcvNumber: String,
+        val mgsStationName: String,
+        val dbsStationName: String,
+        val challanNumber: String
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,11 +75,13 @@ class ChallanFragment : Fragment() {
         return inflater.inflate(R.layout.frag_challan, container, false)
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         initializeViews(view)
-        setupSpinner()
+        setupRetrofit()
+        loadLcvData()  // ✅ Load LCV data from API
         setupDatePickers()
         setupGoButton()
 
@@ -71,23 +91,19 @@ class ChallanFragment : Fragment() {
         endDate.setText(today)
 
         // Load initial data
-
-
         fetchChallanData()
 
-//        btnCreate.setOnClickListener {
-//            findNavController().navigate(R.id.action_challanFragment_to_createChallan)
-//        }
-
+        btnCreate.setOnClickListener {
+            findNavController().navigate(R.id.action_challanFragment_to_createChallan)
+        }
     }
-
 
     private fun initializeViews(view: View) {
         spinnerLcv = view.findViewById(R.id.spinnerLcv)
         startDate = view.findViewById(R.id.startDate)
         endDate = view.findViewById(R.id.endDate)
         btnGo = view.findViewById(R.id.btnGo)
-//        btnCreate = view.findViewById(R.id.btnCreate)
+        btnCreate = view.findViewById(R.id.btnCreate)
         containerCards = view.findViewById(R.id.containerCards)
 
         progressBar = ProgressBar(requireContext()).apply {
@@ -102,17 +118,82 @@ class ChallanFragment : Fragment() {
         containerCards.addView(progressBar)
     }
 
+    // ✅ Setup Retrofit
+    private fun setupRetrofit() {
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://www.cng-suvidha.in/CNGPortal/staging_test_dispenser/dispenser/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        apiService = retrofit.create(ApiService::class.java)
+    }
 
+    // ✅ Load LCV Data from API
+    private fun loadLcvData() {
+        apiService.getLcvData().enqueue(object : Callback<LcvResponse> {
+            override fun onResponse(call: Call<LcvResponse>, response: Response<LcvResponse>) {
+                if (response.isSuccessful && response.body() != null) {
+                    val lcvResponse = response.body()!!
+                    allLcvData = lcvResponse.data
+
+                    // ✅ Populate spinner with API data
+                    lcvItems.clear()
+                    lcvItems.add(SpinnerItem("All LCVs", "")) // Default option
+
+                    allLcvData.forEach { lcv ->
+                        lcvItems.add(SpinnerItem("${lcv.Lcv_Num} (${lcv.Cascade_Capacity}L)", lcv.Lcv_Num))
+                    }
+
+                    setupSpinner()
+                } else {
+                    // ✅ Fallback to hardcoded options
+                    lcvItems.clear()
+                    lcvItems.add(SpinnerItem("All LCVs", ""))
+                    lcvItems.add(SpinnerItem("CGS Haraua", "CGS"))
+                    lcvItems.add(SpinnerItem("UPSIDC Karkhiyaon", "UPSIDC"))
+                    setupSpinner()
+
+                    Toast.makeText(requireContext(), "Using default LCV options", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<LcvResponse>, t: Throwable) {
+                Log.e(TAG, "LCV API Error: ${t.message}")
+                // ✅ Fallback to hardcoded options
+                lcvItems.clear()
+                lcvItems.add(SpinnerItem("All LCVs", ""))
+                lcvItems.add(SpinnerItem("CGS Haraua", "CGS"))
+                lcvItems.add(SpinnerItem("UPSIDC Karkhiyaon", "UPSIDC"))
+                setupSpinner()
+            }
+        })
+    }
+
+    // ✅ Setup Spinner with LCV selection listener
     private fun setupSpinner() {
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, lcvOptions)
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, lcvItems)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerLcv.adapter = adapter
+
+        // ✅ Add selection listener for filtering
+        spinnerLcv.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            @RequiresApi(Build.VERSION_CODES.M)
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                selectedLcvId = if (position > 0) lcvItems[position].hiddenId else null
+
+                // ✅ Apply filters when LCV selection changes
+                if (allChallanData.isNotEmpty()) {
+                    applyFilters()
+                }
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
     }
 
     private fun setupDatePickers() {
         startDate.setOnClickListener {
             showDatePicker { date -> startDate.setText(date) }
         }
+
         endDate.setOnClickListener {
             showDatePicker { date -> endDate.setText(date) }
         }
@@ -131,10 +212,12 @@ class ChallanFragment : Fragment() {
         ).show()
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun setupGoButton() {
         btnGo.setOnClickListener { fetchChallanData() }
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun fetchChallanData() {
         val startDateText = startDate.text.toString()
         val endDateText = endDate.text.toString()
@@ -145,7 +228,6 @@ class ChallanFragment : Fragment() {
         }
 
         showLoading(true)
-
         lifecycleScope.launch {
             try {
                 val startDateApi = convertDateToApiFormat(startDateText)
@@ -159,10 +241,11 @@ class ChallanFragment : Fragment() {
 
                 if (response != null) {
                     parseChallanResponse(response)
-                    applyFilters()
+                    applyFilters()  // ✅ Apply LCV filters
                 } else {
                     showError("Failed to fetch data from server")
                 }
+
             } catch (e: Exception) {
                 showError("Error: ${e.message}")
             } finally {
@@ -182,12 +265,9 @@ class ChallanFragment : Fragment() {
 
     private suspend fun makeApiCall(startDate: String, endDate: String): String? {
         return try {
-            val urlString = "https://www.cng-suvidha.in/CNGPortal/staging_gail/CNG_API/challan_api.php" +
-                    "?apicall=all_challans_data&start_date=$startDate&end_date=$endDate"
-
+            val urlString = "https://www.cng-suvidha.in/CNGPortal/staging_test_dispenser/dispenser/API/challan_api.php?apicall=get_saved_challans"
             val url = URL(urlString)
             val connection = url.openConnection() as HttpURLConnection
-
             connection.requestMethod = "GET"
             connection.doInput = true
 
@@ -200,6 +280,7 @@ class ChallanFragment : Fragment() {
                 Log.e(TAG, "Server Error Code: ${connection.responseCode}")
                 null
             }
+
         } catch (e: Exception) {
             e.printStackTrace()
             null
@@ -209,7 +290,6 @@ class ChallanFragment : Fragment() {
     private fun parseChallanResponse(response: String) {
         try {
             val jsonObject = JSONObject(response)
-
             if (!jsonObject.has("data")) {
                 showError("No data field in response")
                 return
@@ -221,15 +301,18 @@ class ChallanFragment : Fragment() {
             for (i in 0 until dataArray.length()) {
                 val item = dataArray.getJSONObject(i)
 
+                // Extract serial number from challan_no
+                val challanNo = item.optString("challan_no", "")
+                val serialNumber = challanNo.split("/").lastOrNull() ?: ""
+
                 val challanData = ChallanData(
-                    sNo = item.optString("sl_no", ""),
+                    sNo = serialNumber,
                     date = formatApiDate(item.optString("date_reading", "")),
                     time = formatApiTime(item.optString("date_reading", "")),
                     lcvNumber = item.optString("lcv_id", ""),
-                    mgs = item.optString("station_id", "").replace("_", " ").capitalize(),
-                    primaryDbs = item.optString("dbs_station_id", "").capitalize(),
-                    secondaryDbs = item.optString("secondary_dbs_id", "") ?: "",
-                    challanNumber = "RSGL/KOTA/24-25/${item.optString("sl_no", "")}"
+                    mgsStationName = item.optString("mgs_station_name", ""),
+                    dbsStationName = item.optString("dbs_station_name", ""),
+                    challanNumber = challanNo
                 )
 
                 allChallanData.add(challanData)
@@ -240,7 +323,6 @@ class ChallanFragment : Fragment() {
             showError("Error parsing server response")
         }
     }
-
 
     private fun formatApiDate(dateTime: String): String {
         return try {
@@ -262,32 +344,46 @@ class ChallanFragment : Fragment() {
         }
     }
 
+    // ✅ Updated Filter Logic for API-based LCV filtering
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun applyFilters() {
-        val selectedLcv = spinnerLcv.selectedItem.toString()
         filteredData.clear()
 
         for (challan in allChallanData) {
             var shouldInclude = true
 
-            if (selectedLcv != "All LCVs" &&
-                !challan.mgs.contains(selectedLcv.replace("CGS ", "").replace("UPSIDC ", ""), ignoreCase = true)
-            ) {
-                shouldInclude = false
+            // ✅ Filter by selected LCV ID
+            if (selectedLcvId != null && selectedLcvId!!.isNotEmpty()) {
+                // Check if challan's LCV number matches selected LCV
+                if (challan.lcvNumber != selectedLcvId) {
+                    shouldInclude = false
+                }
             }
 
-            if (shouldInclude) filteredData.add(challan)
+            if (shouldInclude) {
+                filteredData.add(challan)
+            }
         }
 
         displayChallanData(filteredData)
-        Toast.makeText(requireContext(), "Found ${filteredData.size} records", Toast.LENGTH_SHORT).show()
+
+        // ✅ Show meaningful message
+        val selectedLcvName = if (selectedLcvId.isNullOrEmpty()) "All LCVs" else selectedLcvId
+        Toast.makeText(
+            requireContext(),
+            "Found ${filteredData.size} records for $selectedLcvName",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
+    // Rest of the methods remain same (displayChallanData, createChallanCard, etc.)
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun displayChallanData(data: List<ChallanData>) {
         containerCards.removeAllViews()
 
         if (data.isEmpty()) {
             val noDataView = TextView(requireContext()).apply {
-                text = "No data found for the selected criteria"
+                text = "No challans found for the selected criteria"
                 textSize = 16f
                 gravity = android.view.Gravity.CENTER
                 setPadding(16, 32, 16, 32)
@@ -302,6 +398,8 @@ class ChallanFragment : Fragment() {
             containerCards.addView(cardView)
         }
     }
+
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun createChallanCard(challan: ChallanData): View {
         val cardLayout = LinearLayout(requireContext()).apply {
             orientation = LinearLayout.VERTICAL
@@ -311,10 +409,9 @@ class ChallanFragment : Fragment() {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
             ).apply { setMargins(0, 0, 0, 16) }
-            elevation = 6f
         }
 
-        // 🔹 Top row (S.No pill left + Date+Time right)
+        // Header row
         val headerRow = LinearLayout(requireContext()).apply {
             orientation = LinearLayout.HORIZONTAL
             weightSum = 2f
@@ -323,7 +420,7 @@ class ChallanFragment : Fragment() {
 
         val sNoBadge = TextView(requireContext()).apply {
             text = "S.No: ${challan.sNo}"
-            setPadding(28, 10, 28, 10) // bigger pill
+            setPadding(28, 10, 28, 10)
             setTextColor(android.graphics.Color.BLACK)
             textSize = 15f
             setTypeface(typeface, android.graphics.Typeface.BOLD)
@@ -335,7 +432,7 @@ class ChallanFragment : Fragment() {
         }
 
         val dateTime = TextView(requireContext()).apply {
-            text = "${challan.date}   ${challan.time}" // inline
+            text = "${challan.date} ${challan.time}"
             textSize = 13.5f
             setTextColor(android.graphics.Color.DKGRAY)
             gravity = android.view.Gravity.END
@@ -345,17 +442,14 @@ class ChallanFragment : Fragment() {
         headerRow.addView(sNoBadge)
         headerRow.addView(dateTime)
 
-        // 🔹 Details
+        // Details with station names
         val lcvRow = createTextView("LCV: ${challan.lcvNumber}", textStyle = true, textSizeSp = 22f)
-        val mgsRow = createTextView("MGS: ${challan.mgs}", textSizeSp = 18f)
-        val primaryDbsRow = createTextView("Primary DBS: ${challan.primaryDbs}", textSizeSp = 18f)
-        val secondaryDbsRow = if (challan.secondaryDbs.isNotEmpty()) {
-            createTextView("Secondary DBS: ${challan.secondaryDbs}", textSizeSp = 18f)
-        } else null
+        val mgsRow = createTextView("MGS Station: ${challan.mgsStationName}", textSizeSp = 18f)
+        val dbsRow = createTextView("DBS Station: ${challan.dbsStationName}", textSizeSp = 18f)
 
-        // 🔹 Challan link button
+        // Challan button
         val challanBtn = TextView(requireContext()).apply {
-            text = "🔗 Challan: ${challan.challanNumber}"
+            text = "📋 Challan: ${challan.challanNumber}"
             textSize = 16f
             setTextColor(android.graphics.Color.WHITE)
             gravity = android.view.Gravity.CENTER
@@ -365,17 +459,17 @@ class ChallanFragment : Fragment() {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
             ).apply { setMargins(0, 16, 0, 0) }
+
             setOnClickListener {
                 val bundle = Bundle().apply {
-                    putString("challanId", challan.sNo)
                     putString("challanNumber", challan.challanNumber)
                     putString("date", challan.date)
                     putString("time", challan.time)
                     putString("lcvNumber", challan.lcvNumber)
-                    putString("mgs", challan.mgs)
-                    putString("primaryDbs", challan.primaryDbs)
-                    putString("secondaryDbs", challan.secondaryDbs)
+                    putString("mgsStation", challan.mgsStationName)
+                    putString("dbsStation", challan.dbsStationName)
                 }
+
                 findNavController().navigate(
                     R.id.action_challanFragment_to_challanDetailFragment,
                     bundle
@@ -383,17 +477,15 @@ class ChallanFragment : Fragment() {
             }
         }
 
-        // 🔹 Add views
+        // Add views to card
         cardLayout.addView(headerRow)
         cardLayout.addView(lcvRow)
         cardLayout.addView(mgsRow)
-        cardLayout.addView(primaryDbsRow)
-        secondaryDbsRow?.let { cardLayout.addView(it) }
+        cardLayout.addView(dbsRow)
         cardLayout.addView(challanBtn)
 
         return cardLayout
     }
-
 
     private fun createTextView(
         text: String,
@@ -408,6 +500,7 @@ class ChallanFragment : Fragment() {
             textSize = textSizeSp
             setTextColor(android.graphics.Color.parseColor(textColor))
             if (textStyle) setTypeface(typeface, android.graphics.Typeface.BOLD)
+
             if (weight > 0) {
                 layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, weight)
             } else {
@@ -419,16 +512,16 @@ class ChallanFragment : Fragment() {
         }
     }
 
-
     private fun showLoading(show: Boolean) {
         progressBar.visibility = if (show) View.VISIBLE else View.GONE
         btnGo.isEnabled = !show
-        btnGo.text = if (show) "Loading..." else "View Challan"
+        btnGo.text = if (show) "Loading..." else "📄 View Challan"
     }
 
     private fun showError(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
         containerCards.removeAllViews()
+
         val errorView = TextView(requireContext()).apply {
             text = message
             textSize = 16f
@@ -438,17 +531,6 @@ class ChallanFragment : Fragment() {
         }
         containerCards.addView(errorView)
     }
-
-    data class ChallanData(
-        val sNo: String,
-        val date: String,
-        val time: String,
-        val lcvNumber: String,
-        val mgs: String,
-        val primaryDbs: String,
-        val secondaryDbs: String,
-        val challanNumber: String
-    )
 }
 
 // Extension

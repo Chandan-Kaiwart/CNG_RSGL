@@ -1,296 +1,345 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5">
-
+    android:background="#FFA94D">
 
     <LinearLayout
         android:orientation="vertical"
-        android:padding="16dp"
+        android:padding="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- Header -->
-        <LinearLayout
+        <!-- Header Card -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp"
-            android:background="@drawable/header_gradient"
-            android:gravity="center">
+            android:layout_marginBottom="12dp"
+            app:cardBackgroundColor="#E9ECEF"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp">
 
-            <TextView
-                android:text="Delivery Challan"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:gravity="center" />
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:gravity="center">
 
-            <ProgressBar
-                android:id="@+id/progressBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:layout_gravity="center" />
+                <TextView
+                    android:text="Delivery Challan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#1E7D34"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:gravity="center" />
 
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_gravity="center" />
 
-            <TextView
-                android:id="@+id/txtChallanNumber"
+                <TextView
+                    android:id="@+id/txtChallanNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:gravity="center" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Basic Information Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:cardBackgroundColor="#E9ECEF"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
-                android:textSize="14sp"
-                android:gravity="center" />
-        </LinearLayout>
+                android:orientation="vertical"
+                android:padding="16dp">
 
-        <!-- Basic Information -->
-        <LinearLayout
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📋 Basic Information"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#1E7D34"
+                    android:layout_marginBottom="8dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="LCV Number"
+                    android:textSize="13sp"
+                    android:textColor="#666"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtLcvNumber"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="8dp"/>
+
+                <TextView
+                    android:id="@+id/txtDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date and Time"
+                    android:textSize="13sp"
+                    android:textColor="#666"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtDateTime"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Shipping Location Card -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/section_card_bg"
-            android:padding="16dp"
-            android:layout_marginTop="12dp">
+            android:layout_marginBottom="12dp"
+            app:cardBackgroundColor="#E9ECEF"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="📋 Basic Information"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:textColor="#2E7D32"
-                android:layout_marginBottom="8dp"/>
+                android:orientation="vertical"
+                android:padding="16dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="LCV Number"
-                android:textSize="13sp"
-                android:textColor="#666"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtLcvNumber"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📍 Shipping Location"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#1E7D34"
+                    android:layout_marginBottom="8dp"/>
 
-            <TextView
-                android:id="@+id/txtDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Date and Time"
-                android:textSize="13sp"
-                android:textColor="#666"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtDateTime"
-                android:textSize="14sp"
-                android:textStyle="bold"/>
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtMgsName"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="4dp"/>
 
-        <!-- Shipping Location -->
-        <LinearLayout
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtMgsAddress"
+                    android:textSize="13sp"
+                    android:textColor="#444"
+                    android:layout_marginBottom="4dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtMgsId"
+                    android:textSize="12sp"
+                    android:textColor="#888"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Primary DBS Card -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/section_card_bg"
-            android:padding="16dp"
-            android:layout_marginTop="12dp">
+            android:layout_marginBottom="12dp"
+            app:cardBackgroundColor="#E9ECEF"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="📍 Shipping Location"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:textColor="#2E7D32"
-                android:layout_marginBottom="8dp"/>
+                android:orientation="vertical"
+                android:padding="16dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtMgsName"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="4dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🚚 Delivery Location"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#1E7D34"
+                    android:layout_marginBottom="8dp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtMgsAddress"
-                android:textSize="13sp"
-                android:textColor="#444"
-                android:layout_marginBottom="4dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtDbsName"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="4dp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtMgsId"
-                android:textSize="12sp"
-                android:textColor="#888"/>
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtDbsAddress"
+                    android:textSize="13sp"
+                    android:textColor="#444"
+                    android:layout_marginBottom="4dp"/>
 
-        <!-- Primary DBS -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/section_card_bg"
-            android:padding="16dp"
-            android:layout_marginTop="12dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtDbsId"
+                    android:textSize="12sp"
+                    android:textColor="#888"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="🚚 Delivery Location"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:textColor="#2E7D32"
-                android:layout_marginBottom="8dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtDbsType"
+                    android:textSize="12sp"
+                    android:textColor="#888"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtDbsName"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="4dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtDbsAddress"
-                android:textSize="13sp"
-                android:textColor="#444"
-                android:layout_marginBottom="4dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtDbsId"
-                android:textSize="12sp"
-                android:textColor="#888"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtDbsType"
-                android:textSize="12sp"
-                android:textColor="#888"/>
-        </LinearLayout>
-
-        <!-- Secondary DBS (hidden if not needed) -->
-        <LinearLayout
+        <!-- Secondary DBS Card (hidden if not needed) -->
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardSecondaryDbs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/section_card_bg"
-            android:padding="16dp"
-            android:layout_marginTop="12dp"
-            android:visibility="gone">
+            android:layout_marginBottom="12dp"
+            android:visibility="gone"
+            app:cardBackgroundColor="#E9ECEF"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="🏭 Delivery Location (To Secondary DBS)"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:textColor="#2E7D32"
-                android:layout_marginBottom="8dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtSecondaryDbsName"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="4dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtSecondaryDbsAddress"
-                android:textSize="13sp"
-                android:textColor="#444"
-                android:layout_marginBottom="4dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtSecondaryDbsId"
-                android:textSize="12sp"
-                android:textColor="#888"/>
-        </LinearLayout>
-
-        <!-- LCV Details Table -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/section_card_bg"
-            android:padding="16dp"
-            android:layout_marginTop="12dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="📊 LCV Details"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:textColor="#2E7D32"
-                android:layout_marginBottom="8dp"/>
-
-            <HorizontalScrollView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scrollbars="none">
+                android:orientation="vertical"
+                android:padding="16dp">
 
-                <TableLayout
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:stretchColumns="*">
+                    android:text="🏭 Delivery Location (To Secondary DBS)"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#1E7D34"
+                    android:layout_marginBottom="8dp"/>
 
-                    <!-- Header Row -->
-                    <TableRow android:background="#E8F5E9">
-                        <TextView android:text="LCV Number" style="@style/TableHeader"/>
-                        <TextView android:text="Capacity" style="@style/TableHeader"/>
-                        <TextView android:text="Date" style="@style/TableHeader"/>
-                        <TextView android:text="Time" style="@style/TableHeader"/>
-                        <TextView android:text="MEM Before" style="@style/TableHeader"/>
-                        <TextView android:text="MEM After" style="@style/TableHeader"/>
-                        <TextView android:text="Filled Gas" style="@style/TableHeader"/>
-                        <TextView android:text="Primary DBS Gas" style="@style/TableHeader"/>
-                        <TextView android:text="Secondary DBS Gas" style="@style/TableHeader"/>
-                        <TextView android:text="Rate" style="@style/TableHeader"/>
-                        <TextView android:text="Amount" style="@style/TableHeader"/>
-                        <TextView android:text="Tax" style="@style/TableHeader"/>
-                        <TextView android:text="Total" style="@style/TableHeader"/>
-                    </TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtSecondaryDbsName"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="4dp"/>
 
-                    <!-- Data Row -->
-                    <TableRow android:background="@android:color/white">
-                        <TextView android:id="@+id/dataLcvNumber" style="@style/TableData"/>
-                        <TextView android:id="@+id/dataLcvCapacity" style="@style/TableData"/>
-                        <TextView android:id="@+id/dataDate" style="@style/TableData"/>
-                        <TextView android:id="@+id/dataTime" style="@style/TableData"/>
-                        <TextView android:id="@+id/dataMEMBefore" style="@style/TableData"/>
-                        <TextView android:id="@+id/dataMEMAfter" style="@style/TableData"/>
-                        <TextView android:id="@+id/dataFilledGas" style="@style/TableData"/>
-                        <TextView android:id="@+id/dataGasPrimary" style="@style/TableData"/>
-                        <TextView android:id="@+id/dataGasSecondary" style="@style/TableData"/>
-                        <TextView android:id="@+id/dataRate" style="@style/TableData"/>
-                        <TextView android:id="@+id/dataAmount" style="@style/TableData"/>
-                        <TextView android:id="@+id/dataTax" style="@style/TableData"/>
-                        <TextView android:id="@+id/dataTotalAmount" style="@style/TableData"/>
-                    </TableRow>
-                </TableLayout>
-            </HorizontalScrollView>
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtSecondaryDbsAddress"
+                    android:textSize="13sp"
+                    android:textColor="#444"
+                    android:layout_marginBottom="4dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtSecondaryDbsId"
+                    android:textSize="12sp"
+                    android:textColor="#888"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- LCV Details Table Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:cardBackgroundColor="#E9ECEF"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📊 LCV Details"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#1E7D34"
+                    android:layout_marginBottom="8dp"/>
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none">
+
+                    <TableLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:stretchColumns="*">
+
+                        <!-- Header Row -->
+                        <TableRow android:background="#F8F9FA"
+                            android:padding="8dp">
+                            <TextView android:text="LCV Number" style="@style/TableHeader"/>
+                            <TextView android:text="Capacity" style="@style/TableHeader"/>
+                            <TextView android:text="Date" style="@style/TableHeader"/>
+                            <TextView android:text="Time" style="@style/TableHeader"/>
+                            <TextView android:text="MFM Before" style="@style/TableHeader"/>
+                            <TextView android:text="MFM After" style="@style/TableHeader"/>
+                            <TextView android:text="Filled Gas" style="@style/TableHeader"/>
+                            <TextView android:text="Primary DBS Gas" style="@style/TableHeader"/>
+                            <TextView android:text="Secondary DBS Gas" style="@style/TableHeader"/>
+                            <TextView android:text="Rate" style="@style/TableHeader"/>
+                            <TextView android:text="Amount" style="@style/TableHeader"/>
+                            <TextView android:text="Tax" style="@style/TableHeader"/>
+                            <TextView android:text="Total" style="@style/TableHeader"/>
+                        </TableRow>
+
+                        <!-- Data Row -->
+                        <TableRow android:background="@android:color/white"
+                            android:padding="8dp">
+                            <TextView android:id="@+id/dataLcvNumber" style="@style/TableData"/>
+                            <TextView android:id="@+id/dataLcvCapacity" style="@style/TableData"/>
+                            <TextView android:id="@+id/dataDate" style="@style/TableData"/>
+                            <TextView android:id="@+id/dataTime" style="@style/TableData"/>
+                            <TextView android:id="@+id/dataMFMBefore" style="@style/TableData"/>
+                            <TextView android:id="@+id/dataMFMAfter" style="@style/TableData"/>
+                            <TextView android:id="@+id/dataFilledGas" style="@style/TableData"/>
+                            <TextView android:id="@+id/dataGasPrimary" style="@style/TableData"/>
+                            <TextView android:id="@+id/dataGasSecondary" style="@style/TableData"/>
+                            <TextView android:id="@+id/dataRate" style="@style/TableData"/>
+                            <TextView android:id="@+id/dataAmount" style="@style/TableData"/>
+                            <TextView android:id="@+id/dataTax" style="@style/TableData"/>
+                            <TextView android:id="@+id/dataTotalAmount" style="@style/TableData"/>
+                        </TableRow>
+                    </TableLayout>
+                </HorizontalScrollView>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 </ScrollView>

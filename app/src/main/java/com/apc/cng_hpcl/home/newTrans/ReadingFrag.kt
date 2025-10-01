@@ -34,6 +34,8 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.nio.charset.StandardCharsets
 import java.util.*
+import androidx.lifecycle.ViewModelProvider
+
 
 
 @AndroidEntryPoint
@@ -112,7 +114,7 @@ class ReadingFrag : Fragment() {
         binding.lcvTv.text = lcv
         tempUrl = ""
         presUrl = ""
-        binding.vm = vm
+//        binding.vm = vm
         binding.lifecycleOwner = this
         binding.stateCard.visibility = View.GONE
      //   binding.pressCard.visibility = View.GONE

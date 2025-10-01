@@ -94,7 +94,7 @@ class ReadingForSchedulingFrag:Fragment() {
         dbsId=args.dbsId
         tempUrl=""
         presUrl=""
-        binding.vm=vm
+//        binding.vm=vm
         binding.lifecycleOwner=this
         binding.pressCard.visibility=View.VISIBLE
 

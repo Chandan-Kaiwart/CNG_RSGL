@@ -102,6 +102,7 @@ dependencies {
     //ROOM
     implementation 'android.arch.persistence.room:runtime:1.1.1'
     implementation 'com.google.android.gms:play-services-maps:17.0.1'
+    implementation "androidx.media3:media3-common:1.1.1"
     annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
     //VIEW MODEL & LIVE DATA
     implementation "android.arch.lifecycle:extensions:1.1.1"

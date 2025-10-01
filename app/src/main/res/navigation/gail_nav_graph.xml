@@ -34,8 +34,9 @@
     <fragment
         android:id="@+id/createChallan"
         android:name="com.apc.cng_hpcl.home.CreateChallanFragment"
-        android:label="Create Challan"
-        ></fragment>
+        android:label="Create Challan">
+
+    </fragment>
 
     <fragment
         android:id="@+id/challanDetailFragment"

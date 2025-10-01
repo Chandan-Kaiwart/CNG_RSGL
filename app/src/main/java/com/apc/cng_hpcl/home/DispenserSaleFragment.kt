@@ -72,6 +72,31 @@ class DispenserSaleFragment : Fragment() {
     private val shiftData = mutableMapOf<String, Double>()
     private val dispenserData = mutableMapOf<String, Double>()
 
+    // Map slot number to shift based on hourly slots
+// Slots are hourly starting from 06:00 (slot1)
+// slot1 = 06:00-07:00, slot2 = 07:00-08:00, etc.
+// 8 slots = 1 shift
+    private fun getShiftFromSlot(slotKey: String): String {
+        val slotNumber = try {
+            slotKey.replace("slot", "").toInt()
+        } catch (e: Exception) {
+            return "Morning (8AM-4PM)" // Default
+        }
+
+        // slot1 starts at 06:00
+        // slot1-slot2 = 06:00-08:00 (Night shift tail)
+        // slot3-slot10 = 08:00-16:00 (Morning shift - 8 hours)
+        // slot11-slot18 = 16:00-00:00 (Evening shift - 8 hours)
+        // slot19-slot24 + slot1-slot2 = 00:00-08:00 (Night shift - 8 hours)
+
+        return when (slotNumber) {
+            in 3..10 -> "Morning (8AM-4PM)"      // slot3-slot10: 08:00-16:00
+            in 11..18 -> "Evening (4PM-12AM)"    // slot11-slot18: 16:00-00:00
+            in 19..24, in 1..2 -> "Night (12AM-8AM)"  // slot19-24 + slot1-2: 00:00-08:00
+            else -> "Morning (8AM-4PM)"          // Default
+        }
+    }
+    // Updated: Slot to Shift mapping - removed slot0, renamed slot3 to Night
     // Updated: Slot to Shift mapping - removed slot0, renamed slot3 to Night
     private val slotToShiftMap = mapOf(
         "slot1" to "Morning (8AM-4PM)",
@@ -649,7 +674,7 @@ class DispenserSaleFragment : Fragment() {
                 "&start_date=$startDate" +
                 "&end_date=$endDate" +
                 "&frequency_type=interval" +
-                "&interval=8"
+                "&interval=8%24"
 
         val client = OkHttpClient.Builder()
             .followRedirects(true)
@@ -822,55 +847,86 @@ class DispenserSaleFragment : Fragment() {
         return dateList
     }
 
+// Now using slotToShiftMap directly for slot1/slot2/slot3 mapping
+
     @RequiresApi(Build.VERSION_CODES.N)
     private fun processJsonData(data: JSONObject, date: String, stationId: String) {
         try {
-            Log.d("DispenserSalesGraph", "Processing data for date: $date, station: $stationId")
-            val stationData = data.optJSONObject(stationId) ?: return
+            val formattedDisplayDate = formatDateForDisplay(date)
 
-            val dateData = stationData.optJSONObject(date) ?: return
-            Log.d("DispenserSalesGraph", "Date data keys: ${dateData.keys().asSequence().toList()}")
+            synchronized(this) {
+                // Remove existing data for this date
+                salesData.removeAll { it.date == formattedDisplayDate }
 
-            val slotKeys = dateData.keys()
-            while (slotKeys.hasNext()) {
-                val slotKey = slotKeys.next()   // e.g. "slot0"
-                val slotData = dateData.optJSONObject(slotKey) ?: continue
+                Log.d("DispenserSalesGraph", "Processing data for date: $date, station: $stationId")
+                val stationData = data.optJSONObject(stationId) ?: return
 
-                // Map slot to shift name
-                val shiftName = slotToShiftMap[slotKey] ?: slotKey
+                val dateData = stationData.optJSONObject(date) ?: return
+                Log.d("DispenserSalesGraph", "Date data keys: ${dateData.keys().asSequence().toList()}")
 
-                val dispenserKeys = slotData.keys()
-                while (dispenserKeys.hasNext()) {
-                    val dispenserKey = dispenserKeys.next()
-                    val dispenserDataObj = slotData.optJSONObject(dispenserKey) ?: continue
+                val slotKeys = dateData.keys()
+                while (slotKeys.hasNext()) {
+                    val slotKey = slotKeys.next()   // e.g. "slot0", "slot1", "slot2", "slot3"
+                    val slotData = dateData.optJSONObject(slotKey) ?: continue
 
-                    val dispenserName = mapDispenserKeyToName(dispenserKey)
+                    // Skip slot0 as it contains empty/zero data
+                    if (slotKey == "slot0") {
+                        Log.d("DispenserSalesGraph", "Skipping slot0 (empty data)")
+                        continue
+                    }
 
-                    // Iterate A/B nozzle sides
-                    val sideKeys = dispenserDataObj.keys()
-                    while (sideKeys.hasNext()) {
-                        val side = sideKeys.next()   // "A" / "B"
-                        val nozzleData = dispenserDataObj.optJSONObject(side) ?: continue
+                    // FIXED: Use slotToShiftMap instead of getShiftFromSlot()
+                    val shiftName = slotToShiftMap[slotKey]
+                    if (shiftName == null) {
+                        Log.w("DispenserSalesGraph", "Unknown slot key: $slotKey, skipping")
+                        continue
+                    }
 
-                        val sale = nozzleData.optDouble("sale", 0.0)
-                        val reading = nozzleData.optString("reading", "")
-                        val time = nozzleData.optString("time", "")
+                    val dispenserKeys = slotData.keys()
+                    while (dispenserKeys.hasNext()) {
+                        val dispenserKey = dispenserKeys.next()
+                        val dispenserDataObj = slotData.optJSONObject(dispenserKey) ?: continue
 
-                        Log.d("DispenserSalesGraph", "Slot=$slotKey, Shift=$shiftName, Dispenser=$dispenserName, Side=$side, Sale=$sale")
+                        val dispenserName = mapDispenserKeyToName(dispenserKey)
 
-                        if (sale > 0) {
-                            salesData.add(
-                                SalesDataPoint(
-                                    date = formatDateForDisplay(date),
-                                    shift = shiftName, // Use mapped shift name instead of slot
-                                    dispenser = dispenserName,
-                                    nozzle = side,
-                                    sale = sale,
-                                    reading = reading,
-                                    dateTime = time
-                                )
-                            )
-                            updateAggregatedData(shiftName, dispenserName, sale)
+                        // Iterate A/B nozzle sides
+                        val sideKeys = dispenserDataObj.keys()
+                        while (sideKeys.hasNext()) {
+                            val side = sideKeys.next()   // "A" / "B"
+                            val nozzleData = dispenserDataObj.optJSONObject(side) ?: continue
+
+                            val sale = nozzleData.optDouble("sale", 0.0)
+                            val reading = nozzleData.optString("reading", "")
+                            val time = nozzleData.optString("time", "")
+
+                            Log.d("DispenserSalesGraph", "Slot=$slotKey, Shift=$shiftName, Dispenser=$dispenserName, Side=$side, Sale=$sale")
+
+                            // Only add non-zero sales
+                            if (sale > 0.0) {
+                                // Check if this exact data point already exists
+                                val existingData = salesData.find {
+                                    it.date == formattedDisplayDate &&
+                                            it.shift == shiftName &&
+                                            it.dispenser == dispenserName &&
+                                            it.nozzle == side &&
+                                            it.sale == sale
+                                }
+
+                                if (existingData == null) {
+                                    salesData.add(
+                                        SalesDataPoint(
+                                            date = formattedDisplayDate,
+                                            shift = shiftName,
+                                            dispenser = dispenserName,
+                                            nozzle = side,
+                                            sale = sale,
+                                            reading = reading,
+                                            dateTime = time
+                                        )
+                                    )
+                                    updateAggregatedData(shiftName, dispenserName, sale)
+                                }
+                            }
                         }
                     }
                 }
@@ -881,16 +937,19 @@ class DispenserSaleFragment : Fragment() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
-    private fun updateAggregatedData(shift: String, dispenserName: String, sale: Double) {
-        // Update shift data
-        shiftData[shift] = shiftData.getOrDefault(shift, 0.0) + sale
+    // Also update the updateAggregatedData to prevent doubling
+    private fun updateAggregatedData(shiftName: String, dispenserName: String, sale: Double) {
+        // Update shift totals
+        val currentShiftTotal = shiftData[shiftName] ?: 0.0
+        shiftData[shiftName] = currentShiftTotal + sale
 
-        // Update dispenser data
-        dispenserData[dispenserName] = dispenserData.getOrDefault(dispenserName, 0.0) + sale
+        // Update dispenser totals
+        val currentDispenserTotal = dispenserData[dispenserName] ?: 0.0
+        dispenserData[dispenserName] = currentDispenserTotal + sale
 
-        Log.d("DispenserSalesGraph", "Updated aggregated data - Shift $shift: ${shiftData[shift]}, $dispenserName: ${dispenserData[dispenserName]}")
+        Log.d("DispenserSalesGraph", "Updated aggregated data - Shift $shiftName: ${shiftData[shiftName]}, $dispenserName: ${dispenserData[dispenserName]}")
     }
+
 
     private fun updateAllCharts() {
         Log.d("DispenserSalesGraph", "Updating all charts...")
@@ -1074,7 +1133,6 @@ class DispenserSaleFragment : Fragment() {
 
     private fun updatePieChartWithData(dispenserDataMap: Map<String, Double>) {
         Log.d("DispenserSalesGraph", "Updating pie chart with dispenser data: $dispenserDataMap")
-
         if (dispenserDataMap.isEmpty() || dispenserDataMap.values.all { it == 0.0 }) {
             Log.w("DispenserSalesGraph", "No dispenser data for pie chart")
             dispenserPieChart.clear()
@@ -1085,14 +1143,14 @@ class DispenserSaleFragment : Fragment() {
         try {
             val entries = mutableListOf<PieEntry>()
             val colors = mutableListOf<Int>()
-
             var colorIndex = 0
+
             for ((dispenser, total) in dispenserDataMap) {
                 if (total > 0) {
                     entries.add(PieEntry(total.toFloat(), dispenser))
                     colors.add(ColorTemplate.MATERIAL_COLORS[colorIndex % ColorTemplate.MATERIAL_COLORS.size])
                     colorIndex++
-                    Log.d("DispenserSalesGraph", "Added pie entry for $dispenser: $total kg")
+                    Log.d("DispenserSalesGraph", "Added pie entry for $dispenser: $total %")
                 }
             }
 
@@ -1102,34 +1160,33 @@ class DispenserSaleFragment : Fragment() {
                     valueTextSize = 12f
                     valueTextColor = Color.WHITE
                     setDrawValues(true)
+                    // FIXED: Change from kg to percentage
                     valueFormatter = object : ValueFormatter() {
                         override fun getFormattedValue(value: Float): String {
-                            // Show actual values, not percentages
-                            return String.format("%.1f kg", value)
+                            return String.format("%.1f%%", value)
                         }
                     }
                 }
 
                 val pieData = PieData(dataSet)
                 dispenserPieChart.data = pieData
-
-                // Update description to show it's filtered data when single dispenser is selected
-                val description = if (entries.size == 1) {
+                dispenserPieChart.description.text = if (entries.size == 1) {
                     "Sales for ${entries[0].label}"
                 } else {
                     "Sales Distribution by Dispenser"
                 }
-                dispenserPieChart.description.text = description
 
+                // Enable percentage values display
+                dispenserPieChart.setUsePercentValues(true)
                 dispenserPieChart.notifyDataSetChanged()
                 dispenserPieChart.invalidate()
-
                 Log.d("DispenserSalesGraph", "Pie chart updated successfully with ${entries.size} entries")
             }
         } catch (e: Exception) {
             Log.e("DispenserSalesGraph", "Error updating pie chart: ${e.message}", e)
         }
     }
+
 
     private fun updateDailySalesChartWithData(salesDataList: List<SalesDataPoint>) {
         Log.d("DispenserSalesGraph", "Updating daily sales chart")

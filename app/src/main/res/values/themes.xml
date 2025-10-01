@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.CNG_HPCL" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <!-- Base application theme - FIXED TO LIGHT ONLY -->
+    <style name="Theme.CNG_HPCL" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/Primary</item>
         <item name="colorPrimaryVariant">@color/Primary</item>
@@ -10,41 +10,45 @@
         <item name="colorSecondaryVariant">@color/Accent</item>
         <item name="colorOnSecondary">@color/black</item>
 
+        <!-- FORCE LIGHT MODE - NO AUTO SWITCHING -->
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
 
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="Theme.SplashnSlides" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <!-- Splash theme - ALSO LIGHT ONLY -->
+    <style name="Theme.SplashnSlides" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
-
     </style>
+
+    <!-- Rest of your styles remain same -->
     <style name="TextLabel" parent="TextAppearance.Design.Hint">
         <item name="android:textSize">16sp</item>
     </style>
 
     <style name="NewDialog" parent="@android:style/Theme.Dialog">
-
         <item name="android:windowFrame">@null</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowTitleStyle">@null</item>
-        <item name="android:colorBackground">@color/Accent</item>// change background color
+        <item name="android:colorBackground">@color/Accent</item>
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
         <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:width">600dip</item>
         <item name="android:height">60dip</item>
         <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/white</item>// change color
+        <item name="android:textColor">@color/white</item>
     </style>
+
     <style name="Theme.CNG_HPCL.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
     <style name="Theme.CNG_HPCL.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.CNG_HPCL.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
@@ -53,6 +57,7 @@
         <item name="android:minHeight">8dip</item>
         <item name="android:maxHeight">20dip</item>
     </style>
+
     <style name="BottomNavigationView" parent="@style/TextAppearance.AppCompat.Caption">
         <item name="android:textSize">16sp</item>
     </style>
@@ -60,4 +65,5 @@
     <style name="BottomNavigationView.Active" parent="@style/TextAppearance.AppCompat.Caption">
         <item name="android:textSize">16sp</item>
     </style>
+
 </resources>

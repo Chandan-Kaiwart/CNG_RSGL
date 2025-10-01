@@ -77,7 +77,7 @@ class NewDashFrag: Fragment() {
 //            binding.statTv.setText("Station : $station")
 
 
-            binding.lcvTracking.setOnClickListener {
+            binding.lcvManagement.setOnClickListener {
             val action=NewDashFragDirections.actionNewDashFragToLcvTracking()
             navController.navigate(action) }
         }

@@ -1,127 +1,262 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="12dp">
+    android:orientation="vertical"
+    android:background="#FFA94D"
+    android:padding="8dp">
 
-    <LinearLayout
+    <!-- Header Card -->
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_margin="8dp"
+        app:cardBackgroundColor="#E9ECEF"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp">
 
-        <!-- Title -->
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Gas Reconciliation Report"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:paddingBottom="12dp" />
-
-        <!-- Input Gas -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="8dp">
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:gravity="center">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Input Gas (MFM):"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvInputGas"
+                android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1000 SCM"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <!-- Output Gas -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="8dp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Output Gas:"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvOutputGas"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="985 SCM"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <!-- Process Loss -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="8dp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Process Loss:"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvLoss"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="10 SCM"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <!-- Reconciled Balance -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="8dp"
-            android:background="#E0F7FA"
-            android:layout_marginTop="12dp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Reconciled Balance:"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvBalance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="5 SCM"
-                android:textSize="18sp"
+                android:text="Gas Reconciliation Report"
+                android:textSize="24sp"
                 android:textStyle="bold"
-                android:textColor="#D32F2F" />
+                android:textColor="#1E7D34"
+                android:paddingBottom="12dp" />
+
         </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
-        <!-- Pie Chart for Auto / Car / HMV -->
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/pieChart"
+    <!-- Content Card -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="8dp"
+        app:cardBackgroundColor="#E9ECEF"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:layout_marginTop="20dp" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    </LinearLayout>
-</ScrollView>
+            <!-- Date Filter Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="From:"
+                    android:textStyle="bold"
+                    android:paddingEnd="4dp" />
+
+                <TextView
+                    android:id="@+id/tvStartDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="6dp"
+                    android:background="@drawable/edittext_bg"
+                    android:text="Select Start Date" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" To "
+                    android:paddingHorizontal="6dp" />
+
+                <TextView
+                    android:id="@+id/tvEndDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="6dp"
+                    android:background="@drawable/edittext_bg"
+                    android:text="Select End Date" />
+
+                <Button
+                    android:id="@+id/btnFilter"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="👉"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
+
+            <!-- Scroll Content -->
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- Input at Compressor -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="8dp"
+                        android:background="#FFFFFF"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Input at Compressor"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="#1E7D34"
+                            android:paddingBottom="4dp" />
+
+                        <TextView
+                            android:id="@+id/tvInputGas"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Loading..."
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black" />
+                    </LinearLayout>
+
+                    <!-- Out from Compressor -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="8dp"
+                        android:background="#FFFFFF"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Out from Compressor"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="#1E7D34"
+                            android:paddingBottom="4dp" />
+
+                        <TextView
+                            android:id="@+id/tvOutputGas"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Loading..."
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black" />
+                    </LinearLayout>
+
+                    <!-- Loss -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="8dp"
+                        android:background="#FFFFFF"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Loss"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="#1E7D34"
+                            android:paddingBottom="4dp" />
+
+                        <TextView
+                            android:id="@+id/tvLoss"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Loading..."
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black" />
+                    </LinearLayout>
+
+                    <!-- Reconciled Balance -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp"
+                        android:background="#F8F9FA"
+                        android:layout_marginBottom="16dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Reconciled Balance"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="#1E7D34"
+                            android:paddingBottom="4dp" />
+
+                        <TextView
+                            android:id="@+id/tvBalance"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Loading..."
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="#D32F2F" />
+                    </LinearLayout>
+
+                    <!-- Pie Chart -->
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/pieChart"
+                        android:layout_width="match_parent"
+                        android:layout_height="350dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Pie Chart Values Text -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp"
+                        android:background="#FFFFFF">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Gas Distribution Breakdown"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="#1E7D34"
+                            android:paddingBottom="8dp" />
+
+                        <TextView
+                            android:id="@+id/tvPieChartValues"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Loading..."
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:lineSpacingExtra="4dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

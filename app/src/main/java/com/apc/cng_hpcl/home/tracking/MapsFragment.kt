@@ -1,493 +1,433 @@
 package com.apc.cng_hpcl.home.tracking
 
-import android.Manifest
-import android.content.Context
-import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.RequiresPermission
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import com.android.volley.Request
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.apc.cng_hpcl.R
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationResult
-import com.google.android.gms.location.LocationServices
-import com.google.android.gms.location.Priority
-import kotlinx.coroutines.*
-import org.json.JSONArray
-import org.json.JSONObject
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
 import org.osmdroid.views.overlay.Polyline
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.net.HttpURLConnection
-import java.net.URL
+import org.osmdroid.views.overlay.infowindow.InfoWindow
 import java.text.SimpleDateFormat
 import java.util.*
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import android.util.Log
+import android.widget.Button
+import com.google.android.material.card.MaterialCardView
 
-data class VehicleData(
-    val vehicleId: String,
-    val regNo: String,
-    val latitude: Double,
-    val longitude: Double,
-    val speed: Int,
-    val address: String,
-    val lastSeen: String,
-    val ignitionStatus: String,
-    val status: String,
-    val vehicleType: String,
-    val customMarker: String,
-    val direction: String,
-    val altitude: String?
+data class Vehicle(
+    val VehicleNo: String,
+    val Imei: String,
+    val Location: String,
+    val Date: String,
+    val Tempr: String,
+    val Ignition: String,
+    val Lat: String,
+    val Long: String,
+    val Speed: String,
+    val Angle: String
 )
 
-data class PersistentTrackPoint(
-    val latitude: Double,
-    val longitude: Double,
-    val timestamp: Long,
-    val speed: Int
+data class LocationData(
+    val lat: Double,
+    val lng: Double,
+    val name: String
 )
 
 class MapsFragment : Fragment() {
     private lateinit var map: MapView
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private var userLocationMarker: Marker? = null
-    private var vehicleMarker: Marker? = null
-    private var trackingPolyline: Polyline? = null
+    private lateinit var slideInMenu: MaterialCardView
+    private lateinit var menuOverlay: View
+    private lateinit var hamburgerMenuBtn: Button
+    private val viewModel: TrackingViewModel by activityViewModels()
 
-    // UI Components
-    private lateinit var speedIndicator: TextView
-    private lateinit var speedUnit: TextView
+    // LCV tracking variables - COMMENTED OUT
+    // private val updateHandler = Handler(Looper.getMainLooper())
+    // private val vehicleMarkers = mutableMapOf<String, Marker>()
+    // private val vehiclePaths = mutableMapOf<String, Polyline>()
+    // private val vehiclePathPoints = mutableMapOf<String, MutableList<GeoPoint>>()
 
-    // Enhanced tracking variables
-    private val vehicleTrackingPoints = mutableListOf<GeoPoint>()
-    private val persistentTrackingPoints = mutableListOf<PersistentTrackPoint>()
-    private val updateHandler = Handler(Looper.getMainLooper())
-    private var trackingRunnable: Runnable? = null
-    private val updateInterval = 3000L // Reduced to 3 seconds for real-time feel
+    private var isMenuOpen = false
+    // private var lastUpdateTime = System.currentTimeMillis()
 
-    // SharedPreferences for persistent storage
-    private lateinit var trackingPrefs: SharedPreferences
-    private val gson = Gson()
+    // Different colors for vehicles - COMMENTED OUT
+    // private val vehicleColors = listOf(
+    //     Color.RED, Color.BLUE, Color.GREEN, Color.MAGENTA,
+    //     Color.CYAN, Color.YELLOW, Color.BLACK, Color.GRAY
+    // )
 
-    // Vamosys API configuration
-    private val baseApiUrl = "https://api.vamosys.com/mobile/getGrpDataForTrustedClients"
-    private val providerName = "SUMITGUPTA"
-    private val fcode = "wom"
-    private val vehicleId = "UP16BC1531"
-
-    // Route snapping variables
-    private var currentSpeed = 0
-    private var lastKnownLocation: GeoPoint? = null
-
-    @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         val view = inflater.inflate(R.layout.fragment_maps, container, false)
 
-        Configuration.getInstance().userAgentValue = requireContext().packageName
+        // Initialize OpenStreetMap configuration
+        Configuration.getInstance().setUserAgentValue(requireContext().packageName)
 
-        // Initialize components
+        // Initialize views
         map = view.findViewById(R.id.osmMap)
-        speedIndicator = view.findViewById(R.id.speedIndicator)
-        speedUnit = view.findViewById(R.id.speedUnit)
-
-        // Initialize SharedPreferences
-        trackingPrefs = requireContext().getSharedPreferences("vehicle_tracking", Context.MODE_PRIVATE)
+        hamburgerMenuBtn = view.findViewById(R.id.hamburgerMenuBtn)
+        slideInMenu = view.findViewById(R.id.slideInMenu)
+        menuOverlay = view.findViewById(R.id.menuOverlay)
 
         setupMap()
-        setupSpeedIndicator()
-        loadPersistentTrackingData()
+        setupHamburgerMenu()
 
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
-        getUserLocation()
-        startVehicleTracking()
+        // COMMENTED OUT LCV TRACKING
+        // startLiveTracking()
+
+        val button = view.findViewById<Button>(R.id.btnShowBottomSheet)
+        button.setOnClickListener {
+            BottomSheetFragment().show(parentFragmentManager, "BottomSheet")
+        }
 
         return view
     }
 
     private fun setupMap() {
-        map.apply {
-            setMultiTouchControls(true)
-            controller.setZoom(16.0)
-            isClickable = true
-            setBuiltInZoomControls(true)
-            setTileSource(TileSourceFactory.MAPNIK)
-            controller.setCenter(GeoPoint(28.6139, 77.2090))
-        }
+        map.setTileSource(TileSourceFactory.MAPNIK)
+        map.setMultiTouchControls(true)
+        map.setBuiltInZoomControls(true)
+        map.controller.setZoom(12.0) // Good zoom level to see stations clearly
+
+        // Center map on your stations area (Kota region)
+        map.controller.setCenter(GeoPoint(25.16, 75.87))
+
+        map.setHorizontalMapRepetitionEnabled(false)
+        map.setVerticalMapRepetitionEnabled(false)
+
+        // Add only custom filling stations
+        addCustomFillingStations()
     }
 
-    private fun setupSpeedIndicator() {
-        speedIndicator.apply {
-            text = "0"
-            textSize = 24f
-            setTextColor(ContextCompat.getColor(requireContext(), android.R.color.white))
-        }
-        speedUnit.apply {
-            text = "km/h"
-            setTextColor(ContextCompat.getColor(requireContext(), android.R.color.white))
-        }
-        updateSpeedIndicator(0)
-    }
+    // Add custom filling stations function
+    private fun addCustomFillingStations() {
+        Log.d("MapDebug", "Starting to add filling stations")
 
-    private fun updateSpeedIndicator(speed: Int) {
-        currentSpeed = speed
-        speedIndicator.text = speed.toString()
-
-        // Change color based on speed
-        val color = when {
-            speed == 0 -> ContextCompat.getColor(requireContext(), android.R.color.darker_gray)
-            speed <= 40 -> ContextCompat.getColor(requireContext(), android.R.color.holo_green_light)
-            speed <= 80 -> ContextCompat.getColor(requireContext(), android.R.color.holo_orange_light)
-            else -> ContextCompat.getColor(requireContext(), android.R.color.holo_red_light)
-        }
-        speedIndicator.setTextColor(color)
-    }
-
-    // Load persistent tracking data from SharedPreferences
-    private fun loadPersistentTrackingData() {
-        val trackingDataJson = trackingPrefs.getString("tracking_points", "[]")
-        val type = object : TypeToken<List<PersistentTrackPoint>>() {}.type
-        val loadedPoints: List<PersistentTrackPoint> = gson.fromJson(trackingDataJson, type) ?: emptyList()
-
-        persistentTrackingPoints.clear()
-        persistentTrackingPoints.addAll(loadedPoints)
-
-        // Convert to GeoPoints and update map
-        vehicleTrackingPoints.clear()
-        persistentTrackingPoints.forEach { point ->
-            vehicleTrackingPoints.add(GeoPoint(point.latitude, point.longitude))
-        }
-
-        if (vehicleTrackingPoints.isNotEmpty()) {
-            updateTrackingPolyline()
-        }
-
-        Log.d("MapsFragment", "Loaded ${persistentTrackingPoints.size} persistent tracking points")
-    }
-
-    // Save tracking data to SharedPreferences
-    private fun savePersistentTrackingData() {
-        val trackingDataJson = gson.toJson(persistentTrackingPoints)
-        trackingPrefs.edit().putString("tracking_points", trackingDataJson).apply()
-    }
-
-    @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
-    private fun getUserLocation() {
-        val locationRequest = LocationRequest.Builder(
-            Priority.PRIORITY_HIGH_ACCURACY, 10000 // Reduced to 10 seconds
-        ).build()
-
-        fusedLocationClient.requestLocationUpdates(
-            locationRequest, object : LocationCallback() {
-                override fun onLocationResult(result: LocationResult) {
-                    result.lastLocation?.let { location ->
-                        updateUserLocationMarker(location.latitude, location.longitude)
-                    }
-                }
-            }, Looper.getMainLooper()
+        // MGS icon locations
+        val mgsLocations = listOf(
+            LocationData(25.129452, 75.865469, "RIICO"),
+            LocationData(25.154788, 75.874223, "Shaheed Hemraj Meena CNG Filling Station")
         )
+
+        // DBS icon locations
+        val dbsLocations = listOf(
+            LocationData(25.1825, 75.8605, "Sainik Filling"),
+            LocationData(25.1850, 75.8700, "Jay Chambal"),
+            LocationData(25.1900, 75.8800, "Shiv Filling")
+        )
+
+        Log.d("MapDebug", "Adding ${mgsLocations.size} MGS markers")
+        // Add MGS markers
+        mgsLocations.forEach { location ->
+            addCustomMarker(location, "MGS")
+        }
+
+        Log.d("MapDebug", "Adding ${dbsLocations.size} DBS markers")
+        // Add DBS markers
+        dbsLocations.forEach { location ->
+            addCustomMarker(location, "DBS")
+        }
+
+        Log.d("MapDebug", "Finished adding stations. Total overlays: ${map.overlays.size}")
+        map.invalidate() // Force refresh
     }
 
-    private fun startVehicleTracking() {
-        trackingRunnable = object : Runnable {
-            override fun run() {
-                fetchVehicleData()
-                updateHandler.postDelayed(this, updateInterval)
+
+    private fun addCustomMarker(location: LocationData, iconType: String) {
+        Log.d("MapDebug", "Adding marker: ${location.name} at ${location.lat}, ${location.lng}")
+
+        val marker = Marker(map)
+        marker.position = GeoPoint(location.lat, location.lng)
+        marker.title = location.name
+        marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+
+        // Set custom large icon based on type
+        val iconRes = when (iconType) {
+            "MGS" -> R.drawable.ic_mgs_icon
+            "DBS" -> R.drawable.ic_dbs_icon
+            else -> {
+                Log.e("MapDebug", "Unknown icon type: $iconType")
+                return // Skip if unknown icon type
             }
         }
-        updateHandler.post(trackingRunnable!!)
-    }
 
-    private fun fetchVehicleData() {
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val vehicleData = makeApiCall()
-                withContext(Dispatchers.Main) {
-                    vehicleData?.let {
-                        updateVehicleMarker(it)
-                        updateSpeedIndicator(it.speed)
-                    }
-                }
-            } catch (e: Exception) {
-                withContext(Dispatchers.Main) {
-                    Log.e("MapsFragment", "Error fetching vehicle data", e)
-                    Toast.makeText(context, "Failed to fetch vehicle data", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-    }
-
-    private suspend fun makeApiCall(): VehicleData? {
-        return withContext(Dispatchers.IO) {
-            try {
-                val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-                val currentDate = dateFormat.format(Date())
-
-                val apiUrl = "$baseApiUrl?" +
-                        "providerName=$providerName&" +
-                        "fcode=$fcode&" +
-                        "vehicleId=$vehicleId&" +
-                        "fromDate=$currentDate&" +
-                        "fromTime=00:00:00&" +
-                        "toDate=$currentDate&" +
-                        "toTime=23:59:00"
-
-                val url = URL(apiUrl)
-                val connection = url.openConnection() as HttpURLConnection
-                connection.apply {
-                    requestMethod = "GET"
-                    connectTimeout = 10000 // Reduced timeout
-                    readTimeout = 10000
-                    setRequestProperty("Accept", "application/json")
-                    setRequestProperty("User-Agent", "VehicleTrackingApp/1.0")
-                }
-
-                val responseCode = connection.responseCode
-                if (responseCode == HttpURLConnection.HTTP_OK) {
-                    val reader = BufferedReader(InputStreamReader(connection.inputStream))
-                    val response = reader.readText()
-                    reader.close()
-                    parseVehicleData(response)
-                } else {
-                    Log.e("MapsFragment", "API call failed with response code: $responseCode")
-                    null
-                }
-            } catch (e: Exception) {
-                Log.e("MapsFragment", "Network error", e)
-                null
-            }
-        }
-    }
-
-    private fun parseVehicleData(jsonResponse: String): VehicleData? {
-        return try {
-            val jsonArray = JSONArray(jsonResponse)
-            if (jsonArray.length() > 0) {
-                val vehicleJson = jsonArray.getJSONObject(jsonArray.length() - 1)
-                VehicleData(
-                    vehicleId = vehicleJson.optString("vehicleId", ""),
-                    regNo = vehicleJson.optString("regNo", ""),
-                    latitude = vehicleJson.optDouble("lat", vehicleJson.optDouble("latitude", 0.0)),
-                    longitude = vehicleJson.optDouble("lng", vehicleJson.optDouble("longitude", 0.0)),
-                    speed = vehicleJson.optInt("speed", 0),
-                    address = vehicleJson.optString("address", "Unknown location"),
-                    lastSeen = vehicleJson.optString("lastSeen", ""),
-                    ignitionStatus = vehicleJson.optString("ignitionStatus", "UNKNOWN"),
-                    status = vehicleJson.optString("status", "UNKNOWN"),
-                    vehicleType = vehicleJson.optString("vehicleType", "Vehicle"),
-                    customMarker = vehicleJson.optString("customMarker", "car"),
-                    direction = vehicleJson.optString("direction", "N"),
-                    altitude = vehicleJson.optString("altitude", null)
-                )
+        try {
+            val drawable = ContextCompat.getDrawable(requireContext(), iconRes)
+            if (drawable != null) {
+                marker.icon = drawable
+                Log.d("MapDebug", "Icon set successfully for ${location.name}")
             } else {
-                null
+                Log.e("MapDebug", "Drawable is null for ${location.name}")
+                return
             }
         } catch (e: Exception) {
-            Log.e("MapsFragment", "Error parsing vehicle data", e)
-            null
+            Log.e("MapDebug", "Error setting icon for ${location.name}: ${e.message}")
+            e.printStackTrace()
+            return
+        }
+
+        marker.setOnMarkerClickListener { clickedMarker, mapView ->
+            Toast.makeText(requireContext(), clickedMarker.title, Toast.LENGTH_SHORT).show()
+            true
+        }
+
+        map.overlays.add(marker)
+        Log.d("MapDebug", "Marker added to map: ${location.name}")
+    }
+
+
+    private fun setupHamburgerMenu() {
+        hamburgerMenuBtn.setOnClickListener { toggleMenu() }
+        menuOverlay.setOnClickListener { toggleMenu() }
+    }
+
+    private fun toggleMenu() {
+        slideInMenu.post {
+            val targetX = if (isMenuOpen) -slideInMenu.width.toFloat() else 0f
+            slideInMenu.animate()
+                .translationX(targetX)
+                .setDuration(300)
+                .start()
+            menuOverlay.visibility = if (!isMenuOpen) View.VISIBLE else View.GONE
+            isMenuOpen = !isMenuOpen
         }
     }
 
-    private fun updateUserLocationMarker(lat: Double, lng: Double) {
-        val geoPoint = GeoPoint(lat, lng)
-        if (userLocationMarker == null) {
-            userLocationMarker = Marker(map).apply {
-                position = geoPoint
-                title = "Your Location"
-                snippet = "You are here"
-                setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
-                icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_my_location)
-            }
-            map.overlays.add(userLocationMarker)
-        } else {
-            userLocationMarker!!.position = geoPoint
-        }
-        map.invalidate()
-    }
+    // ALL LCV TRACKING FUNCTIONS COMMENTED OUT BELOW:
 
-    private fun updateVehicleMarker(vehicleData: VehicleData) {
-        val geoPoint = GeoPoint(vehicleData.latitude, vehicleData.longitude)
-
-        // Add to persistent tracking with timestamp
-        val trackPoint = PersistentTrackPoint(
-            vehicleData.latitude,
-            vehicleData.longitude,
-            System.currentTimeMillis(),
-            vehicleData.speed
-        )
-        persistentTrackingPoints.add(trackPoint)
-
-        // Route snapping logic
-        val snappedPoint = if (lastKnownLocation != null) {
-            snapToRoute(lastKnownLocation!!, geoPoint)
-        } else {
-            geoPoint
-        }
-
-        vehicleTrackingPoints.add(snappedPoint)
-        lastKnownLocation = snappedPoint
-
-        // Save persistent data
-        savePersistentTrackingData()
-
-        if (vehicleMarker == null) {
-            vehicleMarker = Marker(map).apply {
-                position = snappedPoint
-                title = "${vehicleData.regNo} (${vehicleData.vehicleType})"
-                snippet = buildVehicleInfo(vehicleData)
-                setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
-                icon = getVehicleIcon(vehicleData)
-            }
-            map.overlays.add(vehicleMarker)
-            map.controller.animateTo(snappedPoint)
-        } else {
-            vehicleMarker!!.position = snappedPoint
-            vehicleMarker!!.snippet = buildVehicleInfo(vehicleData)
-            vehicleMarker!!.icon = getVehicleIcon(vehicleData)
-        }
-
-        updateTrackingPolyline()
-        map.invalidate()
-    }
-
-    // Simple route snapping algorithm (can be enhanced with actual routing API)
-    private fun snapToRoute(fromPoint: GeoPoint, toPoint: GeoPoint): GeoPoint {
-        // For now, return the original point
-        // In production, you would call a routing service like OSRM or GraphHopper
-        // to get the route between points and snap to roads
-
-        // Example of how you could implement route snapping:
-        // 1. Call routing API between fromPoint and toPoint
-        // 2. Get the route waypoints
-        // 3. Return the closest waypoint to toPoint
-
-        return toPoint // Placeholder implementation
-    }
-
-    private fun buildVehicleInfo(data: VehicleData): String {
-        return """
-            Vehicle: ${data.regNo}
-            Speed: ${data.speed} km/h
-            Status: ${data.status}
-            Ignition: ${data.ignitionStatus}
-            Direction: ${data.direction}
-            Last Update: ${data.lastSeen}
-            ${if (data.address.isNotEmpty()) "Location: ${data.address}" else ""}
-        """.trimIndent().replace("\n\n", "\n")
-    }
-
-    private fun getVehicleIcon(vehicleData: VehicleData): Drawable? {
-        return when {
-            vehicleData.status == "OFF" -> ContextCompat.getDrawable(requireContext(), R.drawable.ic_vehicle_off)
-            vehicleData.speed > 0 -> ContextCompat.getDrawable(requireContext(), R.drawable.ic_vehicle_moving)
-            else -> ContextCompat.getDrawable(requireContext(), R.drawable.ic_vehicle_idle)
-        }
-    }
-
-    private fun updateTrackingPolyline() {
-        if (vehicleTrackingPoints.size < 2) return
-
-        trackingPolyline?.let { map.overlays.remove(it) }
-
-        // Create enhanced polyline with all persistent points (uneraseable)
-        trackingPolyline = Polyline().apply {
-            setPoints(vehicleTrackingPoints) // Use all points, not just last 50
-            color = Color.BLUE
-            width = 8f
-        }
-
-        map.overlays.add(trackingPolyline)
-    }
-
-    // Enhanced functions
-    fun centerOnVehicle() {
-        vehicleMarker?.let { marker ->
-            map.controller.animateTo(marker.position)
-        }
-    }
-
-    fun centerOnUser() {
-        userLocationMarker?.let { marker ->
-            map.controller.animateTo(marker.position)
-        }
-    }
-
-    fun toggleTrackingPath(show: Boolean) {
-        trackingPolyline?.let { polyline ->
-            if (show) {
-                if (!map.overlays.contains(polyline)) {
-                    map.overlays.add(polyline)
+    /*
+    private fun startLiveTracking() {
+        val runnable = object : Runnable {
+            override fun run() {
+                fetchAllLCVData { vehicles ->
+                    if (vehicles.isNotEmpty()) {
+                        updateMapWithVehicles(vehicles)
+                        lastUpdateTime = System.currentTimeMillis()
+                    }
                 }
-                else {}
-            } else {
-                map.overlays.remove(polyline)
+                // Refresh every 15 seconds for more real-time updates
+                updateHandler.postDelayed(this, 15000)
             }
         }
-        map.invalidate()
+        updateHandler.post(runnable)
     }
 
-    // Modified to not clear persistent data
-    fun clearTrackingHistory() {
-        // Only clear from UI, not from persistent storage
-        vehicleTrackingPoints.clear()
-        trackingPolyline?.let { map.overlays.remove(it) }
-        trackingPolyline = null
-        map.invalidate()
+    private fun fetchAllLCVData(onResult: (List<Vehicle>) -> Unit) {
+        val url = "http://www.ctyf.co.in/api/companyvehiclelatestinfo?token=84F2A9BCF2&group=HPCL0123"
+        val queue = Volley.newRequestQueue(requireContext())
 
-        Log.d("MapsFragment", "Cleared UI tracking history but kept persistent data")
+        val request = JsonObjectRequest(
+            Request.Method.GET, url, null,
+            { response ->
+                try {
+                    val vehiclesJson = response.getJSONArray("Vehicle")
+                    val vehicles = mutableListOf<Vehicle>()
+
+                    for (i in 0 until vehiclesJson.length()) {
+                        val v = vehiclesJson.getJSONObject(i)
+                        vehicles.add(
+                            Vehicle(
+                                v.getString("VehicleNo"),
+                                v.getString("Imei"),
+                                v.getString("Location"),
+                                v.getString("Date"),
+                                v.getString("Tempr"),
+                                v.getString("Ignition"),
+                                v.getString("Lat"),
+                                v.getString("Long"),
+                                v.getString("Speed"),
+                                v.getString("Angle")
+                            )
+                        )
+                    }
+                    onResult(vehicles)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    Toast.makeText(requireContext(), "Error parsing vehicle data", Toast.LENGTH_SHORT).show()
+                    onResult(emptyList())
+                }
+            },
+            { error ->
+                error.printStackTrace()
+                Toast.makeText(requireContext(), "Error fetching vehicle data: ${error.message}", Toast.LENGTH_SHORT).show()
+                onResult(emptyList())
+            }
+        )
+        queue.add(request)
     }
 
-    // New function to permanently delete tracking history
-    fun permanentlyDeleteTrackingHistory() {
-        vehicleTrackingPoints.clear()
-        persistentTrackingPoints.clear()
-        savePersistentTrackingData()
-        trackingPolyline?.let { map.overlays.remove(it) }
-        trackingPolyline = null
+    private fun updateMapWithVehicles(vehicles: List<Vehicle>) {
+        var validVehicleCount = 0
+
+        for ((index, vehicle) in vehicles.withIndex()) {
+            try {
+                val lat = vehicle.Lat.toDoubleOrNull()
+                val lon = vehicle.Long.toDoubleOrNull()
+
+                if (lat == null || lon == null || lat == 0.0 || lon == 0.0) {
+                    continue // Skip invalid coordinates
+                }
+
+                val point = GeoPoint(lat, lon)
+                validVehicleCount++
+
+                // Create or update marker
+                val marker = vehicleMarkers[vehicle.VehicleNo] ?: createVehicleMarker(vehicle.VehicleNo, index)
+
+                // Update marker position
+                marker.position = point
+                marker.title = vehicle.VehicleNo
+
+                // Create detailed info for marker
+                val ignitionStatus = if (vehicle.Ignition == "1") "ON" else "OFF"
+                val speedKmh = "${vehicle.Speed} km/h"
+                val temperature = "${vehicle.Tempr}°C"
+                val lastUpdate = formatDate(vehicle.Date)
+
+                marker.snippet = buildString {
+                    append("Speed: $speedKmh\n")
+                    append("Ignition: $ignitionStatus\n")
+                    append("Temp: $temperature\n")
+                    append("Location: ${vehicle.Location}\n")
+                    append("Last Update: $lastUpdate")
+                }
+
+                // Update path for moving vehicles
+                updateVehiclePath(vehicle, point, index)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+
+        // Remove markers for vehicles that are no longer in the response
+        val currentVehicleNos = vehicles.map { it.VehicleNo }.toSet()
+        val markersToRemove = vehicleMarkers.keys.filter { it !in currentVehicleNos }
+
+        for (vehicleNo in markersToRemove) {
+            vehicleMarkers[vehicleNo]?.let { marker ->
+                map.overlays.remove(marker)
+            }
+            vehicleMarkers.remove(vehicleNo)
+
+            vehiclePaths[vehicleNo]?.let { path ->
+                map.overlays.remove(path)
+            }
+            vehiclePaths.remove(vehicleNo)
+            vehiclePathPoints.remove(vehicleNo)
+        }
+
         map.invalidate()
 
-        Toast.makeText(context, "All tracking history permanently deleted", Toast.LENGTH_SHORT).show()
+        // Show status in toast (optional)
+        if (validVehicleCount > 0) {
+            Toast.makeText(requireContext(), "Updated $validVehicleCount vehicles", Toast.LENGTH_SHORT).show()
+        }
     }
+
+    private fun createVehicleMarker(vehicleNo: String, colorIndex: Int): Marker {
+        val marker = Marker(map)
+        marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+
+        // Set different colors for different vehicles
+        val color = vehicleColors[colorIndex % vehicleColors.size]
+
+        // You can customize marker icons here
+        // marker.icon = createCustomMarkerIcon(color)
+
+        map.overlays.add(marker)
+        vehicleMarkers[vehicleNo] = marker
+        return marker
+    }
+
+    private fun updateVehiclePath(vehicle: Vehicle, currentPoint: GeoPoint, colorIndex: Int) {
+        // Only create paths for moving vehicles or those with ignition on
+        val isMoving = vehicle.Speed.toIntOrNull() ?: 0 > 0
+        val ignitionOn = vehicle.Ignition == "1"
+
+        if (!isMoving && !ignitionOn) return
+
+        // Get or create path points list
+        val pathPointsList = vehiclePathPoints.getOrPut(vehicle.VehicleNo) { mutableListOf() }
+
+        // Add new point if it's significantly different from the last point
+        if (pathPointsList.isEmpty() ||
+            pathPointsList.last().distanceToAsDouble(currentPoint) > 10) { // 10 meter threshold
+            pathPointsList.add(currentPoint)
+
+            // Limit path points to avoid memory issues (keep last 100 points)
+            if (pathPointsList.size > 100) {
+                pathPointsList.removeAt(0)
+            }
+        }
+
+        // Create or update polyline
+        if (pathPointsList.size > 1) {
+            val polyline = vehiclePaths[vehicle.VehicleNo] ?: Polyline().apply {
+                color = vehicleColors[colorIndex % vehicleColors.size]
+                width = 4f
+                map.overlays.add(this)
+                vehiclePaths[vehicle.VehicleNo] = this
+            }
+
+            polyline.setPoints(pathPointsList.toList())
+        }
+    }
+
+    private fun formatDate(dateString: String): String {
+        return try {
+            val inputFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault())
+            val outputFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+            val date = inputFormat.parse(dateString)
+            outputFormat.format(date ?: Date())
+        } catch (e: Exception) {
+            dateString
+        }
+    }
+    */
 
     override fun onResume() {
         super.onResume()
         map.onResume()
-        startVehicleTracking()
     }
 
     override fun onPause() {
         super.onPause()
         map.onPause()
-        stopVehicleTracking()
-        savePersistentTrackingData()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        stopVehicleTracking()
-        savePersistentTrackingData()
+        // Clean up handlers to prevent memory leaks - COMMENTED OUT
+        // updateHandler.removeCallbacksAndMessages(null)
+        map.onDetach()
     }
 
-    private fun stopVehicleTracking() {
-        trackingRunnable?.let { updateHandler.removeCallbacks(it) }
+    override fun onLowMemory() {
+        super.onLowMemory()
+        // Clear old path points to free memory - COMMENTED OUT
+        // vehiclePathPoints.values.forEach { points ->
+        //     if (points.size > 50) {
+        //         points.subList(0, points.size - 50).clear()
+        //     }
+        // }
     }
 }
