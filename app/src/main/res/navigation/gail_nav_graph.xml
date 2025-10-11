@@ -19,6 +19,27 @@
     </fragment>
 
     <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.apc.cng_hpcl.pos.WelcomeFragment"
+        android:label="Welcome"
+        tools:layout="@layout/activity_welcome">
+
+        <action
+            android:id="@+id/action_welcomeFragment_to_salesMainFragment"
+            app:destination="@id/salesMainFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/salesMainFragment"
+        android:name="com.apc.cng_hpcl.pos.SalesMainFragment"
+        android:label="SalesMainFragment"
+        >
+
+    </fragment>
+
+
+    <fragment
         android:id="@+id/dispenserSaleFragment"
         android:name="com.apc.cng_hpcl.home.DispenserSaleFragment"
         android:label="DispenserSaleFragment">
@@ -80,6 +101,9 @@
         <action
             android:id="@+id/action_newDashFrag_to_gasReconciliation"
             app:destination="@id/gasReconciliation" />
+        <action
+            android:id="@+id/action_newDashFrag_to_welcompos"
+            app:destination="@id/welcomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/lcvTracking"

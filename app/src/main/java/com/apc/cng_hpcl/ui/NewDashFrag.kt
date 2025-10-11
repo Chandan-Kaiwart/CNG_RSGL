@@ -50,23 +50,26 @@ class NewDashFrag: Fragment() {
                     navController.navigate(action)
         }
         binding.pos.setOnClickListener {
-            try {
-                // 1. Default way - package name se
-                val launchIntent = requireActivity().packageManager.getLaunchIntentForPackage("com.rsgl.cngpos")
-                if (launchIntent != null) {
-                    startActivity(launchIntent)
-                } else {
-                    // 2. Backup explicit intent agar default fail kare
-                    val intent = Intent()
-                    intent.setClassName(
-                        "com.rsgl.cngpos",
-                        "com.rsgl.cngpos.MainActivity"
-                    )
-                    startActivity(intent)
-                }
-            } catch (e: Exception) {
-                Toast.makeText(mContext, "React App not installed or cannot be opened", Toast.LENGTH_SHORT).show()
-            }
+
+            val action=NewDashFragDirections.actionNewDashFragToWelcompos()
+            navController.navigate(action)
+//            try {
+//                // 1. Default way - package name se
+//                val launchIntent = requireActivity().packageManager.getLaunchIntentForPackage("com.rsgl.cngpos")
+//                if (launchIntent != null) {
+//                    startActivity(launchIntent)
+//                } else {
+//                    // 2. Backup explicit intent agar default fail kare
+//                    val intent = Intent()
+//                    intent.setClassName(
+//                        "com.rsgl.cngpos",
+//                        "com.rsgl.cngpos.MainActivity"
+//                    )
+//                    startActivity(intent)
+//                }
+//            } catch (e: Exception) {
+//                Toast.makeText(mContext, "React App not installed or cannot be opened", Toast.LENGTH_SHORT).show()
+//            }
         }
 
         vm.stationId.observe(viewLifecycleOwner){
@@ -110,6 +113,11 @@ class NewDashFrag: Fragment() {
             navController.navigate(R.id.action_newDashFrag_to_newTransActivity, bundle)
             //        navController.navigate(action)
 
+        }
+
+        binding.lcvTransaction.setOnClickListener{
+            val action=NewDashFragDirections.actionNewDashFragToDriverFragment()
+            navController.navigate(action)
         }
     }
     //Location

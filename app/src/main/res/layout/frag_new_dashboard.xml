@@ -138,8 +138,8 @@
                 android:padding="4dp">
 
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
                     android:layout_margin="4dp"
                     android:padding="4dp"
                     android:src="@drawable/ic_tanker_red"
@@ -186,7 +186,7 @@
                 android:padding="4dp">
 
                 <ImageView
-                    android:layout_width="100dp"
+                    android:layout_width="75dp"
                     android:layout_height="90dp"
                     android:layout_margin="4dp"
                     android:padding="4dp"
@@ -232,7 +232,7 @@
                 android:padding="4dp">
 
                 <ImageView
-                    android:layout_width="100dp"
+                    android:layout_width="75dp"
                     android:layout_height="90dp"
                     android:layout_margin="4dp"
                     android:padding="4dp"
@@ -279,8 +279,8 @@
                 android:padding="4dp">
 
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
                     android:layout_margin="4dp"
                     android:padding="4dp"
                     android:src="@drawable/ic_gas_reconciliation"
@@ -328,7 +328,7 @@
                 android:padding="4dp">
 
                 <ImageView
-                    android:layout_width="100dp"
+                    android:layout_width="75dp"
                     android:layout_height="90dp"
                     android:layout_margin="4dp"
                     android:padding="4dp"
@@ -349,8 +349,56 @@
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
+<!--lcv transaction-->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/lcvTransaction"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:padding="8dp"
+            android:layout_weight="8"
 
-<!--not in use-->
+            app:cardBackgroundColor="#E9ECEF"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/guideline">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="4dp">
+
+                <ImageView
+                    android:layout_width="75dp"
+                    android:layout_height="90dp"
+                    android:layout_margin="4dp"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_tanker_red"
+                    app:tint="@color/orange"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="28dp"
+                    android:gravity="center"
+                    android:layout_margin="4dp"
+                    android:padding="4dp"
+                    android:text="LCV Transaction"
+                    android:textColor="#1E7D34"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!--not in use-->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/statusCard"
             android:layout_width="match_parent"
@@ -389,7 +437,7 @@
                 android:padding="4dp">
 
                 <ImageView
-                    android:layout_width="100dp"
+                    android:layout_width="75dp"
                     android:layout_height="match_parent"
 
                     android:src="@drawable/analytics"
@@ -418,7 +466,7 @@
                 android:padding="4dp">
 
                 <ImageView
-                    android:layout_width="100dp"
+                    android:layout_width="75dp"
                     android:layout_height="match_parent"
                     android:src="@drawable/outline_admin_panel_settings_24"
                     app:tint="@android:color/black" />

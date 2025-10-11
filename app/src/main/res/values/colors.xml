@@ -82,4 +82,46 @@
     <!-- Background colors -->
     <color name="card_background">#FFFFFF</color>
     <color name="fragment_background">#F5F5F5</color>
+
+
+    <!-- Primary Colors -->
+    <color name="primary_color">#1976D2</color>
+    <color name="primary_blue">#2196F3</color>
+    <color name="primary_dark">#0D47A1</color>
+
+    <!-- Background Colors -->
+    <color name="background_color">#F5F5F5</color>
+    <color name="light_gray">#E0E0E0</color>
+    <color name="bg_gray_rounded">#F8F9FA</color>
+
+    <!-- Text Colors -->
+<!--    <color name="text_primary">#212121</color>-->
+<!--    <color name="text_secondary">#757575</color>-->
+<!--    <color name="white">#FFFFFF</color>-->
+<!--    <color name="black">#000000</color>-->
+
+    <!-- Button Colors -->
+    <color name="button_gray">#9E9E9E</color>
+    <color name="button_primary">#2196F3</color>
+    <color name="button_success">#4CAF50</color>
+
+    <!-- Border Colors -->
+    <color name="border_gray">#CCCCCC</color>
+    <color name="divider_color">#EEEEEE</color>
+
+    <!-- Status Colors -->
+    <color name="green_amount">#4CAF50</color>
+    <color name="success_green">#2E7D32</color>
+    <color name="error_red">#D32F2F</color>
+    <color name="warning_orange">#FF9800</color>
+
+    <!-- Additional UI Colors -->
+    <color name="surface_color">#FFFFFF</color>
+<!--    <color name="card_background">#FFFFFF</color>-->
+    <color name="input_background">#FAFAFA</color>
+<!--    <color name="transparent">#00000000</color>-->
+    <color name="primary_orange">#FF9800</color>
+    <color name="text_primary1">#212121</color>
+
+
 </resources>

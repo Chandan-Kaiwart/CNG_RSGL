@@ -1,60 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--    <string name="app_name">LUAG_SGL</string>-->
+    <!-- App Name -->
     <string name="app_name">CNG SUVIDHA</string>
+
+    <!-- Arrays -->
     <string-array name="pressure_gauges">
         <item>General</item>
         <item>Itech</item>
         <item>Radix</item>
         <item>Wika</item>
         <item>Baumer</item>
-
-
     </string-array>
+
     <string-array name="disps_type">
         <item>Compaq</item>
         <item>TGT</item>
         <item>Parker</item>
-
     </string-array>
+
     <string-array name="shifts">
         <item>A</item>
         <item>B</item>
         <item>C</item>
-
     </string-array>
+
     <string-array name="mgs">
         <item>cgs_harua</item>
         <item>upsidc</item>
         <item>khirkiya_ghat</item>
-
     </string-array>
+
     <string-array name="temperature_gauges">
         <item>General</item>
         <item>Radix</item>
         <item>Wika</item>
         <item>Baumer</item>
-
-
     </string-array>
+
+    <!-- Navigation Titles -->
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
 
+    <!-- Form Validation Errors -->
     <string name="name_error">Please enter your name</string>
     <string name="phone_error">Please enter your phone number</string>
     <string name="email_error">Please enter username</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="password_error">Please enter a password</string>
     <string name="error_invalid_password">Please enter a minimum password of 6 characters</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
+    <!-- Fragments -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_track_lcv">Map</string>
 
-
+    <!-- Transaction Strings -->
     <string name="at_mother_gas_station_before_filling"><u>At Mother Gas Station Before Filling</u></string>
-
-
-    <!--    Transaction Dispenser-->
     <string name="click_here_to_upload_dispenser_image"><u>Click here to upload Dispenser Image</u></string>
     <string name="dispenser"><u>Dispenser at DBS</u></string>
     <string name="stationary_cascade"><u>Stationary Cascade</u></string>
@@ -64,21 +65,25 @@
     <string name="dispneser_title"><u>Stationary Cascade at Daughter Booster Station</u></string>
     <string name="upload_temp_gauge"><u>Click here to upload Temperature Gauge Image</u></string>
     <string name="upload_pressure_guage"><u>Click here to upload Pressure Gauge Image</u></string>
-    <!--    Transaction DBS-->
+
+    <!-- Transaction DBS -->
     <string name="at_daughter_booster_station_before_emptying"><u>At Daughter Booster Station Before Emptying</u></string>
     <string name="mass_of_cng_in_lcv_reached_at_dbs">Mass of CNG \n(In LCV reached at DBS):</string>
     <string name="lcv_digit">DL 01 AB 1243</string>
     <string name="calculate_mass_of_cng">Calculate Mass of CNG</string>
     <string name="submit">Submit</string>
     <string name="zero_kg">0 Kg</string>
-    <!--    <string name="density_value">0 Kg/m<sup><small> 3 </small></sup></string>-->
     <string name="density_value">Mass/Volume</string>
-
     <string name="upload">Upload</string>
     <string name="zero">0</string>
     <string name="kg">Kg</string>
+
+    <!-- Gauge Titles -->
     <string name="title_temperature_gauge">Temperature Gauge</string>
     <string name="title_pressure_gauge">Pressure Gauge</string>
+    <string name="title_mass_flow_meter">Mass Flow Meter</string>
+
+    <!-- More Transaction Strings -->
     <string name="at_daughter_booster_station_after_emptying"><u>At Daughter Booster Station After Emptying</u></string>
     <string name="mass_of_cng_left_in_lcv_after_emptying">Mass of CNG \n (Left in LCV after Emptying):</string>
     <string name="at_mother_gas_station_after_filling"><u>At Mother Gas Station After Filling</u></string>
@@ -89,6 +94,8 @@
     <string name="pressure_in_bar">Please enter value of Pressure in bar</string>
     <string name="dispenser_value_in_kg">Dispenser Value in Kg</string>
     <string name="density_value_in_kg">Enter Mass/Volume (Kg/m<sup><small> 3 </small></sup>) </string>
+
+    <!-- App Info -->
     <string name="app_title">CNG Stock Movement and Reconciliation Tracking Application</string>
     <string name="app_quote">Enhancing your Business value using Decision Science Methodology</string>
     <string name="assetlogo">assetlogo</string>
@@ -101,17 +108,78 @@
         4-> LCV @DBS \n
         5-> LCV started emptying \n
         6-> LCV got emptied </string>
-    <string name="title_mass_flow_meter">Mass Flow Meter</string>
+
+    <!-- Activity Titles -->
     <string name="title_activity_dbs_before_emptying_mfm">DBS_Before_Emptying_MFM</string>
-    <!-- Strings used for fragments for navigation -->
+
+    <!-- Fragment Labels -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <!-- Calculations -->
     <string name="density_cal">Density= 0 Kg/m<sup><small> 3 </small></sup></string>
     <string name="lcv_number">LCV Number</string>
+
+    <!-- Sales Module (Non-translatable) -->
+    <string name="calculate" translatable="false">calculate</string>
+    <string name="save" translatable="false">save</string>
+    <string name="total_amount" translatable="false">Total Amount</string>
+    <string name="gas_rate" translatable="false">Gas Rate</string>
+    <string name="quantity" translatable="false">Quantity</string>
+    <string name="select_nozzle" translatable="false">Select Nozzle</string>
+    <string name="nozzle_id" translatable="false">Nozzle Id</string>
+    <string name="select_dispenser" translatable="false">Select Dispenser</string>
+    <string name="dispenser_id" translatable="false">Dispenser Id</string>
+    <string name="manual_sales_entry" translatable="false">Manual Sales Entry</string>
+
+    <!-- MISSING STRINGS - Added from build errors -->
+    <string name="recent_transactions" translatable="false">Recent Transactions</string>
+    <string name="auto_sales_transaction" translatable="false">Auto Sales Transaction</string>
+    <string name="manual_sales_transaction" translatable="false">Manual Sales Transaction</string>
+    <string name="back_to_home" translatable="false">Back to Home</string>
+    <string name="confirm_selection" translatable="false">Confirm Selection</string>
+    <string name="sale_information" translatable="false">Sale Information</string>
+    <string name="transaction_preview" translatable="false">Transaction Preview</string>
+    <string name="ready" translatable="false">Ready</string>
+    <string name="transaction_type" translatable="false">Transaction Type</string>
+    <string name="automatic" translatable="false">Automatic</string>
+    <string name="order_id" translatable="false">Order ID</string>
+    <string name="date_time" translatable="false">Date &amp; Time</string>
+    <string name="nozzle" translatable="false">Nozzle</string>
+    <string name="fuel_type" translatable="false">Fuel Type</string>
+    <string name="cng" translatable="false">CNG</string>
+    <string name="quantity_kg" translatable="false">Quantity (KG)</string>
+    <string name="price_per_kg" translatable="false">Price per KG</string>
+    <string name="back" translatable="false">Back</string>
+    <string name="pay_with_phonepe" translatable="false">Pay with PhonePe</string>
+
+    <!-- Additional Common Strings -->
+    <string name="enter_sales_kg" translatable="false">Enter Sales (KG)</string>
+    <string name="station" translatable="false">Station</string>
+    <string name="select_station" translatable="false">Select Station</string>
+    <string name="cancel" translatable="false">Cancel</string>
+    <string name="ok" translatable="false">OK</string>
+    <string name="yes" translatable="false">Yes</string>
+    <string name="no" translatable="false">No</string>
+    <string name="enter_pos" translatable="false">Enter POS</string>
+    <string name="loading" translatable="false">Loading...</string>
+    <string name="error_occurred" translatable="false">An error occurred</string>
+    <string name="success" translatable="false">Success</string>
+    <string name="welcome_message" translatable="false">Welcome to CNG Point of Sale</string>
+    <string name="welcome_description" translatable="false">Streamline your CNG sales operations</string>
+
+    <string name="rsgl_name" translatable="false">RSGL CNG SUVIDHA</string>
+    <string name="rsgl_hindi" translatable="false">आरएसजीएल सीएनजी सुविधा</string>
+    <string name="welcome_title" translatable="false">Welcome to CNG Suvidha</string>
+    <string name="welcome_subtitle" translatable="false">Your Complete CNG Management Solution</string>
+    <string name="eco_friendly" translatable="false">Eco-Friendly</string>
+    <string name="fixed_rate" translatable="false">Fixed Rate</string>
+    <string name="quick_service" translatable="false">Quick Service</string>
+
+
 
 </resources>
